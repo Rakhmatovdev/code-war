@@ -1,0 +1,53 @@
+{
+  "login": {
+    "title": "Welcome!",
+    "subtitle": "Coders War is an epic educational platform designed for students stepping into the world of programming.",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "email_error": "User not found",
+    "password": "Password",
+    "password_error": "Incorrect password",
+    "password_placeholder": "Enter your password",
+    "login": "Log in",
+    "support": {
+      "title": "Contact Support",
+      "titlein": "Technical Support",
+      "subtitle": "If you have trouble logging into the platform, you can contact the call center",
+      "phone": "+998 94 976 09 26",
+      "phone_text": "E-Mehmon.uz support service",
+      "phonedp": "+998 33 906 20 26",
+      "phone_textdp": "Additional number"
+    },
+    "forgot_password": {
+      "title": "Forgot your password?",
+      "subtitle": "You need to contact E-Mehmon.uz technical support",
+      "phone": "+998 94 976 09 26",
+      "phone_text": "E-Mehmon.uz support service",
+      "phonedp": "+998 33 906 20 26",
+      "phone_textdp": "Additional number"
+    }
+  },
+  "reset": {
+    "title": "Create a password",
+    "subtitle": "You need to come up with a new password",
+    "password": "Create password",
+    "password_placeholder": "Enter password",
+    "confirm_password": "Confirm password",
+    "confirm_placeholder": "Enter password",
+    "send": "Save password"
+  },
+  "navigation": {
+    "mquest": "Main quest",
+    "squest": "Side quest",
+    "duel": "Duel",
+    "rating": "Rating",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "help": "Help"
+  },
+  "logo": {
+    "title": "Coders War",
+    "score": "Rating score:"
+  }
+}

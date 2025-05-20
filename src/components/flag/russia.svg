@@ -1,0 +1,12 @@
+<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="russia" clip-path="url(#clip0_8446_29423)">
+<path id="Vector" d="M15.9304 0.510742H4.06961C1.79586 0.667578 0 2.56141 0 4.87496V7.17023H20V4.87496C20 2.56141 18.2041 0.667578 15.9304 0.510742Z" fill="white"/>
+<path id="Vector_2" d="M0 16.1254C0 18.4389 1.7959 20.3328 4.06965 20.4896H15.9304C18.2041 20.3328 20 18.4389 20 16.1254V13.8301H0V16.1254Z" fill="#FF4B55"/>
+<path id="Vector_3" d="M20 7.16992H0V13.8293H20V7.16992Z" fill="#41479B"/>
+</g>
+<defs>
+<clipPath id="clip0_8446_29423">
+<rect width="20" height="20" fill="white" transform="translate(0 0.5)"/>
+</clipPath>
+</defs>
+</svg>

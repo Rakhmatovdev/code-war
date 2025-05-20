@@ -1,0 +1,53 @@
+{
+  "login": {
+    "title": "Xush kelibsiz!",
+    "subtitle": "Coders War — bu dasturlash olamiga qadam qo‘ygan talabalar uchun mo‘ljallangan epik ta’limiy platforma.",
+    "email": "Elektron pochta",
+    "email_placeholder": "Pochtani kiriting",
+    "email_error": "Bunday foydalanuvchi topilmadi",
+    "password": "Parol",
+    "password_error": "Noto‘g‘ri parol",
+    "password_placeholder": "Parolni kiriting",
+    "login": "Hisobga kiring",
+    "support": {
+      "title": "Qollab-quvatlash bilan bog‘lanish",
+      "titlein": "Texnik yordam",
+      "subtitle": "Agar platformaga kirishda muammolaringiz bo‘lsa, qo‘ng‘iroq markazi bilan bog‘lanishingiz mumkin",
+      "phone": "+998 94 976 09 26",
+      "phone_text": "E-Mehmon.uz yordam xizmati",
+      "phonedp": "+998 33 906 20 26",
+      "phone_textdp": "Qo‘shimcha raqam"
+    },
+    "forgot_password": {
+      "title": "Parolni unutdingizmi?",
+      "subtitle": "Siz E-Mehmon.uz texnik yordamiga murojaat qilishingiz kerak",
+      "phone": "+998 94 976 09 26",
+      "phone_text": "E-Mehmon.uz yordam xizmati",
+      "phonedp": "+998 33 906 20 26",
+      "phone_textdp": "Qo‘shimcha raqam"
+    }
+  },
+  "reset": {
+      "title": "Parol yarating",
+     "subtitle": "Yangi parol o‘ylab topishingiz kerak",
+      "password": "Parol yarating",
+      "password_placeholder": "Parolni kiriting",
+      "confirm_password": "Parolni tasdiqlang",
+      "confirm_placeholder": "Parolni kiriting",
+      "send": "Parolni saqlang"
+    } ,
+    "navigation":{
+      "mquest":"Main quest",
+      "squest":"Side quest",
+      "duel":"Duel",
+      "rating":"Rating",
+      "about": "About",
+      "contact":"Contact",
+      "login":"Login",
+      "help":"Help"
+    },
+    "logo":{
+      "title":"Coders War",
+      "score":"Rating score:"
+    }
+}
