@@ -9,6 +9,8 @@
     "password_error": "Noto‘g‘ri parol",
     "password_placeholder": "Parolni kiriting",
     "login": "Hisobga kiring",
+    "sendemail":"Emailni jo‘natish",
+     "back":"Orqaga",
     "support": {
       "title": "Qollab-quvatlash bilan bog‘lanish",
       "titlein": "Texnik yordam",
@@ -25,6 +27,7 @@
       "phone_text": "E-Mehmon.uz yordam xizmati",
       "phonedp": "+998 33 906 20 26",
       "phone_textdp": "Qo‘shimcha raqam"
+     
     }
   },
   "reset": {
@@ -44,7 +47,10 @@
       "about": "About",
       "contact":"Contact",
       "login":"Login",
-      "help":"Help"
+      "logout":"Logout",
+      "help":"Help",
+      "profile":"Profile",
+      "home":"Home"
     },
     "logo":{
       "title":"Coders War",

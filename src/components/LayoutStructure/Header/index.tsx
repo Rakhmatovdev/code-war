@@ -6,21 +6,23 @@ import { Drawer, Button } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
 import user from "../../../../public/user/user.png";
 import badge from "../../../../public/user/badge.png";
+import AuthService from "../../../config/service/auth.service";
 
 const Header = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  // const drawerRef = useRef();
 
   const NavLinks = [
+    { path: "/", title: t("navigation.home") },
     { path: "/mquest", title: t("navigation.mquest") },
     { path: "/squest", title: t("navigation.squest") },
     { path: "/duel",   title: t("navigation.duel") },
     { path: "/rating", title: t("navigation.rating") },
     { path: "/about",  title: t("navigation.about") },
     { path: "/contact",title: t("navigation.contact") },
-    { path: "/auth/login", title: t("navigation.login") },
     { path: "/help",   title: t("navigation.help") },
+    { path: "/profile", title: t("navigation.profile") },
+    {path:"#", title:<p onClick={()=>AuthService.logout()}> {t("navigation.logout")}</p>}
   ];
 
   // Close drawer on Escape key

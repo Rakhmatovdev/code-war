@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     supportedLngs: ["en", "kr", "ru", "uz"],
-    fallbackLng: "ru", 
+    fallbackLng: "uz", 
     debug: true,
     ns: ["translations"],
     defaultNS: "translations",

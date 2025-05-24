@@ -1,11 +1,19 @@
 import home from "../../../public/home.png";
-
 import refresh from "../../../public/svg/refresh.svg";
 import like from "../../../public/svg/like.svg";
 import { mockComments, mockReviews } from "../../utils/mock";
-const Home = () => {
- 
+import { useQuery } from "@tanstack/react-query";
+import AuthService from "../../config/service/auth.service";
 
+
+const Home = () => {
+
+  const { data } = useQuery({
+      queryKey: ["comments"],
+      queryFn: () =>AuthService.getContent('home'),
+    
+  });
+  console.log(data);
   
 
   return (

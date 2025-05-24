@@ -38,7 +38,7 @@ const MainQuest = () => {
                   />
               </div> 
             </section>
-            <section className="bg-[#060D0F]  sm:h-[50vh]">
+            <section className="bg-[#060D0F]  sm:h-[15vh]">
             </section>
     </div>
   )

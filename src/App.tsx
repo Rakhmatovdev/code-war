@@ -4,6 +4,9 @@ import QueryProvider from "./config/providers/query.provider.tsx";
 import ReduxProvider from "./config/providers/redux.provider.tsx";
 import DefaultLayout from "./components/LayoutStructure/index.tsx";
 import Accept from "./views/auth/Accept.tsx";
+import Profile from "./views/profile/Profile.tsx";
+import Reset from "./views/auth/Reset.tsx";
+import EmailSend from "./views/auth/Email.tsx";
 
 const Home       = lazy(() => import("./views/home/Home.tsx"));
 const Login      = lazy(() => import("./views/auth/Login.tsx"));
@@ -19,8 +22,8 @@ const StartTest  = lazy(() => import("./views/start/StartTest.tsx"));
 const Duel       = lazy(() => import("./views/duel/Duel.tsx"));
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
-  // const access = localStorage.getItem("accessToken");
-  // if (!access) return <Navigate to="/auth/login" replace />;
+  const access = localStorage.getItem("accessToken");
+  if (!access) return <Navigate to="/auth/login" replace />;
   return <DefaultLayout>{children}</DefaultLayout>;
 };
 
@@ -34,24 +37,23 @@ function App() {
     { path: "/mquest",  element: <MainQuest /> },
     { path: "/squest",  element: <SideQuest /> },
     { path: "/rating",  element: <Rating /> },
+    { path: "/profile", element: <Profile/> },
   ];
 
   return (
     <QueryProvider>
       <ReduxProvider>
-        <BrowserRouter>
-          
+        <BrowserRouter> 
           <Suspense fallback={<div className="text-center p-8 bg-gray-800 h-screen w-screen"/>}>
             <Routes>
-            
               <Route path="/auth">
-                <Route path="login"    element={<Login />} />
+                <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
                 <Route path="accept" element={<Accept />} />
-                 <Route path="start" element= {<StartTest />}/> ,    ,
+                <Route path="start" element= {<StartTest />}/> ,    
+                <Route path="reset" element= {<Reset/>}/> ,    
+                <Route path="email" element= {<EmailSend/>}/> ,    
               </Route>
-
-        
               {protectedRoutes.map(({ path, element }) => (
                 <Route
                   key={path}

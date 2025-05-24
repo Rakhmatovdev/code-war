@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import arrow from "../../../public/a_after.svg";
 import AboutImg from "../../../public/outline/about.png";
 import Adiv1 from "../../components/users/div.png";
@@ -6,8 +7,19 @@ import Adiv3 from "../../components/users/div3.png";
 import Adiv4 from "../../components/users/div4.png";
 import Adiv5 from "../../components/users/div5.png";
 import Adiv6 from "../../components/users/div6.png";
+import AuthService from "../../config/service/auth.service";
 
 const About = () => {
+
+
+  const { data } = useQuery({
+      queryKey: ["personal"],
+      queryFn: () =>AuthService.getContent('personal'),
+    
+  });
+  console.log(data);
+  
+
   return (
     <div className="">
       <section className="h-[calc(100vw+286px)] sm:h-[calc(50vw-286px)] ">

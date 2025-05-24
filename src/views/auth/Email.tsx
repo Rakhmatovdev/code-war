@@ -1,19 +1,17 @@
 import { Input  } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {useNavigate } from "react-router"; 
+import {Link, useNavigate } from "react-router"; 
 import  Back from "../../../public/authPic.png";
-
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
-import eyemy from "../../components/icons/eye.svg";
-import eyemyo from "../../components/icons/eyeo.svg";
 import AuthService from "../../config/service/auth.service";
-import { useAppSelector } from "../../config/hooks/useRedux";
+import { useAppDispatch} from "../../config/hooks/useRedux";
+import { adder } from "../../features/email/emailSlice";
 
 interface RegisterResponse {
-  access: string;
+  message: string;
 }
 
 interface ErrorResponse {
@@ -21,30 +19,24 @@ interface ErrorResponse {
   errors?: Record<string, string[]>;
 }
 
-type Accept = {
+type Email = {
   email: string;
-  code: string;
 };
 
 
-export default function Accept() {
-  const email=useAppSelector(data=>data.email.email)
-  const [eyeShow, setEyeShow] = useState(false);
+export default function EmailSend() {
+    
+    const dispatch=useAppDispatch()
+    
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const {
     control,
     handleSubmit,
-    formState: { errors },
     watch,
-    setError,
     clearErrors,
-  } = useForm<Accept>({
-    defaultValues:{
-        email,
-        code:""
-    }
+  } = useForm<Email>({
   });
 
  useEffect(() => {
@@ -58,20 +50,19 @@ export default function Accept() {
   const { mutate, isPending } = useMutation<
     RegisterResponse,
     AxiosError<ErrorResponse>,
-    Accept
+    Email
   >({
-    mutationKey: ["Accept"],
-    mutationFn: (data: Accept) => AuthService.accept(data),
-    onSuccess: () =>navigate("/"),
-   onError: (error) => {
-  const message = error.response?.data?.message  || "Invalid code";
-  setError("code", { type: "manual", message });
-},
-
+    mutationKey: ["Email"],
+    mutationFn: (data: Email) => AuthService.forgotPassword(data),
+    onSuccess: () =>navigate("/auth/reset"),
   });
 
-  const onSubmit = (data: Accept) => {
-    mutate(data);
+  const onSubmit = (data: Email) => {
+    const waiter=async()=>{
+     await dispatch(adder(data.email));
+     mutate(data);
+    }
+    waiter()
   };
 
   return (
@@ -118,7 +109,6 @@ export default function Accept() {
                                   field.onChange(e);
                                   clearErrors("email");
                                 }}
-                                disabled
                            
                                 id="floating_login"
                                 className="!bg-transparent mt-2.5 sm:px-4 py-2 sm:py-3.5 placeholder:sm:text-[15px] placeholder:text-xs placeholder:text-[#84878d] !text-white  font-medium border border-[#6B7280]  rounded-lg shinput"
@@ -128,59 +118,25 @@ export default function Accept() {
                           />
                         </div>
 
-                        <div className="relative">
-                          <div className="flex items-center justify-between text-xs sm:text-sm font-medium">
-                            <label
-                              htmlFor="floating_password"
-                              className="font-medium"
-                            >
-                              Code
-                            </label>
-                           
-                          </div>
-                          <div className="relative">
-                            <Controller
-                              name="code"
-                              control={control}
-                              rules={{ required: t("login.password_error") }}
-                              render={({ field }) => (
-                                <Input
-                                  {...field}
-                                  onChange={(e) => {
-                                    field.onChange(e);
-                                    clearErrors("code");
-                                  }}
-                                  status={errors.code ? "error" : ""}
-                                  id="floating_password"
-                                  className=" !bg-transparent mt-2.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-[#6B7280]  placeholder:sm:text-[15px] placeholder:text-xs text-xs sm:text-[15px] text-white font-medium border border-[#6B7280] rounded-lg shinput"
-                                  placeholder="Code please"
-                                  type={eyeShow ? "text" : "password"}
-                                />
-                              )}
-                            />
-                             <img
-                             src={eyeShow ? eyemyo : eyemy}
-                             alt={eyeShow ? "Hide password" : "Show password"}
-                             className={`text-xs sm:text-xl text-white absolute bottom-4 sm:bottom-5 right-4 cursor-pointer `}
-                             onClick={() => setEyeShow((prev) => !prev)}
-                           />  
-                          </div>
-                          {errors.code && (
-                            <span className="text-rose-500">
-                              {errors.code.message}
-                            </span>
-                          )}
-                        </div>
+                        
 
                         <button
                           type="submit"
                           disabled={
-                            !watch("email") || !watch("code") || isPending
+                            !watch("email") || isPending
                           }
                           className="w-full text-white bg-[#2563EB] hover:bg-[#1563EB] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-[#6B7280] disabled:hover:bg-[#6A7280] disabled:focus:ring-[#6A7280]"
                         >
-                          {t("login.login")}
+                          {t("login.sendemail")}
                         </button>
+                        <div
+                        //   type="submit"
+                          className="flex"
+                        >
+                            <Link to={'/auth/login'}  className="px-5 py-2.5 w-full text-white bg-[#2563EB] hover:bg-[#1563EB] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs sm:text-sm  text-center"> 
+                             {t("login.back")}
+                            </Link>
+                        </div>
                       </form>
                     </div>
                   </div>

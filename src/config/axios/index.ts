@@ -48,6 +48,20 @@ export const endpoints = {
     register: "/register/", // POST
     accept:"/accept/" //POST
   },
+  content:'/content/', // GET
+  profile:{
+    getProfile:'/profile/', // GET
+    changePassword:'/profile/change-password/', // POST
+    updateProfile:'/profile/update/', // Patch
+  },
+  resetpassword:"/reset-password/", // POST
+  topics:{
+    base:"/topics/", // GET
+    getTopics:'/api/topics/', // GET
+    completeTopic:'/complete/', // Post
+  },
+  forgotpassword:'/forgot-password/', // POST
+
 };
 
 export default authApi;

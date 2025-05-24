@@ -1,7 +1,7 @@
 import { Input, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {useNavigate } from "react-router"; 
+import {Link, useNavigate } from "react-router"; 
 import  Back from "../../../public/authPic.png";
 
 import { useMutation } from "@tanstack/react-query";
@@ -137,12 +137,12 @@ export default function Login() {
                             >
                               {t("login.password")}
                             </label>
-                            <h4
+                            <Link to={'/auth/email'}
                               className="text-[#6B7280] z-10 hover:underline cursor-pointer"
                              
                             >
                               {t("login.forgot_password.title")}
-                            </h4>
+                            </Link>
                           </div>
                           <div className="relative">
                             <Controller
