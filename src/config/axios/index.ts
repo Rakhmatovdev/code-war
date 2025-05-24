@@ -9,7 +9,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 const authApi = axios.create({
   // baseURL: `${HOST_URL}/${API_VERSION}`,
   baseURL:'http://204.48.28.68:8002',
-  timeout: 10000,
+  timeout: 100000,
 });
 
 authApi.interceptors.request.use(

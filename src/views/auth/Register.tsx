@@ -29,7 +29,7 @@ type Inputs = {
   first_name: string; //3
   last_name: string; //4
   otm: string; //5
-  course: number | string; //6
+  course: number ; //6
   group: string; //7
   direction: string; //8
   role: string; //9
@@ -76,7 +76,7 @@ export default function Register() {
     Inputs
   >({
     mutationKey: ["register"],
-    mutationFn:(data:any)=> AuthService.register(data),
+    mutationFn:(data:Inputs)=> AuthService.register(data),
     onSuccess: () => {
       navigate("/auth/Accept");
     },

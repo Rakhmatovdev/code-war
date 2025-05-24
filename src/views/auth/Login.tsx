@@ -53,7 +53,7 @@ export default function Login() {
     Inputs
   >({
     mutationKey: ["login"],
-    mutationFn:(data:any)=> AuthService.login(data),
+    mutationFn:(data:Inputs)=> AuthService.login(data),
     onSuccess: () =>navigate("/"),
     onError: (error) => {
       const errorMsg = error.response?.data.message || "Данный пользователь не найден";
