@@ -1,5 +1,7 @@
 import { notification } from "antd";
 import authApi, { endpoints } from "../axios";
+import { get } from "react-hook-form";
+import create from "@ant-design/icons/lib/components/IconFont";
 
 interface LoginData {
   email: string;
@@ -28,12 +30,32 @@ interface RegisterResponse {
   access: string; 
 }
 
-export interface ContentRensponse{
+export interface commentResponse{
   id: number | string;
   title: string;
   text: string;
   image: string;
   content_type: string;
+}
+
+export interface createResponse{
+  id: number | string;
+  user_full_name: string;
+  user_profile_image: string;
+  text: string;
+  created_at: string;
+}
+
+export interface commentResponse{
+  id: number | string;
+  user_full_name: string;
+  user_profile_image: string;
+  text: string;
+  created_at: string;
+}
+export interface commentResponse{
+  page: number |string;
+  page_size: number;
 }
 
  interface acceptData {
@@ -226,7 +248,7 @@ forgotPassword: async (data: forgotData): Promise<RegisterResponse> => {
 //profile
 getProfile: async () => {
   try {
-    const response = await authApi.get(`${endpoints.auth.accept}`);
+    const response = await authApi.get(`${endpoints.profile.getProfile}`);
     return response.data;
   } catch (error: unknown) {
     console.error("Get profile failed", error);       
@@ -369,6 +391,50 @@ postTopics: async (id: string | number | undefined): Promise<getTopicsResponse> 
     throw new Error(errorMessage);
   }
 },
+
+//comments
+getComments: async (page:{page:number | string,page_size: number}): Promise<commentResponse[]> => {
+  try {
+    const response = await authApi.get<commentResponse[]>(endpoints.comments.get, {
+      params:page,
+    });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get comments failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Comments not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+createComment: async ( text: string): Promise<createResponse> => {
+  try {
+    const response = await authApi.post<createResponse>(endpoints.comments.create, text);
+    notification.success({ message: "Comment created successfully" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Create comment failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Create Comment Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+}
+
+
+
 };
 
 export default AuthService;

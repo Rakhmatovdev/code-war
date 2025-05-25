@@ -67,14 +67,14 @@ const StartTest = () => {
            <p className="text-center text-xl sm:text-4xl">Kod sehrgarining birinchi qadamlari </p>
            <hr className="h-px border-none mt-3 bg-[#849BF5] mx-4 sm:mx-16" />
            <p className="text-center text-xl sm:text-4xl font-light mt-2">(C# ga kirish: Sintaksis va asosiy tushunchalar)</p>
-              <div className="flex gap-10 justify-between items-center mx-16 mt-9 mb-10">
-                <p></p>
-                <textarea name="" id="" className="min-w-[614px] h-[298px] bg-[#0F1427]"></textarea>
+              <div className="flex gap-10 flex-col sm:flex-row justify-between items-center mx-16 mt-9 mb-10">
+                <p>salokwq</p>
+                <textarea name="" id="" className="sm:min-w-[614px] sm:h-[298px] bg-[#0F1427]"></textarea>
               </div>
         </div>
      </div>)}
      <div className="flex mx-4 sm:mx-16 sm:py-20 py-10 items-center justify-end ">
-                  <button className="px-[60px] py-5  rounded-3xl text-xs sm:text-2xl bg-[#3D6560]">Yakunlash</button></div>
+     <button className="px-[60px] py-5  rounded-3xl text-xs sm:text-2xl bg-[#3D6560]">Yakunlash</button></div>
            
         </section>  
     </div>

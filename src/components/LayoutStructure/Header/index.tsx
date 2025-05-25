@@ -33,8 +33,8 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="container sm:mx-20 sm:my-16 px-4 my-4 flex justify-between  text-white">
-      <Link to="/" className="flex items-center space-x-4 hover:text-white">
+    <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex justify-between  text-white">
+      <Link to="/" className="flex items-center    pace-x-4 hover:text-white">
         <div>
           <p className="sm:text-3xl font-medium">{t("logo.title")}</p>
           <div className="text-xs sm:text-base 2xl:text-xl">
@@ -72,6 +72,7 @@ const Header = () => {
       {/* Drawer for mobile */}
       <Drawer
   title={t("logo.title")}
+  
   placement="right"
   onClose={() => setOpen(false)}
   open={open}

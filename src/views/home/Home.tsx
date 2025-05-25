@@ -9,11 +9,16 @@ import AuthService from "../../config/service/auth.service";
 const Home = () => {
 
   const { data } = useQuery({
-      queryKey: ["comments"],
+      queryKey: ["data"],
       queryFn: () =>AuthService.getContent('home'),
     
+  })
+  const { data:comment } = useQuery({
+      queryKey: ["comments"],
+      queryFn: () =>AuthService.getComments({page:1, page_size: 4}),
   });
   console.log(data);
+  console.log(comment);
   
 
   return (
@@ -37,10 +42,10 @@ const Home = () => {
             alt="home"
             className="-z-10 absolute top-0 w-full h-[500px] sm:h-screen "
           />
-          <div className="absolute bottom-80  sm:bottom-10  flex justify-center items-center  w-full gap-2">
+          {/* <div className="absolute bottom-80  sm:bottom-10  flex justify-center items-center  w-full gap-2">
            
             <div className="h-4 w-4 bg-[#C37D41]"/>
-            <div className="h-4 w-4 bg-[#e6ceb8]"/></div>
+            <div className="h-4 w-4 bg-[#e6ceb8]"/></div> */}
      
         </div>
       </section>

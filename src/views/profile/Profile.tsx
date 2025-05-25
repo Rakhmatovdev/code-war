@@ -1,11 +1,43 @@
+import { SubmitHandler, useForm } from "react-hook-form";
 import InvetarImg from "../../../public/outline/invertar.png";
-
+import { useMutation, useQuery } from "@tanstack/react-query";
+import AuthService from "../../config/service/auth.service";
+import user from "../../../public/user.png";
+import { Modal } from "antd";
+import { useState } from "react";
+type Inputs = {
+  text: string;
+};
 const Profile = () => {
 
+const [show, setShow] = useState(false)
+
+  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const { data: profile } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () => AuthService.getProfile(),
+  });
+
+  const { data: updateProfile, mutate } = useMutation({
+    mutationKey: ["profile"],
+    mutationFn: (data: any) => AuthService.updateProfile(data),
+    onSuccess: (data) => {
+      console.log("Izoh muvaffaqiyatli qoldirildi:", data);
+      reset();
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    mutate(data);
+    console.log(updateProfile);
+    
+  };
+
+  console.log(profile);
 
   return (
     <div>
-         <section className="h-[calc(50vw-285px)] ">
+      <section className="h-[calc(50vw-285px)] ">
         <div className="flex justify-end">
           <img
             src={InvetarImg}
@@ -13,19 +45,80 @@ const Profile = () => {
             alt="Profile"
             className="-z-10 absolute top-0 w-full h-screen"
           />
-         
         </div>
-        <div className="flex sm:p-12 mt-4 mx-4  sm:mx-16">
-          {/* <div className="bg-[#D9D9D90D] mx-auto flex p-3 sm:p-12 sm:gap-14 rounded-xl sm:rounded-3xl">
-        
-          </div> */}
+        <div className="bg-[#D9D9D90D] text-white mx-4 sm:mx-16 h-full rounded-2xl">
+          <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-x-4 gap-y-4 sm:gap-y-0 w-full items-center p-4">
+            <div className=" bg-[#C6DCE90D] сol-span-1 rounded-xl h-full">
+              <div className="flex items-center justify-center mt-4 w-full ">
+                <img
+                  src={profile?.profile_image || user}
+                  alt="user image"
+                  className="w-28 h-28 sm:w-40 sm:h-40 rounded-full my-border cursor-pointer"
+                />
+              </div>
+              <p className="text-center sm:text-xl mt-2">
+                {profile?.first_name} {profile?.last_name}
+              </p>
+              <p className="text-center sm:text-xl mt-2">{profile?.otm}</p>
+              <p className="text-center sm:text-xl my-2">
+                @{profile?.username}
+              </p>
+            </div>
+            <div className="bg-[#C6DCE90D] col-span-2 rounded-xl    h-full p-4">
+              <div className="flex gap-4 sm:gap-12 ">
+                <div className="flex flex-col">
+                  <p className="text-sm sm:text-xl"> Toliq ism:</p>
+                  <p className="text-sm sm:text-xl"> Email:</p>
+                  <p className="text-sm sm:text-xl"> Username:</p>
+                  <p className="text-sm sm:text-xl"> OTM:</p>
+                  <p className="text-sm sm:text-xl"> Group:</p>
+                  <p className="text-sm sm:text-xl"> Direction:</p>
+                  <p className="text-sm sm:text-xl"> Level:</p>
+                  <p className="text-sm sm:text-xl"> Rating:</p>
+                  <p className="text-sm sm:text-xl"> Role:</p>
+                </div>
+                <div className="flex flex-col ">
+                  <span className="text-sm sm:text-xl">
+                    {profile?.first_name} {profile?.last_name}
+                  </span>
+                  <span className="text-sm sm:text-xl">{profile?.email}</span>
+                  <span className="text-sm sm:text-xl">
+                    @{profile?.username}
+                  </span>
+                  <span className="text-sm sm:text-xl">{profile?.otm}</span>
+                  <span className="text-sm sm:text-xl">{profile?.group}</span>
+                  <span className="text-sm sm:text-xl">
+                    {profile?.direction}
+                  </span>
+                  <span className="text-sm sm:text-xl">{profile?.level}</span>
+                  <span className="text-sm sm:text-xl">{profile?.rating}</span>
+                  <span className="text-sm sm:text-xl">{profile?.role}</span>
+                </div>
+              </div>
+              <button onClick={()=>setShow(true)}  className="text-sm sm:text-xl bg-blue-500 mt-20 px-4 py-1 rounded-md inline-block">
+                O'zgartirish
+              </button>
+            </div>
+          </div>
         </div>
       </section>
-      {/* <div className="bg-[#101723] sm:pb-20 pb-5 sm:px-16 px-4 text-white pt-80 sm:pt-64 2xl:pt-10 ">
-           
-      </div> */}
+      <Modal
+        open={show}
+        onCancel={() => setShow(false)}
+        title="Profilni o'zgartirish"
+        footer={null}
+        width={300}
+        centered
+        className="bg-[#060D0F] text-white"
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className="text-black">
+          <div className="mb-4">
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Ismingizni kiriting..." />
+          </div>
+          </form>
+          </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

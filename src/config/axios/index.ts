@@ -61,7 +61,10 @@ export const endpoints = {
     completeTopic:'/complete/', // Post
   },
   forgotpassword:'/forgot-password/', // POST
-
+  comments:{
+    get:"/api/comments/", // GET
+    create:"/api/comments/create/", // POST
+  }
 };
 
 export default authApi;
