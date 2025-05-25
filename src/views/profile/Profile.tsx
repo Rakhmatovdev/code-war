@@ -3,10 +3,18 @@ import InvetarImg from "../../../public/outline/invertar.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
 import user from "../../../public/user.png";
-import { Modal } from "antd";
+import { Modal, Select } from "antd";
 import { useState } from "react";
+import { Option } from "antd/es/mentions";
 type Inputs = {
-  text: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+  otm: string;
+  course:number;
+  group: string;
+  direction: string;
+  role:'talaba' | 'oqituvchi'|string;
 };
 const Profile = () => {
 
@@ -112,8 +120,25 @@ const [show, setShow] = useState(false)
         className="bg-[#060D0F] text-white"
       >
         <form onSubmit={handleSubmit(onSubmit)} className="text-black">
-          <div className="mb-4">
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Ismingizni kiriting..." />
+          <div className="mb-4 space-y-2">
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Ismingizni kiriting..." {...register("first_name")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Familyangiz kiriting..." {...register("last_name")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Username kiriting..." {...register("username")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Universitet yoki Institutingiz..." {...register("otm")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Gruppangizni kiriting..." {...register("group")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Kursingizni kiriting..." {...register("course")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Tavsif kiriting..." {...register("direction")} />
+            
+       <Select placeholder="Rolni tanlang..." className="text-black" style={{ width: '100%',border: '1px solid #ccc', borderRadius: '4px' ,}} {...register("role")}>
+    <Option value="talaba">Talaba</Option>
+    <Option value="oqituvchi">O‘qituvchi</Option>
+  </Select>
+              <input
+                type="submit"
+                value="Saqlash"
+                className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer w-full"
+              />
+          
           </div>
           </form>
           </Modal>

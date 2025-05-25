@@ -1,8 +1,5 @@
 import { notification } from "antd";
 import authApi, { endpoints } from "../axios";
-import { get } from "react-hook-form";
-import create from "@ant-design/icons/lib/components/IconFont";
-
 interface LoginData {
   email: string;
   password: string;
