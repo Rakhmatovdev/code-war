@@ -8,7 +8,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 
 const authApi = axios.create({
   // baseURL: `${HOST_URL}/${API_VERSION}`,
-  baseURL:'http://204.48.28.68:8002',
+  baseURL:'http://165.22.75.64',
   timeout: 100000,
 });
 
