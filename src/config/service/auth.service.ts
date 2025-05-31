@@ -27,12 +27,13 @@ interface RegisterResponse {
   access: string; 
 }
 
-export interface commentResponse{
+
+export interface contentResponse {
   id: number | string;
   title: string;
   text: string;
   image: string;
-  content_type: string;
+  content_type: string
 }
 
 export interface createResponse{
@@ -43,17 +44,28 @@ export interface createResponse{
   created_at: string;
 }
 
-export interface commentResponse{
-  id: number | string;
+interface commentResult{
+   id: number | string;
   user_full_name: string;
   user_profile_image: string;
   text: string;
   created_at: string;
 }
+
 export interface commentResponse{
-  page: number |string;
-  page_size: number;
+  count: number;
+next: string | null;
+previous: null | string;
+results: commentResult[] | null;
 }
+
+
+
+
+// export interface commentResponse{
+//   page: number |string;
+//   page_size: number;
+// }
 
  interface acceptData {
   email: string;
@@ -92,6 +104,13 @@ export interface forgotData {
   email: string;
 }
 
+export interface characterData{
+  id: number | string;
+  name: string;
+  title: string;
+  image: string;
+}
+
 export interface getTopicsResponse {
   id: number | string;
   title: string;
@@ -117,6 +136,13 @@ export interface getTopicsResponse {
     ];
   }
  ];
+}
+
+interface ansver{
+  ansver_id: number | string;
+}
+export interface getIninitialTestsData {
+answers:ansver[];
 }
 
 // Auth 
@@ -192,10 +218,11 @@ accept: async (data: acceptData): Promise<RegisterResponse> => {
     return !!localStorage.getItem("accessToken");
   },
 
+  // getContent
 
- getContent: async (content_type: string): Promise<RegisterResponse> => {
+ getContent: async (content_type: string): Promise<contentResponse[]> => {
   try {
-    const response = await authApi.get<RegisterResponse>(endpoints.content, {
+    const response = await authApi.get<contentResponse[]>(endpoints.content, {
       params: { content_type },
     });
     return response.data;
@@ -390,9 +417,9 @@ postTopics: async (id: string | number | undefined): Promise<getTopicsResponse> 
 },
 
 //comments
-getComments: async (page:{page:number | string,page_size: number}): Promise<commentResponse[]> => {
+getComments: async (page:{page:number | string,page_size: number}): Promise<commentResponse> => {
   try {
-    const response = await authApi.get<commentResponse[]>(endpoints.comments.get, {
+    const response = await authApi.get<commentResponse>(endpoints.comments.get, {
       params:page,
     });
     return response.data;
@@ -428,7 +455,161 @@ createComment: async ( text: string): Promise<createResponse> => {
     notification.error({ message: "Create Comment Failed", description: errorMessage });
     throw new Error(errorMessage);
   }
+},
+
+//asignments
+
+postAssignment: async (id: string | number, code: string): Promise<any> => {
+  try {
+    const response = await authApi.post(`${endpoints.assignments.base}${id}${endpoints.assignments.submit}`, code);
+    notification.success({ message: "Assignment submitted successfully" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Post assignment failed", error);
+    let errorMessage = "An unknown error occurred";
+
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+
+    notification.error({ message: "Post Assignment Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+// characters
+
+getCharacters: async (page:characterData): Promise<commentResponse[]> => {
+  try {
+    const response = await authApi.get<commentResponse[]>(endpoints.characters, {
+      params: page,
+    });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get characters failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Characters not found", description: errorMessage });
+    throw new Error(errorMessage);
+  } 
+
+},
+
+// duel
+
+getDuels: async (): Promise<any> => {
+  try {
+    const response = await authApi.get(endpoints.duel.get);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get duels failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Duels not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+createDuel: async (data: { opponentId: number | string, topicId: number | string }): Promise<any> => {
+  try {
+    const response = await authApi.post(endpoints.duel.create, data);
+    notification.success({ message: "Duel created successfully" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Create duel failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Create Duel Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+joinDuel: async (duelId: number | string): Promise<any> => {
+  try {
+    const response = await authApi.post(`${endpoints.duel.base}${duelId}${endpoints.duel.join}`);
+    notification.success({ message: "Duel joined successfully" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Join duel failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Join Duel Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+//initial tests
+
+getInitialTests: async (): Promise<any> => {
+  try {
+    const response = await authApi.get<any>(endpoints.initialtest.base);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get initial tests failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Initial tests not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+submitInitialTest: async (data:getIninitialTestsData): Promise<any> => {
+  try {
+    const response = await authApi.post(endpoints.initialtest.submit, data);
+    notification.success({ message: "Initial test submitted successfully" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Submit initial test failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Submit Initial Test Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
 }
+
+
+
 
 
 

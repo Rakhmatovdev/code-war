@@ -64,7 +64,23 @@ export const endpoints = {
   comments:{
     get:"/api/comments/", // GET
     create:"/api/comments/create/", // POST
+  },
+  assignments:{
+  base:"/assignments/", // GET
+  submit:"/submit/", // POST
+  },
+  characters:"/characters/", // GET
+  duel:{
+    base:"/duel/", // GET
+    create:"/duel/create/", // POST
+    join:"/join/", // POST
+    get:"/duels/", // GET
+  },
+  initialtest:{
+    base:"/initial-tests/", // GET
+    submit:"initial-tests/submit/", // POST
   }
+
 };
 
 export default authApi;
