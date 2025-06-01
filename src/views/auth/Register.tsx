@@ -29,7 +29,7 @@ type Inputs = {
   first_name: string; //3
   last_name: string; //4
   otm: string; //5
-  course: number ; //6
+  course: number; //6
   group: string; //7
   direction: string; //8
   role: string; //9
@@ -48,9 +48,9 @@ export default function Register() {
     watch,
     clearErrors,
   } = useForm<Inputs>({
-    defaultValues:{
-      email:"",
-       middle_name: "",
+    defaultValues: {
+      email: "",
+      middle_name: "",
       first_name: "",
       last_name: "",
       otm: "",
@@ -59,7 +59,7 @@ export default function Register() {
       direction: "",
       role: "talaba",
       password: "",
-    }
+    },
   });
 
   const [token, setToken] = useState<string | null>(null);
@@ -76,22 +76,22 @@ export default function Register() {
     Inputs
   >({
     mutationKey: ["register"],
-    mutationFn:(data:Inputs)=> AuthService.register(data),
+    mutationFn: (data: Inputs) => AuthService.register(data),
     onSuccess: () => {
       navigate("/auth/Accept");
     },
   });
 
-  const email=useAppSelector(data=>data.email)
+  const email = useAppSelector((data) => data.email);
   console.log(email);
-  const dispatch=useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const onSubmit = (data: Inputs) => {
-     const waiter= async()=>{
-     await dispatch(adder(data.email))
+    const waiter = async () => {
+      await dispatch(adder(data.email));
       mutate(data);
-     }
-waiter()
+    };
+    waiter();
   };
 
   return (
@@ -244,26 +244,34 @@ waiter()
                             />
                           </div>
                           {/* course */}
+                        
                           <div>
                             <label
-                              htmlFor="course"
-                              className="text-xs sm:text-sm font-medium"
+                              htmlFor="role"
+                              className="text-xs sm:text-sm  font-medium"
                             >
-                              Course
+                           course
                             </label>
                             <Controller
                               name="course"
                               control={control}
                               render={({ field }) => (
-                                <Input
+                                <Select
                                   {...field}
-                                  onChange={(e) => {
-                                  field.onChange(e);
-                                  }}
+                                  suffixIcon=""
+                                  defaultValue={1}
                                   id="course"
-                                  className="!bg-transparent mt-2.5 px-4 py-2 sm:py-3.5 placeholder:sm:text-[15px] placeholder:text-xs placeholder:text-[#6B7280] !text-white  font-medium border border-[#6B7280] focus:border-[#3B82F6] rounded-lg shinput"
-                                  placeholder={"Course kiriting"}
-                                />
+                                  onChange={(value) => field.onChange(value)}
+                                  placeholder="Corsni ni tanlang"
+                                  style={{
+                                    color: "#fff",
+                                  }}
+                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent  !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput ">
+                                  <Option value="1">1</Option>
+                                  <Option value="2">2</Option>
+                                  <Option value="3">3</Option>
+                                  <Option value="4">4</Option>
+                                </Select>
                               )}
                             />
                           </div>
@@ -330,19 +338,16 @@ waiter()
                             <Controller
                               name="role"
                               control={control}
-                              
                               render={({ field }) => (
                                 <Select
                                   {...field}
-                              
-                                 suffixIcon=""
+                                  suffixIcon=""
                                   defaultValue="talaba"
                                   id="role"
                                   onChange={(value) => field.onChange(value)}
                                   placeholder="Role ni tanlang"
                                   style={{
                                     color: "#fff",
-                                    
                                   }}
                                   className="
                                   sm:h-11

@@ -1,6 +1,9 @@
 import Mquest from "../../../public/outline/mquest.png";
 import { mockQuestions } from "../../utils/mock";
 const MainQuest = () => {
+  if(MainQuest === undefined) {
+return <div className="w-screen   h-screen  bg-slate-900"/>
+}
   return (
     <div className="">
          <section className="sm:h-[calc(100vh-300px)]  text-white ">

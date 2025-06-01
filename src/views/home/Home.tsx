@@ -21,6 +21,9 @@ const Home = () => {
   console.log(data);
   console.log(comment);
   
+if(home === undefined) {
+return <div className="w-screen h-screen  bg-slate-900"/>
+}
 
   return (
     <div>
@@ -37,17 +40,15 @@ const Home = () => {
               bilim, qalqon – bu mantiq, zirh – bu mashaqqat!
             </p>
           </div>
+         
           <img
             src={home}
-            loading="lazy"
             alt="home"
             className="-z-10 absolute top-0 w-full h-[500px] sm:h-screen "
           />
           {/* <div className="absolute bottom-80  sm:bottom-10  flex justify-center items-center  w-full gap-2">
-           
             <div className="h-4 w-4 bg-[#C37D41]"/>
             <div className="h-4 w-4 bg-[#e6ceb8]"/></div> */}
-     
         </div>
       </section>
       <section>

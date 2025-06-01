@@ -2,7 +2,9 @@ import { Link } from "react-router";
 import Squest from "../../../public/outline/squest.png";
 import { mockTopshiriq } from "../../utils/mock";
 const SideQuest = () => {
-  
+  if(Squest === undefined) {
+return <div className="w-screen h-screen  bg-slate-900"/>
+}
   return (
     <div>
          <section className="h-[calc(50vw-286px)] ">

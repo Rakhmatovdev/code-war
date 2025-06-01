@@ -2,11 +2,10 @@ import RatingImg from "../../../public/outline/rating.png";
 import user from "../../../public/user/user.png"
 import badge from "../../../public/user/badge.png"
 import eye from "../../../public/eye.svg"
-import knife from "../../../public/knife.svg"
 const Rating = () => {
   return (
     <div>
-         <section className="h-[calc(60vw-375px)] ">
+         <section className="h-[calc(50vw-375px)] ">
               <div className="flex justify-end">
                 <img
                   src={RatingImg}
@@ -25,7 +24,6 @@ const Rating = () => {
                     <th className="text-[9px] sm:text-base">reyting</th>
                     <th className="text-[9px] sm:text-base">daraja</th>
                     <th className="text-[9px] sm:text-base">kuzatish</th>
-                    <th className="text-[9px] sm:text-base">dulega chaqirish</th>
                   </tr>
                 </thead>
                 <tbody className="text-center ">
@@ -46,10 +44,7 @@ const Rating = () => {
                       <div className="flex justify-center items-center ">
                       <img className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"  src={eye} alt="user image" width={50} height={50} /></div>
                     </td>
-                    <td className="">
-                      <div className="flex justify-center items-center">
-                      <img className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"  src={knife} alt="user image" width={50} height={50} /></div>
-                    </td>
+                   
                
                   </tr>
                   <tr>
@@ -69,10 +64,7 @@ const Rating = () => {
                       <div className="flex justify-center items-center">
                       <img  src={eye} className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" alt="user image" width={50} height={50} /></div>
                     </td>
-                    <td className="">
-                      <div className="flex justify-center items-center">
-                      <img  src={knife} className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" alt="user image" width={50} height={50} /></div>
-                    </td>
+                   
                
                   </tr>
                  

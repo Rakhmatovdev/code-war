@@ -376,8 +376,8 @@ background: red;
 .ant-select-selector{
   border: none !important;
   background: transparent !important;
-  color: #fff !important;
-  padding: 10px 20px !important; 
+  /* color: #fff !important; */
+  /* padding: 10px 20px !important;  */
 }
 
 

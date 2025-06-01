@@ -145,6 +145,13 @@ export interface getIninitialTestsData {
 answers:ansver[];
 }
 
+interface caracterResponse{
+  id: number | string;
+  name: string;
+  title: string;
+  image: string;
+}
+
 // Auth 
 export const AuthService = {
   login: async (data: LoginData): Promise<LoginResponse> => {
@@ -484,11 +491,9 @@ postAssignment: async (id: string | number, code: string): Promise<any> => {
 
 // characters
 
-getCharacters: async (page:characterData): Promise<commentResponse[]> => {
+getCharacters: async (): Promise<caracterResponse[]> => {
   try {
-    const response = await authApi.get<commentResponse[]>(endpoints.characters, {
-      params: page,
-    });
+    const response = await authApi.get<caracterResponse[]>(endpoints.characters);
     return response.data;
   } catch (error: unknown) {
     console.error("Get characters failed", error);
@@ -607,7 +612,26 @@ submitInitialTest: async (data:getIninitialTestsData): Promise<any> => {
     throw new Error(errorMessage);
   }
 }
-
+,
+//choice
+getChoice: async (): Promise<any>=> {
+  try {
+    const response = await authApi.get<any>(endpoints.choices);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get choice failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Choice not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+}
 
 
 

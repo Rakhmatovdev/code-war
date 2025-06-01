@@ -17,8 +17,13 @@ const About = () => {
       queryFn: () =>AuthService.getContent('personal'),
     
   });
-  console.log(data);
   
+  const my=data ? data[0]?.text?.split(/ {3,}/) : ["",""];
+  const user=data ? data[0]?.title?.split(/ {3,}/) : ["",""]
+
+if(AboutImg === undefined) {
+return <div className="w-screen absolute  h-screen  bg-slate-900"/>
+}
 
   return (
     <div className="">
@@ -33,18 +38,16 @@ const About = () => {
         </div>
         <div className="text-white mx-4 sm:mx-80 ">
           <p className="text-center text-xl sm:text-5xl font-medium">
-            Umarzoda Shohruh Azamat o’g’li
+         {user[0]}
           </p>
           <p className="text-center text-xs sm:text-base sm:mt-11 mt-2 text-[#E5E5E5] mx-4">
-            Oliy ta’lim muassasalarida “Algoritmik tillar va dasturlash” fanini
-            o’qitish metodikasini takomillashtirish.
+            {user[1]}
           </p>
           <div className="sm:mt-28 flex justify-between sm:flex-row flex-col">
             <div className="sm:space-y-4 space-y-2 mt-10 sm:mt-0">
-              <p className="text-lg sm:text-4xl text-center font-medium">ALGORI-GAME modeli</p>
+              <p className="text-lg sm:text-4xl text-center font-medium">{my[0]}</p>
               <p className=" text-[#E5E5E5]  w-[306px]">
-                ALGORI-GAME — bu dasturlashni gamifikatsiya, adaptive learning
-                va project-based learning asosida o‘qitish modelidir.
+               {my[1]}
               </p>
               <a href="#" className="flex sm:text-base text-sm gap-2 items-center cursor-pointer">
                 {" "}
@@ -53,9 +56,9 @@ const About = () => {
             </div>
             <div className="">
               <img
-                src={Adiv1}
+                src={data && data[0]?.image || Adiv1}
                 alt="hero algori"
-                className=""
+                className=" rounded-2xl"
                 width={422}
                 height={366}
               />

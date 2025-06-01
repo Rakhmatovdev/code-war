@@ -80,7 +80,8 @@ export const endpoints = {
     base:"/initial-tests/", // GET
     submit:"initial-tests/submit/", // POST
   }
-
+,
+choices:"/api/choices/", // GET
 };
 
 export default authApi;

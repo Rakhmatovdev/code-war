@@ -32,6 +32,7 @@ const Header = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+
   return (
     <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex justify-between  text-white">
       <Link to="/" className="flex items-center    pace-x-4 hover:text-white">

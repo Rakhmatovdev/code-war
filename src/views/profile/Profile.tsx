@@ -1,11 +1,11 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import InvetarImg from "../../../public/outline/invertar.png";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
+
 import AuthService from "../../config/service/auth.service";
 import user from "../../../public/user.png";
 import { Modal, Select } from "antd";
-import { useState } from "react";
-import { Option } from "antd/es/mentions";
+import { useEffect, useState } from "react";
 type Inputs = {
   username: string;
   first_name: string;
@@ -16,32 +16,111 @@ type Inputs = {
   direction: string;
   role:'talaba' | 'oqituvchi'|string;
 };
+type Inputs2 = {
+  old_password: string;
+  new_password: string;
+  confirm_password: string;
+};
 const Profile = () => {
 
 const [show, setShow] = useState(false)
-
-  const { register, handleSubmit, reset } = useForm<Inputs>();
-  const { data: profile } = useQuery({
+const [showpas, setShowPas] = useState(false)
+ const { data: profile } = useQuery({
     queryKey: ["profile"],
     queryFn: () => AuthService.getProfile(),
+   
   });
 
-  const { data: updateProfile, mutate } = useMutation({
-    mutationKey: ["profile"],
+
+  const {data:choice}=useQuery({
+    queryKey: ["choice"],
+    queryFn: () => AuthService.getChoice(),
+  })
+  console.log("Choice data:", choice);
+  
+
+  const { register:registerProfile, handleSubmit:handleSubmitProfile, reset:resetProfile ,control:controlProfile} = useForm<Inputs>({
+    defaultValues:{
+      username: profile?.user?.username || "",
+      first_name: profile?.user?.first_name || "",
+      last_name: profile?.user?.last_name || "",
+      otm: profile?.user?.otm || "",
+      course: profile?.user?.course || 1,
+      group: profile?.user?.group || "",
+      direction: profile?.user?.direction || "",
+      role: profile?.user?.role || "talaba",
+    }
+  });
+
+  const { register, handleSubmit, reset } = useForm<Inputs2>({
+    defaultValues: {
+      old_password: "",
+      new_password: "",
+      confirm_password: "",
+    },
+  })
+
+   const queryClient = useQueryClient();
+
+  const { data: updateProfile, mutate ,} = useMutation({
+    mutationKey: ["updateProfile"],
     mutationFn: (data: any) => AuthService.updateProfile(data),
     onSuccess: (data) => {
-      console.log("Izoh muvaffaqiyatli qoldirildi:", data);
-      reset();
+      console.log("Profil yangilandi:", data);
+      resetProfile();
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+
     },
   });
+  const { mutate:mutatePas} = useMutation({
+    mutationKey: ["updatePassword"],
+    mutationFn: (data: Inputs2) => AuthService.changePassword(data),
+    onSuccess: (data) => {
+      console.log("", data);
+      resetProfile();
+
+    },
+
+  });
+
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data);
     console.log(updateProfile);
     
   };
+  const onSubmit2: SubmitHandler<Inputs2> = (data) => {
+    if (data.new_password !== data.confirm_password) {
+      alert("Yangi parol va tasdiqlash paroli mos kelmaydi");
+      return reset({
+        old_password: data.old_password,
+        new_password: "",
+        confirm_password: "",
+      });
+    }
+    mutatePas(data);
+    setShowPas(false);
+    reset()
+  };
 
   console.log(profile);
+ 
+
+useEffect(() => {
+  if (profile?.user) {
+    resetProfile({
+      username: profile.user.username || "",
+      first_name: profile.user.first_name || "",
+      last_name: profile.user.last_name || "",
+      otm: profile.user.otm || "",
+      course: profile.user.course || 1,
+      group: profile.user.group || "",
+      direction: profile.user.direction || "",
+      role: profile.user.role || "talaba",
+    });
+  }
+}, [profile, resetProfile]);
+
 
   return (
     <div>
@@ -59,17 +138,18 @@ const [show, setShow] = useState(false)
             <div className=" bg-[#C6DCE90D] сol-span-1 rounded-xl h-full">
               <div className="flex items-center justify-center mt-4 w-full ">
                 <img
-                  src={profile?.profile_image || user}
+                  src={profile?.user?.profile_image || user}
+                  
                   alt="user image"
                   className="w-28 h-28 sm:w-40 sm:h-40 rounded-full my-border cursor-pointer"
                 />
               </div>
               <p className="text-center sm:text-xl mt-2">
-                {profile?.first_name} {profile?.last_name}
+                {profile?.user?.first_name} {profile?.user?.last_name}
               </p>
-              <p className="text-center sm:text-xl mt-2">{profile?.otm}</p>
+              <p className="text-center sm:text-xl mt-2">{profile?.user?.otm}</p>
               <p className="text-center sm:text-xl my-2">
-                @{profile?.username}
+                @{profile?.user?.username}
               </p>
             </div>
             <div className="bg-[#C6DCE90D] col-span-2 rounded-xl    h-full p-4">
@@ -87,25 +167,30 @@ const [show, setShow] = useState(false)
                 </div>
                 <div className="flex flex-col ">
                   <span className="text-sm sm:text-xl">
-                    {profile?.first_name} {profile?.last_name}
+                    {profile?.user?.first_name} {profile?.user?.last_name}
                   </span>
-                  <span className="text-sm sm:text-xl">{profile?.email}</span>
+                  <span className="text-sm sm:text-xl">{profile?.user?.email}</span>
                   <span className="text-sm sm:text-xl">
-                    @{profile?.username}
+                    @{profile?.user?.username}
                   </span>
-                  <span className="text-sm sm:text-xl">{profile?.otm}</span>
-                  <span className="text-sm sm:text-xl">{profile?.group}</span>
+                  <span className="text-sm sm:text-xl">{profile?.user?.otm}</span>
+                  <span className="text-sm sm:text-xl">{profile?.user?.group}</span>
                   <span className="text-sm sm:text-xl">
-                    {profile?.direction}
+                    {profile?.user?.direction}
                   </span>
-                  <span className="text-sm sm:text-xl">{profile?.level}</span>
+                  <span className="text-sm sm:text-xl">{profile?.user?.level}</span>
                   <span className="text-sm sm:text-xl">{profile?.rating}</span>
-                  <span className="text-sm sm:text-xl">{profile?.role}</span>
+                  <span className="text-sm sm:text-xl">{profile?.user?.role}</span>
                 </div>
               </div>
-              <button onClick={()=>setShow(true)}  className="text-sm sm:text-xl bg-blue-500 mt-20 px-4 py-1 rounded-md inline-block">
+             <div className="flex gap-1">
+               <button onClick={()=>setShow(true)}  className="text-sm sm:text-xl bg-blue-500 mt-20 px-4 py-1 rounded-md inline-block">
                 O'zgartirish
               </button>
+              <button onClick={()=>setShowPas(true)}  className="text-sm sm:text-xl bg-blue-500 mt-20 px-4 py-1 rounded-md inline-block">
+                Parolni o'zgartirish
+              </button>
+             </div>
             </div>
           </div>
         </div>
@@ -117,22 +202,103 @@ const [show, setShow] = useState(false)
         footer={null}
         width={300}
         centered
-        className="bg-[#060D0F] text-white"
+        className="bg-[#060D0F] "
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="text-black">
+        <form onSubmit={handleSubmitProfile(onSubmit)} className="text-black">
           <div className="mb-4 space-y-2">
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Ismingizni kiriting..." {...register("first_name")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Familyangiz kiriting..." {...register("last_name")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Username kiriting..." {...register("username")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Universitet yoki Institutingiz..." {...register("otm")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Gruppangizni kiriting..." {...register("group")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Kursingizni kiriting..." {...register("course")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Tavsif kiriting..." {...register("direction")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Ismingizni kiriting..." {...registerProfile("first_name")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Familyangiz kiriting..." {...registerProfile("last_name")} />
+            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Username kiriting..." {...registerProfile("username")} />
+<Controller
+  name="otm"
+  control={controlProfile}
+  render={({ field }) => (
+    <Select
+      {...field}
+      onChange={(value) => field.onChange(value)}
+      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
+      placeholder="Universitet yoki Institutingizni tanlang"
+    >
+      {choice?.universities?.map((otm:string) => (
+        <Select.Option key={otm} value={otm} className="text-black">
+          {otm}
+        </Select.Option>
+      ))}
+    </Select>
+  )}
+/>
+         <Controller
+  name="group"
+  control={controlProfile}
+  render={({ field }) => (
+    <Select
+      {...field}
+      onChange={(value) => field.onChange(value)}
+      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
+      placeholder="Gruppangizni tanlang"
+    >
+      {choice?.groups?.map((group:string) => (
+        <Select.Option key={group} value={group}>
+          {group}
+        </Select.Option>
+      ))}
+    </Select>
+  )}
+/>
+
+     <Controller
+  name="course"
+  control={controlProfile}
+  render={({ field }) => (
+    <Select
+      {...field}
+      onChange={(value) => field.onChange(value)}
+      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
+      placeholder="Kursingizni tanlang"
+    >
+      {choice?.courses?.map((course:string) => (
+        <Select.Option key={course} value={course}>
+          {course}-kurs
+        </Select.Option>
+      ))}
+    </Select>
+  )}
+/>
+<Controller
+  name="direction"
+  control={controlProfile}
+  render={({ field }) => (
+    <Select
+      {...field}
+      onChange={(value) => field.onChange(value)}
+      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
+      placeholder="Yo'nalishingizni tanlang"
+    >
+      {choice?.directions?.map((direction:string) => (
+        <Select.Option key={direction} value={direction}>
+          {direction}
+        </Select.Option>
+      ))}
+    </Select>
+  )}
+/>
+
             
-       <Select placeholder="Rolni tanlang..." className="text-black" style={{ width: '100%',border: '1px solid #ccc', borderRadius: '4px' ,}} {...register("role")}>
-    <Option value="talaba">Talaba</Option>
-    <Option value="oqituvchi">O‘qituvchi</Option>
-  </Select>
+      <Controller
+  name="role"
+  control={controlProfile}
+  defaultValue="talaba"
+  render={({ field }) => (
+    <Select
+      {...field}
+      onChange={(value) => field.onChange(value)}
+      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
+    >
+      <Select.Option value="talaba">Talaba</Select.Option>
+      <Select.Option value="oqituvchi">O‘qituvchi</Select.Option>
+    </Select>
+  )}
+/>
               <input
                 type="submit"
                 value="Saqlash"
@@ -142,6 +308,30 @@ const [show, setShow] = useState(false)
           </div>
           </form>
           </Modal>
+      <Modal
+        open={showpas}
+        onCancel={() => setShowPas(false)}
+        title="Parolni o'zgartirish"
+        footer={null}
+        width={300}
+        centered
+        className="bg-[#060D0F] text-white"
+      >
+        <form onSubmit={handleSubmit(onSubmit2)} className="text-black">
+          <div className="mb-4 space-y-2">
+            <input type="password" className="border px-2 py-1 rounded-md w-full" placeholder="Eski parolni kiriting..." {...register("old_password")} />
+            <input type="password" className="border px-2 py-1 rounded-md w-full" placeholder="Yangi parolni kiriting..." {...register("new_password")} />
+            <input type="password" className="border px-2 py-1 rounded-md w-full" placeholder="Yangi parolni tasdiqlang..." {...register("confirm_password")} />
+            <input
+              type="submit"
+              value="Saqlash"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer w-full"
+            /> 
+            </div>
+            </form>
+            </Modal>
+
+
     </div>
   );
 };
