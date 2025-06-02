@@ -7,7 +7,7 @@ import FightCard from "./FightCard";
 const Duel = () => {
   return (
     <div>
-      <section className="h-[calc(50vw-375px)] ">
+      <section className="h-[calc(60vw-375px)] ">
         <div className="flex justify-end">
           <img
             src={DuelImg}
@@ -128,7 +128,7 @@ const Duel = () => {
           </table>
         </div>
       </section>
-      <div className=" bg-[#070A07] mt-80  sm:mt-0 sm:pt-40 sm:h-[calc(100vh-340px)] h-[calc(100vh-150px)]">
+      <div className=" bg-[#070A07] mt-80  sm:mt-0 sm:pt-40 sm:h-[calc(100vh-300px)] h-[calc(100vh-150px)]">
         <div className=" sm:mx-16 mx-4 bg-[#D9D9D90D] rounded-3xl sm:p-12 text-white">
           <p className="text-center sm:text-3xl mb-2 sm:mb-8 ">
             History of duels

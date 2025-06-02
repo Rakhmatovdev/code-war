@@ -82,6 +82,7 @@ export const endpoints = {
   }
 ,
 choices:"/api/choices/", // GET
+contact:"/contact/", // POST
 };
 
 export default authApi;

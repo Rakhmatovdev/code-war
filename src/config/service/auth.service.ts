@@ -304,7 +304,7 @@ changePassword: async (data: ChangePasswordData) => {
     return response.data;
   }
   catch (error: unknown) {
-    console.error("Change password failed", error);
+    console.error("Oldingi parol noto‘g‘ri", error);
     let errorMessage = "An unknown error occurred";
     if (error instanceof Error) {
       errorMessage = error.message;
@@ -315,7 +315,7 @@ changePassword: async (data: ChangePasswordData) => {
       errorMessage = axiosError.response?.data?.message || errorMessage;
     }
 
-    notification.error({ message: "Change Password Failed", description: errorMessage });
+    notification.error({ message: "Oldingi parol noto‘g‘ri" });
     throw new Error(errorMessage);
   }
 },
@@ -460,6 +460,27 @@ createComment: async ( text: string): Promise<createResponse> => {
       errorMessage = axiosError.response?.data?.message || errorMessage;
     }
     notification.error({ message: "Create Comment Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+//contact
+createContact: async (data: { full_name: string; email: string; phone_number: string; message: string }): Promise<any> => {
+  try {
+    const response = await authApi.post(endpoints.contact, data);
+    notification.success({ message: "Contact muvaffaqiyatli jo'natildi" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Create yaratishda muammo", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Create yaratishda muammo", description: errorMessage });
     throw new Error(errorMessage);
   }
 },

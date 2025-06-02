@@ -32,7 +32,7 @@ const [showpas, setShowPas] = useState(false)
   });
 
 
-  const {data:choice}=useQuery({
+  const {data:choice,refetch}=useQuery({
     queryKey: ["choice"],
     queryFn: () => AuthService.getChoice(),
   })
@@ -62,12 +62,14 @@ const [showpas, setShowPas] = useState(false)
 
    const queryClient = useQueryClient();
 
-  const { data: updateProfile, mutate ,} = useMutation({
+  const { data: updateProfile, mutate} = useMutation({
     mutationKey: ["updateProfile"],
     mutationFn: (data: any) => AuthService.updateProfile(data),
     onSuccess: (data) => {
       console.log("Profil yangilandi:", data);
       resetProfile();
+        refetch();
+      setShow(false);
       queryClient.invalidateQueries({ queryKey: ["profile"] });
 
     },
@@ -77,8 +79,8 @@ const [showpas, setShowPas] = useState(false)
     mutationFn: (data: Inputs2) => AuthService.changePassword(data),
     onSuccess: (data) => {
       console.log("", data);
+    
       resetProfile();
-
     },
 
   });
@@ -108,6 +110,7 @@ const [showpas, setShowPas] = useState(false)
 
 useEffect(() => {
   if (profile?.user) {
+    // refetch()
     resetProfile({
       username: profile.user.username || "",
       first_name: profile.user.first_name || "",
