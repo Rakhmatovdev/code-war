@@ -111,6 +111,12 @@ export interface characterData{
   image: string;
 }
 
+interface assigment{
+  id: number | string;
+  task_description: string;
+ expected_output: string;
+}
+
 export interface getTopicsResponse {
   id: number | string;
   title: string;
@@ -118,7 +124,7 @@ export interface getTopicsResponse {
   order?: number;
  plans: [
   {
-    id: number | string;
+    id: number;
     title: string;
     text?: string;
     code_examples?: [
@@ -127,13 +133,7 @@ export interface getTopicsResponse {
         code?: string;
       }
     ];
-    assigments?: [
-      {
-        id?: number | string;
-        task_description?: string;
-        sample_solution?: string;
-      }
-    ];
+   assignments?: assigment[];
   }
  ];
 }
@@ -363,9 +363,9 @@ resetPassword: async (data: resetPasswordData): Promise<RegisterResponse> =>{
 
 //topics
 
-getTopics: async (): Promise<getTopicsResponse>  => {
+getTopics: async (): Promise<any>  => {
   try {
-    const response = await authApi.get<getTopicsResponse>(endpoints.topics.getTopics);        
+    const response = await authApi.get<any>(endpoints.topics.getTopics);        
     return response.data;
   }
   catch (error: unknown) {

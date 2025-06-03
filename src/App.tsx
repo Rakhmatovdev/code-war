@@ -19,6 +19,7 @@ import Login from "./views/auth/Login.tsx";
 import Register from "./views/auth/Register.tsx";
 import StartTest from "./views/start/StartTest.tsx";
 import Help from "./views/help/Help.tsx";
+import MQDetail from "./views/mquest/MQDetail.tsx";
 
 
 
@@ -36,6 +37,7 @@ function App() {
     { path: "/duel",    element: <Duel/> },
     { path: "/invertar",element: <Invertar /> },
     { path: "/mquest",  element: <MainQuest /> },
+    { path: "/mquest/:id",  element: <MQDetail /> },
     { path: "/squest",  element: <SideQuest /> },
     { path: "/rating",  element: <Rating /> },
     { path: "/profile", element: <Profile/> },
