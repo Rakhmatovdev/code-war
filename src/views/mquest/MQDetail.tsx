@@ -21,7 +21,7 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
       <section className="sm:h-[calc(100vh-300px)]">
         <div className="flex">
           <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl w-full bg-[#D9D9D90D] overflow-y-scroll h-[calc(100vh-200px)]">
-            <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl sm:h-[520px] pb-4 relative">
+            <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">
               <div className="absolute sm:-top-10 -top-6 right-2 sm:right-10 py-2 px-4 sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
                 <p className="text-xs sm:text-xl text-center">{topic?.title}</p>
               </div>
