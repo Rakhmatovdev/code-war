@@ -1,6 +1,10 @@
 import { Link } from "react-router";
 import Squest from "../../../public/outline/squest.png";
 import { mockTopshiriq } from "../../utils/mock";
+
+import CppRunner from "./Copilot";
+import W3CppCompiler from "./W3schoolCompiler";
+import ProgramizCppCompiler from "./Programiz";
 const SideQuest = () => {
   if(Squest === undefined) {
 return <div className="w-screen h-screen  bg-slate-900"/>
@@ -25,6 +29,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
                   </div> 
                 </div>
             </section>
+<ProgramizCppCompiler/>
     </div>
   )
 }

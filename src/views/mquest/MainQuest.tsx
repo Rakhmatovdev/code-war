@@ -18,7 +18,7 @@ return <div className="w-screen   h-screen  bg-slate-900"/>
 }
   return (
     <div className="">
-         <section className="sm:h-[calc(100vh-300px)]  text-white ">
+         <section className="sm:h-[calc(100vh-320px)]  text-white ">
               <div className="flex">
                 <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl   w-full bg-[#D9D9D90D] overflow-y-scroll scroll-none  h-[calc(100vh-200px)] sm:h-[calc(100vh-200px)]">
                   {topics?.map((item:any) => (<div key={item.id} className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl sm:h-[520px] pb-4 relative">

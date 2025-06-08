@@ -53,6 +53,7 @@ const TopshiriqDetail = () => {
           </div>
         </div>
       </div>
+    
     </section>
   );
 };

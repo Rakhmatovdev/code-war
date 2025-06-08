@@ -1,9 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: 'MedievalSharp', display;
+}
+
+
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "MedievalSharp","Roboto", system-ui;
   line-height: 1.5;
   font-weight: 400;
 

@@ -3,9 +3,28 @@ import { useParams } from "react-router";
 import AuthService from "../../config/service/auth.service";
 import Mquest from "../../../public/outline/mquest.png";
 import { convertToEmbedURL } from "../../config/hooks/useEmber";
+import { Clipboard, Check } from "lucide-react";
+import { useState } from "react";
 
 const MQDetail = () => {
   const { id } = useParams<{ id: string }>();
+
+    const [copiedId, setCopiedId] = useState<number|null>(null);
+
+  const handleCopy = (id:number, text:string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopiedId(id);
+        
+        setTimeout(() => {
+          setCopiedId(null);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Clipboardga yozishda xato:", err);
+      });
+  };
 
   const { data: topic, isLoading, error } = useQuery({
     queryKey: ["topic", id],
@@ -46,11 +65,37 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
                       <p className="mt-2">{plan.text}</p>
 
                       <h4 className="mt-4 font-semibold">Kod namunalari:</h4>
-                      {plan.code_examples?.map((example) => (
-                        <pre key={example.id} className="bg-gray-800 p-2 mt-2 rounded">
-                          <code>{example.code}</code>
-                        </pre>
-                      ))}
+      {plan.code_examples?.map((example) => (
+        <div
+          key={example.id}
+          className="relative bg-gray-800 p-4 mt-2 rounded shadow"
+        >
+          {/* Nusxa olish tugmasi */}
+          <button
+            onClick={() => handleCopy(example.id, example.code)}
+            className="absolute top-2 right-2 p-1 rounded hover:bg-gray-700 transition-colors"
+          >
+            {copiedId === example.id ? (
+              <Check className="w-5 h-5 text-green-400" />
+            ) : (
+              <Clipboard className="w-5 h-5 text-gray-400 hover:text-white" />
+            )}
+          </button>
+
+          <pre className="overflow-x-auto">
+            <code className="text-sm text-gray-100 whitespace-pre-wrap">
+              {example.code}
+            </code>
+          </pre>
+
+          {/* Agar xohlasangiz, “Copied!” tooltip ham chiqishi mumkin */}
+          {copiedId === example.id && (
+            <span className="absolute top-2 right-10 text-xs bg-black bg-opacity-60 text-white px-2 py-1 rounded">
+              Copied!
+            </span>
+          )}
+        </div>
+      ))}
 
                       <h4 className="mt-4 font-semibold">Vazifalar:</h4>
                       {plan.assignments?.map((assignment:{id:number | string,task_description:string,expected_output:string}) => (
