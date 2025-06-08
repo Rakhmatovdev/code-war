@@ -34,11 +34,12 @@ const Section: FC<SectionProps> = ({
   imageSrc,
   bgClass,
   textClass,
+
 }) => {
   const [descTitle, descBody] = description.split("|||");
 
   return (
-    <section className={`${bgClass} min-h-screen py-10 sm:py-40`}>
+    <section className={`${bgClass} min-h-screen py-10 sm:py-40 `}>
       <div className={`mx-4 sm:mx-80 ${textClass}`}>          
         <h2 className="text-center text-xl sm:text-4xl font-medium mb-4">
           {heading}
@@ -191,7 +192,7 @@ const sections: SectionProps[] = [
           </div>
           </div>
       </section>
-      <div className="sm:mt-32 2xl:mt-10">
+      <div className="sm:mt-24  2xl:mt-10">
        {sections?.slice(1).map((sec, idx) => (
         <Section key={idx} {...sec} />
       ))}</div>

@@ -34,7 +34,7 @@ const Contact = () => {
 
   return (
     <div>
-         <section className="h-[calc(50vw-216px)] ">
+         <section className="h-[calc(50vw-316px)] ">
               <form  className="flex justify-center" onSubmit={handleSubmit(onSubmit)} >
              <div className="bg-[#D9D9D96E] mx-4 sm:mx-0 bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl p-4 w-full max-w-2xl">
              
