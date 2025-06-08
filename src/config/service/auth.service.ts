@@ -34,6 +34,8 @@ export interface contentResponse {
   text: string;
   image: string;
   content_type: string
+  likes: number;
+  views: number;
 }
 
 export interface createResponse{
@@ -50,6 +52,8 @@ interface commentResult{
   user_profile_image: string;
   text: string;
   created_at: string;
+  likes: number;
+  views: number;
 }
 
 export interface commentResponse{
@@ -61,11 +65,6 @@ results: commentResult[] | null;
 
 
 
-
-// export interface commentResponse{
-//   page: number |string;
-//   page_size: number;
-// }
 
  interface acceptData {
   email: string;

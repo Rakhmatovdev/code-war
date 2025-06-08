@@ -8,26 +8,155 @@ import Adiv4 from "../../components/users/div4.png";
 import Adiv5 from "../../components/users/div5.png";
 import Adiv6 from "../../components/users/div6.png";
 import AuthService from "../../config/service/auth.service";
+import { FC } from "react";
+import { Image } from "antd";
+
+interface ContentData {
+  title: string;
+  text: string;
+  image?: string;
+}
+
+
+interface SectionProps {
+  heading: string;
+  subheading?: string;
+  description: string;
+  imageSrc: string;
+  bgClass: string;
+  textClass: string;
+}
+
+const Section: FC<SectionProps> = ({
+  heading,
+  subheading = "",
+  description,
+  imageSrc,
+  bgClass,
+  textClass,
+}) => {
+  const [descTitle, descBody] = description.split("|||");
+
+  return (
+    <section className={`${bgClass} min-h-screen py-10 sm:py-40`}>
+      <div className={`mx-4 sm:mx-80 ${textClass}`}>          
+        <h2 className="text-center text-xl sm:text-4xl font-medium mb-4">
+          {heading}
+        </h2>
+        {subheading && (
+          <p className="text-center text-xs sm:text-base text-[#E5E5E5] mb-10">
+            {subheading}
+          </p>
+        )}
+        <div className="flex flex-col sm:flex-row items-center justify-between">
+          <div className="space-y-4 sm:w-1/2">
+            <h3 className={`text-lg sm:text-4xl font-medium ${textClass}`}>{descTitle}</h3>
+            <p className={`text-sm sm:text-base ${textClass}`}>{descBody}</p>
+            <a href="#" className="flex items-center gap-2 mt-4">
+              <span>Learn more</span>
+              <Image src={arrow} alt="arrow" width={20} height={20} />
+            </a>
+          </div>
+          <div className="mt-10 sm:mt-0 sm:w-1/2 flex justify-center">
+            <img
+              src={imageSrc}
+              alt={heading}
+              width={422}
+              height={366}
+              className="rounded-2xl object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 
 const About = () => {
-
-
-  const { data } = useQuery({
-      queryKey: ["personal"],
-      queryFn: () =>AuthService.getContent('personal'),
-    
+    const { data, isLoading, isError } = useQuery<ContentData[]>({
+    queryKey: ["personal"],
+    queryFn: () => AuthService.getContent("personal"),
   });
-  
-  const my=data ? data[0]?.text?.split(/ {3,}/) : ["",""];
-  const user=data ? data[0]?.title?.split(/ {3,}/) : ["",""]
+ if (isLoading) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
+
+  if (isError || !data?.length) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        Content unavailable
+      </div>
+    );
+  }
+
+const personal = data[0];
+  const [title1, title2] = personal.title.split(/ {3,}/);
+  const [text1, text2] = personal.text.split(/ {3,}/);
+
+
 
 if(AboutImg === undefined) {
 return <div className="w-screen absolute  h-screen  bg-slate-900"/>
 }
+const sections: SectionProps[] = [
+    {
+      heading: title1,
+      subheading: title2,
+      description: `${text1}|||${text2}`,
+      imageSrc: personal.image || Adiv1,
+      bgClass: "",
+      textClass: "text-white",
+    },
+    {
+      heading: "📘 Pedagogik yondashuv",
+      description:
+        "Coders War platformasi|||Coders War platformasi - o‘yin orqali o‘qitish (game-based learning) va differensial ta’lim yondashuvlariga tayangan holda ishlab chiqilgan. Bu model orqali har bir talaba shaxsiy qobiliyat va tayyorgarlik darajasiga mos topshiriqlarni oladi. Platforma o‘zlashtirish tezligiga qarab moslashadi, talabani bosqichma-bosqich murakkablik sari yetaklaydi. Gamifikatsiya esa bilim olish jarayonini motivatsiyalovchi va zavqli muhitga aylantiradi.",
+      imageSrc: Adiv2,
+      bgClass: "bg-[#10151B]",
+      textClass: "text-white",
+    },
+    {
+      heading: "🎮 O‘yinlashtirish (Gamification)",
+      description:
+        "Platformada ta’lim jarayoni ballar|||Platformada ta’lim jarayoni ballar - ekipirovka (qurol, qalqon, zirh), darajalar va unvonlar orqali o‘yin shaklida rag‘batlantiriladi. Har bir muvaffaqiyatli bajarilgan topshiriq yoki kvest uchun talaba mukofotlanadi, bu esa bilim olishni zavqli, maqsadli va raqobatli muhitga aylantiradi. Reyting tizimi esa o‘z ustida ishlashga ilhomlantiradi.",
+      imageSrc: Adiv3,
+      bgClass: "bg-white",
+      textClass: "text-black",
+    },
+    {
+      heading: "🧠 Adaptive Learning",
+      description:
+        "Platforma foydalanuvchining darajasi|||Platforma foydalanuvchining dastlabki bilim darajasini aniqlab, unga moslashtirilgan o‘quv yo‘nalishini taklif etadi. Har bir topshiriq, kvest yoki loyiha foydalanuvchining qobiliyatiga qarab avtomatik tanlanadi. Bu yondashuv o‘rganishni individual, samarali va stresssiz holatga keltiradi.",
+      imageSrc: Adiv4,
+      bgClass: "bg-[#10151B]",
+      textClass: "text-white",
+    },
+    {
+      heading: "🔗 Fanlararo yondashuv",
+      description:
+        "Coders War platformasi algoritmik fikrlash|||Coders War platformasi algoritmik fikrlash - informatika va matematika fanlarini birlashtirgan integrativ o‘quv muhitini taqdim etadi. Dasturlash topshiriqlari nafaqat kod yozishga, balki mantiqiy tahlil, muammo yechish va matematik modellashtirishga asoslanadi. Bu esa talabaga murakkab masalalarni tizimli hal qilish ko‘nikmasini shakllantiradi.",
+      imageSrc: Adiv5,
+      bgClass: "bg-white",
+      textClass: "text-black",
+    },
+    {
+      heading: "🧪 Tajriba sinovlari asosida",
+      description:
+        "Coders War platformasi tajriba-sinovlar|||Coders War platformasi pedagogik tajriba-sinovlar asosida loyihalashtirilgan. Platformaning samaradorligi amaliy o‘quv jarayonida testdan o‘tkazilgan, natijalar esa talabalarning motivatsiyasi va bilim o‘zlashtirish darajasida sezilarli ijobiy o‘sishni ko‘rsatgan. Bu platformaning ilmiy asoslangan va ishonchli metodik vosita ekanini tasdiqlaydi.",
+      imageSrc: Adiv6,
+      bgClass: "bg-[#10151B]",
+      textClass: "text-white",
+    },
+  ];
 
   return (
     <div className="">
-      <section className="h-[calc(100vw+286px)] sm:h-[calc(50vw-286px)] ">
+      <section className="h-[calc(100vw+286px)] sm:h-[calc(50vw-346px)]  ">
         <div className="flex justify-end">
           <img
             src={AboutImg}
@@ -36,194 +165,36 @@ return <div className="w-screen absolute  h-screen  bg-slate-900"/>
             className="-z-10 absolute top-0 w-full h-screen "
           />
         </div>
-        <div className="text-white mx-4 sm:mx-80 ">
-          <p className="text-center text-xl sm:text-5xl font-medium">
-         {user[0]}
-          </p>
-          <p className="text-center text-xs sm:text-base sm:mt-11 mt-2 text-[#E5E5E5] mx-4">
-            {user[1]}
+         <div className="text-white mx-4 sm:mx-80">
+          <h2 className="text-center text-xl sm:text-5xl font-medium">{title1}</h2>
+          <p className="text-center text-xs sm:text-base mt-2 sm:mt-11 text-[#E5E5E5]">
+            {title2}
           </p>
           <div className="sm:mt-28 flex justify-between sm:flex-row flex-col">
             <div className="sm:space-y-4 space-y-2 mt-10 sm:mt-0">
-              <p className="text-lg sm:text-4xl text-center font-medium">{my[0]}</p>
-              <p className=" text-[#E5E5E5]  w-[306px]">
-               {my[1]}
-              </p>
-              <a href="#" className="flex sm:text-base text-sm gap-2 items-center cursor-pointer">
-                {" "}
-                <p>Learn more</p> <img  src={arrow} alt="arrow left" width={20} height={20}/>
+              <h3 className="text-lg sm:text-4xl text-center font-medium">{text1}</h3>
+              <p className="text-[#E5E5E5] w-[306px]">{text2}</p>
+              <a href="#" className="flex gap-2 items-center mt-4">
+                <span>Learn more</span>
+                <Image src={arrow} alt="arrow" width={20} height={20} />
               </a>
             </div>
             <div className="">
               <img
-                src={data && data[0]?.image || Adiv1}
+                src={personal.image || Adiv1}
                 alt="hero algori"
-                className=" rounded-2xl"
+                className="rounded-2xl"
                 width={422}
                 height={366}
               />
             </div>
           </div>
-        </div>
+          </div>
       </section>
-      <div className="bg-[#10151B] h-screen">
-        <div className="text-white mx-4 sm:mx-80">
-          <p className="text-center sm:text-4xl text-xl pt-10 sm:pt-60 font-medium ">📘 Pedagogik yondashuv</p>
-          <div className="sm:mt-28 mt-2 flex sm:flex-row flex-col justify-between">
-            <div className="sm:space-y-4 space-y-2">
-              <p className="text-lg sm:text-4xl ">Coders War platformasi</p>
-              <p className="text-[#E5E5E5] sm:w-[356px]">
-                Coders War platformasi - o‘yin orqali o‘qitish (game-based
-                learning) va differensial ta’lim yondashuvlariga tayangan holda
-                ishlab chiqilgan. Bu model orqali har bir talaba shaxsiy
-                qobiliyat va tayyorgarlik darajasiga mos topshiriqlarni oladi.
-                Platforma o‘zlashtirish tezligiga qarab moslashadi, talabani
-                bosqichma-bosqich murakkablik sari yetaklaydi. Gamifikatsiya esa
-                bilim olish jarayonini motivatsiyalovchi va zavqli muhitga
-                aylantiradi.
-              </p>
-              <a href="#" className="flex gap-2 cursor-pointer items-center">
-                {" "}
-                <p>Learn more</p> <img  width={20} height={20} src={arrow} alt="arrow left" />
-              </a>
-            </div>
-            <div className="">
-              <img
-                src={Adiv2}
-                alt="hero algori 2"
-                className=""
-                width={422}
-                height={366}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-whit h-screen">
-        <div className="text-black sm:mx-80 mx-4 py-10 sm:py-40">
-          <p className="text-center text-xl font-medium sm:text-4xl ">
-            🎮 O‘yinlashtirish (Gamification)
-          </p>
-          <div className="sm:mt-28 mt-2 flex flex-col sm:flex-row justify-between">
-            <div className="sm:space-y-4 space-y-2">
-              <p className=" text-lg  sm:text-4xl">Platformada ta’lim jarayoni ballar</p>
-              <p className="text-[#0E1B35] text sm:w-[356px]">
-                Platformada ta’lim jarayoni ballar - ekipirovka (qurol, qalqon,
-                zirh), darajalar va unvonlar orqali o‘yin shaklida
-                rag‘batlantiriladi. Har bir muvaffaqiyatli bajarilgan topshiriq
-                yoki kvest uchun talaba mukofotlanadi, bu esa bilim olishni
-                zavqli, maqsadli va raqobatli muhitga aylantiradi. Reyting
-                tizimi esa o‘z ustida ishlashga ilhomlantiradi.
-              </p>
-              <a href="#" className="flex gap-2 cursor-pointer items-center">
-                {" "}
-                <p>Learn more</p> <img src={arrow} width={20} height={20} alt="arrow left" />
-              </a>
-            </div>
-            <div className="">
-              <img
-                src={Adiv3}
-                alt="hero algori 3"
-                width={422}
-                height={366}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-[#10151B] h-screen">
-        <div className="text-white mx-4 sm:mx-80">
-          <p className="text-center text-xl sm:text-4xl pt-10 sm:pt-40">🧠 Adaptive Learning</p>
-          <div className="sm:mt-28 mt-2 flex justify-between flex-col sm:flex-row">
-            <div className="sm:space-y-4 space-y-2 ">
-              <p className="text-lg sm:text-4xl"> Platforma foydalanuvchining darajasi</p>
-              <p className="text-[#E5E5E5] sm:w-[356px]">
-                Platforma foydalanuvchining dastlabki bilim darajasini aniqlab,
-                unga moslashtirilgan o‘quv yo‘nalishini taklif etadi. Har bir
-                topshiriq, kvest yoki loyiha foydalanuvchining qobiliyatiga
-                qarab avtomatik tanlanadi. Bu yondashuv o‘rganishni individual,
-                samarali va stresssiz holatga keltiradi.
-              </p>
-              <a href="#" className="flex gap-2 cursor-pointer">
-                {" "}
-                <p>Learn more</p> <img src={arrow} alt="arrow left" width={20} height={20} />
-              </a>
-            </div>
-            <div className="">
-              <img
-                src={Adiv4}
-                alt="hero algori 4"
-                width={422}
-                height={366}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-white h-screen">
-        <div className="text-black sm:mx-80 mx-4 pt-10 sm:py-40">
-          <p className="text-center text-xl sm:text-4xl font-medium  ">🔗 Fanlararo yondashuv</p>
-          <div className="sm:mt-28 mt-2 flex justify-between flex-col sm:flex-row">
-            <div className="sm:space-y-4 space-y-2">
-              <p className="text-lg sm:text-4xl">
-                Coders War platformasi algoritmik fikrlash
-              </p>
-              <p className="text-[#0E1B35] sm:w-[356px]">
-                Coders War platformasi algoritmik fikrlash - informatika va
-                matematika fanlarini birlashtirgan integrativ o‘quv muhitini
-                taqdim etadi. Dasturlash topshiriqlari nafaqat kod yozishga,
-                balki mantiqiy tahlil, muammo yechish va matematik
-                modellashtirishga asoslanadi. Bu esa talabaga murakkab
-                masalalarni tizimli hal qilish ko‘nikmasini shakllantiradi.
-              </p>
-              <a href="#" className="flex gap-2 cursor-pointer items-center">
-                {" "}
-                <p>Learn more</p> <img src={arrow} alt="arrow left" width={20} height={20} />
-              </a>
-            </div>
-            <div className="">
-              <img
-                src={Adiv5}
-                alt="hero algori 5" 
-                width={422}
-                height={366}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-[#10151B] h-screen">
-        <div className="text-white mx-4 sm:mx-80">
-          <p className="text-center font-medium  text-xl pt-10 sm:text-4xl sm:pt-40">
-            🧪 Tajriba sinovlari asosida
-          </p>
-          <div className="sm:mt-28 mt-2 flex-col sm:flex-row flex justify-between">
-            <div className="sm:space-y-4 space-y-2">
-              <p className="text-lg sm:text-4xl">Coders War platformasi tajriba-sinovlar</p>
-              <p className="text-[#E5E5E5] sm:w-[356px]">
-                Coders War platformasi pedagogik tajriba-sinovlar asosida
-                loyihalashtirilgan. Platformaning samaradorligi amaliy o‘quv
-                jarayonida testdan o‘tkazilgan, natijalar esa talabalarning
-                motivatsiyasi va bilim o‘zlashtirish darajasida sezilarli ijobiy
-                o‘sishni ko‘rsatgan. Bu platformaning ilmiy asoslangan va
-                ishonchli metodik vosita ekanini tasdiqlaydi.
-              </p>
-              <a href="#" className="flex gap-2 cursor-pointer items-center">
-                {" "}
-                <p>Learn more</p> <img src={arrow} alt="arrow left" width={20} height={20} />
-              </a>
-            </div>
-            <div className="">
-              <img
-                src={Adiv6}
-                alt="hero algori 6"
-                width={422}
-                height={366}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="sm:mt-32 2xl:mt-10">
+       {sections?.slice(1).map((sec, idx) => (
+        <Section key={idx} {...sec} />
+      ))}</div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Mquest from "../../../public/outline/mquest.png";
 import { convertToEmbedURL } from "../../config/hooks/useEmber";
 import { Clipboard, Check } from "lucide-react";
 import { useState } from "react";
+import JDoodleEmbed from "./Jdodge";
 
 const MQDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -37,7 +38,7 @@ const MQDetail = () => {
 const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/watch?v=VIDEO_ID");
   return (
     <div className="text-white">
-      <section className="sm:h-[calc(100vh-300px)]">
+      <section className="sm:h-[calc(100vh-320px)]">
         <div className="flex">
           <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl w-full bg-[#D9D9D90D] overflow-y-scroll h-[calc(100vh-200px)]">
             <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">
@@ -65,14 +66,14 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
                       <p className="mt-2">{plan.text}</p>
 
                       <h4 className="mt-4 font-semibold">Kod namunalari:</h4>
-      {plan.code_examples?.map((example) => (
+      {plan.code_examples?.map((example:any) => (
         <div
           key={example.id}
           className="relative bg-gray-800 p-4 mt-2 rounded shadow"
         >
           {/* Nusxa olish tugmasi */}
           <button
-            onClick={() => handleCopy(example.id, example.code)}
+            onClick={() => handleCopy(example?.id , example.code)}
             className="absolute top-2 right-2 p-1 rounded hover:bg-gray-700 transition-colors"
           >
             {copiedId === example.id ? (
@@ -111,6 +112,7 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
                 </div>
               </div>
             </div>
+             <JDoodleEmbed/>
             <div className="flex sm:mx-16 mx-2 my-6 sm:my-20 items-center justify-end">
               <button className="sm:px-[60px] sm:py-5 px-4 py-2 rounded-xl sm:rounded-3xl text-xs sm:text-2xl bg-[#3D6560]">
                 Yakunlash
@@ -123,9 +125,14 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
             alt="main quest"
             className="-z-10 absolute top-0 w-full h-screen"
           />
+
         </div>
       </section>
-      <section className="bg-[#060D0F] sm:h-[15vh]"></section>
+      <section className="bg-[#060D0F] sm:h-[15vh]">
+      </section>
+      <div className="p-10 bg-black">
+       
+        </div>
     </div>
   );
 };

@@ -1,17 +1,13 @@
 import { Link } from "react-router";
 import Squest from "../../../public/outline/squest.png";
 import { mockTopshiriq } from "../../utils/mock";
-
-import CppRunner from "./Copilot";
-import W3CppCompiler from "./W3schoolCompiler";
-import ProgramizCppCompiler from "./Programiz";
 const SideQuest = () => {
   if(Squest === undefined) {
 return <div className="w-screen h-screen  bg-slate-900"/>
 }
   return (
     <div>
-         <section className="h-[calc(50vw-286px)] ">
+         <section className="h-[calc(60vw-326px)] ">
               <div className="flex justify-end">
                 
                 <img
@@ -28,8 +24,9 @@ return <div className="w-screen h-screen  bg-slate-900"/>
                   </Link>))}
                   </div> 
                 </div>
+<div data-pym-src="https://www.jdoodle.com/embed/v0/2IhG?stdin=1&arg=0"></div>
+
             </section>
-<ProgramizCppCompiler/>
     </div>
   )
 }

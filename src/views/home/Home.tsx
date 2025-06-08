@@ -1,7 +1,6 @@
 import home from "../../../public/home.png";
-import refresh from "../../../public/svg/refresh.svg";
 import like from "../../../public/svg/like.svg";
-import { mockComments } from "../../utils/mock";
+import eyemyo from "../../components/icons/eyeo.svg";
 import { useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
 import { format } from 'date-fns';
@@ -54,7 +53,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
       <section>
         <div className="mt-96 sm:mt-10 sm:mx-20 mx-4 text-white">
           <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] gap-10 sm:gap-20 ">
-            {mockComments.map((comment) => (<div key={comment?.id} className="border p-[26px] bg-[#473631] rounded-xl sm:rounded-3xl">
+            {/* {mockComments.map((comment) => (<div key={comment?.id} className="border p-[26px] bg-[#473631] rounded-xl sm:rounded-3xl">
              <div className="flex gap-4">
                 <div className="">
                     <img src={comment.image} alt={comment?.name} className="w-14 h-14 rounded-full"/>
@@ -74,7 +73,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
                       <div className="flex gap-2 items-center"><img src={refresh} alt="refresh" /> <p>{comment?.refresh>0?comment?.refresh:""}</p></div>
                       <div className="flex gap-2 items-center"><img src={like} alt="like" /> <p>{comment?.likes>0?comment.likes:""}</p></div>
                     </div>
-            </div>))}
+            </div>))} */}
           </div>
           <div className="">
             <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium">O’qituvchilar fikrlari</p>
@@ -96,8 +95,8 @@ return <div className="w-screen h-screen  bg-slate-900"/>
               {  format(comment.created_at, 'h:mm a · MMM dd, yyyy')}
                 </p>
                     <div className="flex items-center gap-4 mt-2">
-                      {/* <div className="flex gap-2 items-center"><img src={refresh} alt="refresh" /> <p>{comment?.refresh>0?comment?.refresh:""}</p></div> */}
-                      {/* <div className="flex gap-2 items-center"><img src={like} alt="like" /> <p>{comment?.likes>0?comment.likes:""}</p></div> */}
+                      <div className="flex gap-2 items-center"><img src={eyemyo} alt="refresh" /> <p>{comment?.views>0?comment?.views:""}</p></div>
+                      <div className="flex gap-2 items-center"><img src={like} alt="like" /> <p>{comment?.likes>0?comment.likes:""}</p></div>
                     </div>
             </div>))}
           </div>
