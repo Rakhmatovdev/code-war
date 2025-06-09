@@ -20,6 +20,7 @@ import Register from "./views/auth/Register.tsx";
 import StartTest from "./views/start/StartTest.tsx";
 import Help from "./views/help/Help.tsx";
 import MQDetail from "./views/mquest/MQDetail.tsx";
+import SQDetail from "./views/squest/DetailQuest.tsx";
 
 
 
@@ -39,6 +40,7 @@ function App() {
     { path: "/mquest",  element: <MainQuest /> },
     { path: "/mquest/:id",  element: <MQDetail /> },
     { path: "/squest",  element: <SideQuest /> },
+    { path: "/squest/:id",  element: <SQDetail /> },
     { path: "/rating",  element: <Rating /> },
     { path: "/profile", element: <Profile/> },
   ];

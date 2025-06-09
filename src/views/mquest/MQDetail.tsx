@@ -37,10 +37,10 @@ const MQDetail = () => {
   if (error) return <div>Xatolik yuz berdi</div>;
 const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/watch?v=VIDEO_ID");
   return (
-    <div className="text-white">
+    <div className="text-white ">
       <section className="sm:h-[calc(100vh-320px)]">
         <div className="flex">
-          <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl w-full bg-[#D9D9D90D] overflow-y-scroll h-[calc(100vh-200px)]">
+          <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl w-full bg-[#D9D9D90D] overflow-y-scroll scroll-none h-[calc(100vh-200px)]">
             <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">
               <div className="absolute sm:-top-10 -top-6 right-2 sm:right-10 py-2 px-4 sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
                 <p className="text-xs sm:text-xl text-center">{topic?.title}</p>
@@ -59,9 +59,9 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
                   allowFullScreen
                   className="h-[360px] sm:h-[460px] "
                 ></iframe>
-                <div className="mt-10 sm:w-[600px]">
+                <div className="mt-10 ">
                   {topic?.plans.map((plan) => (
-                    <div key={plan.id} className="mt-4">
+                    <div key={plan.id} className="mt-4 border w-full p-4 rounded-lg border-[#1f2937] shadow-md">
                       <h3 className="text-lg font-bold">{plan.title}</h3>
                       <p className="mt-2">{plan.text}</p>
 
@@ -69,7 +69,7 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
       {plan.code_examples?.map((example:any) => (
         <div
           key={example.id}
-          className="relative bg-gray-800 p-4 mt-2 rounded shadow"
+          className="relative bg-[#1f2937] p-4 mt-2 rounded-md shadow"
         >
           {/* Nusxa olish tugmasi */}
           <button
@@ -89,7 +89,7 @@ const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/w
             </code>
           </pre>
 
-          {/* Agar xohlasangiz, “Copied!” tooltip ham chiqishi mumkin */}
+       
           {copiedId === example.id && (
             <span className="absolute top-2 right-10 text-xs bg-black bg-opacity-60 text-white px-2 py-1 rounded">
               Copied!

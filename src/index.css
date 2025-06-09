@@ -400,3 +400,30 @@ background: red;
   height: 100vh;
   overflow: hidden;
 }
+
+
+.jdoodle-container {
+  margin: 40px auto;
+  background: #1f2937;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.jdoodle-header {
+  background: #374151;
+  padding: 16px;
+  text-align: center;
+}
+
+.jdoodle-header h3 {
+  margin: 0;
+  color: #f9fafb;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.jdoodle-frame {
+  background: #111827;
+  padding: 20px;
+}

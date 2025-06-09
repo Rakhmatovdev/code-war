@@ -151,6 +151,12 @@ interface caracterResponse{
   image: string;
 }
 
+export interface AssignmentResponse{
+  id: number | string;
+  plan_title: string;
+  title: string;
+}
+
 // Auth 
 export const AuthService = {
   login: async (data: LoginData): Promise<LoginResponse> => {
@@ -486,9 +492,47 @@ createContact: async (data: { full_name: string; email: string; phone_number: st
 
 //asignments
 
-postAssignment: async (id: string | number, code: string): Promise<any> => {
+getAssignments: async (): Promise<AssignmentResponse[]> => {
   try {
-    const response = await authApi.post(`${endpoints.assignments.base}${id}${endpoints.assignments.submit}`, code);
+    const response = await authApi.get<AssignmentResponse[]>(endpoints.assignments.base);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get assignments failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }   
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Assignments not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+getAssignmentById: async (id: string | number): Promise<any> => {
+  try {
+    const response = await authApi.get<any>(`${endpoints.assignments.base}${id}/`);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get assignment by ID failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Assignment not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+postAssignment: async (id: string | number, code: string) => {
+  try {
+    const response = await authApi.post(`${endpoints.assignments.base}${id}${endpoints.assignments.submit}`, {code});
     notification.success({ message: "Assignment submitted successfully" });
     return response.data;
   } catch (error: unknown) {
