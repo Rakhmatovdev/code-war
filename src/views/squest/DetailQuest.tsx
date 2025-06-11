@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import Squest from '../../../public/outline/squest.png';
 import AuthService from '../../config/service/auth.service';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import CSharpEmbed from '../mquest/Jdodge';
 
 const SQDetail = () => {
   const { id } = useParams();
@@ -52,7 +53,7 @@ const SQDetail = () => {
           <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl">
             {/* LEFT */}
             <div className="w-full lg:w-1/2 p-8 md:p-12 text-white relative">
-              <div className="absolute top-2 sm:top-6 -z-10 left-4 sm:left-10 bg-[#3D6560] sm:px-6 px-3 py-1.5 sm:py-3 rounded-2xl sm:rounded-full text-center">
+              <div className="absolute top-1 sm:top-4 -z-10 left-4 sm:left-10 bg-[#3D6560] sm:px-6 px-3 py-1.5 sm:py-1 rounded-2xl sm:rounded-3xl text-center">
                 <p className="sm:text-lg italic">{task.id}‑topshiriq</p>
                 <p className="text-[10px] sm:text-xs">({task.points} ball)</p>
               </div>
@@ -73,9 +74,9 @@ const SQDetail = () => {
             </div>
 
             {/* RIGHT */}
-            <div className="w-full lg:w-1/2 p-4 sm:p-8 md:p-12 flex flex-col">
+            <div className="w-full lg:w-1/2 p-4 sm:p-8 md:p-8 flex flex-col">
               <textarea
-                className="flex-1 bg-transparent text-white rounded-lg px-4 font-mono text-sm resize-none focus:outline-none"
+                className="flex-1 bg-white/10 text-white rounded-lg p-4 font-mono text-sm resize-none focus:outline-none"
                 value={code}
                 rows={10}
                 placeholder='// Bu yerga kod yozing...'
@@ -94,6 +95,7 @@ const SQDetail = () => {
           </div>
         </div>
       </div>
+      <CSharpEmbed/>
     </section>
   );
 };

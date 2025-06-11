@@ -37,7 +37,6 @@ const SideQuest = () => {
            </> ))}
           </div>
         </div>
-        <div data-pym-src="https://www.jdoodle.com/embed/v0/2IhG?stdin=1&arg=0"></div>
       </section>
     </div>
   );

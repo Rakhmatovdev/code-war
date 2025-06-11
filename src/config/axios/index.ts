@@ -82,6 +82,7 @@ export const endpoints = {
   }
 ,
 choices:"/api/choices/", // GET
+rating:"/users/rating/", // GET
 contact:"/contact/", // POST
 };
 

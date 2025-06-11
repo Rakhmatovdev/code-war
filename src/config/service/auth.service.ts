@@ -575,6 +575,26 @@ getCharacters: async (): Promise<caracterResponse[]> => {
 
 },
 
+//rating
+getRating: async (): Promise<any> => {
+  try {
+    const response = await authApi.get(endpoints.rating);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get rating failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Rating not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
 // duel
 
 getDuels: async (): Promise<any> => {

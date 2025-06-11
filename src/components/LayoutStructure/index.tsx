@@ -1,5 +1,6 @@
 import { Flex } from "antd";
 import Header from "./Header";
+import Footer from "./Footer";
 
 export default function DefaultLayout({
   children,
@@ -11,6 +12,7 @@ export default function DefaultLayout({
       <Flex vertical className="w-full">
         <Header />
         {children}
+        <Footer/>
       </Flex>
     </Flex>
   );

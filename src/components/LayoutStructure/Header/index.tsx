@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import user from "../../../../public/user/user.png";
 import badge from "../../../../public/user/badge.png";
 import AuthService from "../../../config/service/auth.service";
+import { useQuery } from "@tanstack/react-query";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -32,6 +33,13 @@ const Header = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+ const { data } = useQuery({
+      queryKey: ["rating"],
+      queryFn: () =>AuthService.getProfile(),
+    
+  })
+
+
 
   return (
     <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex justify-between  text-white">
@@ -46,7 +54,7 @@ const Header = () => {
                className="absolute bottom-0 sm:left-20 left-8  transform -translate-x-1/2 w-6 h-6 sm:w-12 sm:h-12 rounded-full" />
         </div>
         <p >
-            {t("logo.score")} <span>1225</span></p>
+            {t("logo.score")} <span>{data?.rating ?? 0}</span></p>
           </div>
         </div>
         
