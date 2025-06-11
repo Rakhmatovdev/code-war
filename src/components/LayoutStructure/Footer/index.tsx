@@ -8,7 +8,7 @@ export default function Footer() {
   const { t, i18n } = useTranslation()
   const [email, setEmail] = useState('')
 
-  const changeLanguage = (lng) => i18n.changeLanguage(lng)
+  const changeLanguage = (lng:any) => i18n.changeLanguage(lng)
 
   const quickLinks = [
     { to: '/main-quest', label: t('Main quest') },
