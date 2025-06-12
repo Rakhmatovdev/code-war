@@ -105,7 +105,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
       </section>
 
   <section>
-    <div className="mt-10 sm:mx-20 mx-4 text-[#0F1427]">
+    <div className="mt-10 sm:mx-20 mx-4 text-[#0F1427] mb-10">
        {data?.map((review,index) => (<div key={review?.id} className={`flex  ${index%2==0?"sm:flex-row":"sm:flex-row-reverse"} items-center justify-between flex-col gap-4 sm:mt-[100px] mt-[60px]`}>
         <div className="">
           <h2 className="text-base sm:text-2xl 2xl:text-4xl">{review.title}</h2>

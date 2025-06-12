@@ -5,7 +5,7 @@ import eye from "../../../public/eye.svg"
 const Rating = () => {
   return (
     <div>
-         <section className="h-[calc(50vw-375px)] ">
+         <section className="h-[calc(100vh-130px)] sm:h-[calc(100vh-305px)] ">
               <div className="flex justify-end">
                 <img
                   src={RatingImg}
@@ -71,6 +71,8 @@ const Rating = () => {
                 </tbody>
               </table>
               </div>
+            </section>
+             <section className="bg-[#060D0F]   sm:h-[20vh]">
             </section>
                
     </div>

@@ -198,6 +198,8 @@ useEffect(() => {
           </div>
         </div>
       </section>
+       <section className="bg-[#121926] mb-[680px] sm:mb-0 sm:h-[20vh]">
+            </section>
       <Modal
         open={show}
         onCancel={() => setShow(false)}

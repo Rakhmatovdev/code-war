@@ -25,12 +25,12 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-gray-300 pt-12 sm:pt-16 pb-6 sm:pb-8">
-      <div className="container mx-auto   grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-gradient-to-r  from-gray-900 via-black to-gray-900 text-gray-300 pt-12 sm:pt-16 pb-6 sm:pb-8 ">
+      <div className=" mx-4 sm:mx-16    grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
 
         <div className="flex flex-col space-y-4">
           <h3 className="text-xl sm:text-2xl font-bold text-white">Coders War</h3>
-          <p className="text-xs sm:text-sm leading-relaxed">
+          <p className="text-xs sm:text-sm leading-relaxed xl:max-w-80">
             {t('Coders War is an epic educational platform crafted for budding developers. Arm yourself with knowledge, logic and creativity—forge your path to mastery in code battles and quests!')}
           </p>
           <div className="flex space-x-3 text-sm sm:text-base">

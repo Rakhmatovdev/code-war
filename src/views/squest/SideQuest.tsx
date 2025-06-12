@@ -33,11 +33,12 @@ const SideQuest = () => {
                 <p className="text-base sm:text-xl text-center">{item.plan_title}</p>
                 <p className="text-xs text-center w-[200px] sm:w-[160px] mx-auto sm:text-xs">{item.title}</p>
               </Link>
-             
            </> ))}
           </div>
         </div>
       </section>
+           <section className="bg-[#060D0F]  sm:h-[20vh]">
+            </section>
     </div>
   );
 };

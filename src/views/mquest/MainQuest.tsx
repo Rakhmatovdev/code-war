@@ -60,7 +60,7 @@ return <div className="w-screen   h-screen  bg-slate-900"/>
                   />
               </div> 
             </section>
-            <section className="bg-[#060D0F]  sm:h-[15vh]">
+            <section className="bg-[#060D0F]  sm:h-[20vh]">
             </section>
     </div>
   )
