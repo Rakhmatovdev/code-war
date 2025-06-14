@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router";
 import AuthService from "../../config/service/auth.service";
 import Mquest from "../../../public/outline/mquest.png";
 import { convertToEmbedURL } from "../../config/hooks/useEmber";
@@ -8,8 +8,8 @@ import { useState } from "react";
 import JDoodleEmbed from "./Jdodge";
 
 const Plan = () => {
-  const { pid } = useParams<{ pid: string }>();
-
+  const { pid,id: openId } = useParams<{ pid: string,id:string }>();
+  const navigate = useNavigate();
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const handleCopy = (id: number, text: string) => {
@@ -26,15 +26,45 @@ const Plan = () => {
         console.error("Clipboardga yozishda xato:", err);
       });
   };
+   const { data: topics } = useQuery({
+      queryKey: ['topic', openId],
+      queryFn: () => AuthService.getTopicsById(openId),
+      enabled: !!openId,
+    });
+  
+
   const { data: plan } = useQuery({
     queryKey: ["plans", pid],
     queryFn: () => AuthService.getPlans(pid?? ""),
     enabled: !!pid,
   });
 
+  const {mutate} = useMutation({
+    mutationKey: ["finishTasc"],
+    mutationFn: ( id:string) =>
+      AuthService.postTopics(id),
+    onSuccess: () => {
+    navigate(`/mquest`)
+    },
+    onError: (err) => {
+      console.error("Yakunlashda xato:", err);
+    },
+  });
+
+ 
+ 
   const embedURL = convertToEmbedURL(
     plan?.topic_video_url ?? "https://www.youtube.com/watch?v=VIDEO_ID"
   );
+
+    const lastTopicId = topics?.plans[topics?.plans?.length - 1]?.id ;
+  const showButton = plan?.id ===  lastTopicId;
+
+const submitPlan=()=>{
+mutate(openId??"")
+}
+
+
   return (
     <div className="text-white ">
       <section className=" sm:h-[calc(100vh-320px)]">
@@ -111,11 +141,11 @@ const Plan = () => {
               </div>
             </div>
             <JDoodleEmbed />
-            <div className="flex sm:mx-16 mx-2 my-6 sm:my-20 items-center justify-end">
-              <button className="sm:px-[60px] sm:py-5 px-4 py-2 rounded-xl sm:rounded-3xl text-xs sm:text-2xl bg-[#3D6560]">
+           {showButton  && <div className="flex sm:mx-16 mx-2 my-6 sm:my-20 items-center justify-end">
+              <button className="sm:px-[60px] sm:py-5 px-4 py-2 rounded-xl sm:rounded-3xl text-xs sm:text-2xl bg-[#3D6560]" onClick={submitPlan}>
                 Yakunlash
               </button>
-            </div>
+            </div>}
           </div>
           <img
             src={Mquest}

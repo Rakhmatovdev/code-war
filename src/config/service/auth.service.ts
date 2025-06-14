@@ -394,6 +394,19 @@ getTopicsById: async (id: string | number | undefined): Promise<getTopicsRespons
     return response.data;
   } catch (error: unknown) {
     console.error("Get topics by ID failed", error);
+
+     const axiosError = error as {
+        response?: { status?: number; data?: { message?: string } };
+      };
+      const status = axiosError.response?.status;
+
+ if (status === 403) {
+        notification.warning({
+          message: 'Oldin masalani tugating',
+        });
+        throw new Error('Oldin masalani tugating');
+      }
+
     let errorMessage = "An unknown error occurred";
     if (error instanceof Error) {
       errorMessage = error.message;
@@ -402,7 +415,8 @@ getTopicsById: async (id: string | number | undefined): Promise<getTopicsRespons
       const axiosError = error as { response?: { data?: { message?: string } } };
       errorMessage = axiosError.response?.data?.message || errorMessage;  
     }
-    notification.error({ message: "Topics not found", description: errorMessage });
+
+    notification.error({ message: "Masol topilmadi.", description: errorMessage });
     throw new Error(errorMessage);
   }
 },
@@ -410,7 +424,7 @@ getTopicsById: async (id: string | number | undefined): Promise<getTopicsRespons
 postTopics: async (id: string | number | undefined): Promise<getTopicsResponse> => {
   try {
     const response = await authApi.post<getTopicsResponse>(`${endpoints.topics.base}${id}${endpoints.topics.completeTopic}`);    
-    notification.success({ message: response?.data?.title || "Topic completed successfully" });
+    notification.success({ message: response?.data?.title || "Misol muvaffaqiyatli yakunlandi" });
     return response.data;
   }
   catch (error: unknown) {

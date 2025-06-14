@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import Squest from '../../../public/outline/squest.png';
 import AuthService from '../../config/service/auth.service';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import CSharpEmbed from '../mquest/Jdodge';
+
 
 const SQDetail = () => {
   const { id } = useParams();
