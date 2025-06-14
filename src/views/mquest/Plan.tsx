@@ -78,7 +78,14 @@ mutate(openId??"")
               </div>
               <div className="sm:mx-16 mx-2 overflow-hidden">
                 <p className=" sm:pt-14 pt-6 text-base sm:text-xl font-semibold">
-                  {plan?.text}
+                 {plan?.text
+    ?.split(/\r?\n/)
+    .map((line:string, i:number, arr:[]) => (
+      <span key={i}>
+        {line}
+        {i < arr.length - 1 && <br />}
+      </span>
+    ))}
                 </p>
                 <hr className="border-none h-px bg-[#849BF5] my-3" />
                 <iframe

@@ -139,13 +139,13 @@ useEffect(() => {
         <div className="bg-[#D9D9D90D] text-white mx-4 sm:mx-16 h-full rounded-2xl">
           <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-x-4 gap-y-4 sm:gap-y-0 w-full items-center p-4">
             <div className=" bg-[#C6DCE90D] сol-span-1 rounded-xl h-full">
-              <div className="flex items-center justify-center mt-4 w-full ">
+              <div className="flex items-center justify-center mt-4 w-full relative ">
                 <img
                   src={profile?.user?.profile_image || user}
-                  
                   alt="user image"
                   className="w-28 h-28 sm:w-40 sm:h-40 rounded-full my-border cursor-pointer"
                 />
+                <img src={profile?.user?.level_image_url} alt="Level user" className="w-12 h-12 absolute bottom-0 right-16 sm:right-48 rounded-full"  />
               </div>
               <p className="text-center sm:text-xl mt-2">
                 {profile?.user?.first_name} {profile?.user?.last_name}
