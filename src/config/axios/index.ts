@@ -57,7 +57,7 @@ export const endpoints = {
   resetpassword:"/reset-password/", // POST
   topics:{
     base:"/topics/", // GET
-    getTopics:'/api/topics/', // GET
+    getTopics:'/topics/', // GET
     completeTopic:'/complete/', // Post
   },
   forgotpassword:'/forgot-password/', // POST
@@ -72,18 +72,21 @@ export const endpoints = {
   characters:"/characters/", // GET
   duel:{
     base:"/duel/", // GET
-    create:"/duel/create/", // POST
+    available:"/duel/available/", // GET
+    post:"/duel/create/", // POST
+    assignments:"/assignments/", // GET
     join:"/join/", // POST
-    get:"/duels/", // GET
+    submit:"/submit/", // POST
   },
   initialtest:{
     base:"/initial-tests/", // GET
     submit:"initial-tests/submit/", // POST
-  }
-,
+  },
+ 
 choices:"/api/choices/", // GET
 rating:"/users/rating/", // GET
 contact:"/contact/", // POST
+plans:"/plans/", // GET
 };
 
 export default authApi;

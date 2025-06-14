@@ -390,7 +390,7 @@ getTopics: async (): Promise<any>  => {
 
 getTopicsById: async (id: string | number | undefined): Promise<getTopicsResponse> => {
   try {
-    const response = await authApi.get<getTopicsResponse>(`${endpoints.topics.base}${id}/`);
+    const response = await authApi.get<getTopicsResponse>(`${endpoints.topics.base}${id}/plans/`);
     return response.data;
   } catch (error: unknown) {
     console.error("Get topics by ID failed", error);
@@ -599,7 +599,7 @@ getRating: async (): Promise<any> => {
 
 getDuels: async (): Promise<any> => {
   try {
-    const response = await authApi.get(endpoints.duel.get);
+    const response = await authApi.get(endpoints.duel.available);
     return response.data;
   } catch (error: unknown) {
     console.error("Get duels failed", error);
@@ -618,7 +618,7 @@ getDuels: async (): Promise<any> => {
 
 createDuel: async (data: { opponentId: number | string, topicId: number | string }): Promise<any> => {
   try {
-    const response = await authApi.post(endpoints.duel.create, data);
+    const response = await authApi.post(endpoints.duel.post, data);
     notification.success({ message: "Duel created successfully" });
     return response.data;
   } catch (error: unknown) {
@@ -632,6 +632,25 @@ createDuel: async (data: { opponentId: number | string, topicId: number | string
       errorMessage = axiosError.response?.data?.message || errorMessage;
     }
     notification.error({ message: "Create Duel Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
+getAssignmentsByDuelId: async (duelId: number | string): Promise<any> => {
+  try {
+    const response = await authApi.get(`${endpoints.duel.base}${duelId}${endpoints.duel.assignments}`);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get assignments by duel ID failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Assignments not found", description: errorMessage });
     throw new Error(errorMessage);
   }
 },
@@ -655,6 +674,27 @@ joinDuel: async (duelId: number | string): Promise<any> => {
     throw new Error(errorMessage);
   }
 },
+
+submitDuel: async (duelId: number | string, data: { assignmentId: number | string, code: string }): Promise<any> => {
+  try {
+    const response = await authApi.post(`${endpoints.duel.base}${duelId}${endpoints.duel.submit}`, data);
+    notification.success({ message: "Duel submitted successfully" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Submit duel failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Submit Duel Failed", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
 
 //initial tests
 
@@ -716,10 +756,28 @@ getChoice: async (): Promise<any>=> {
     throw new Error(errorMessage);
   }
 }
+,
 
+// plans
 
-
-
+getPlans: async (topicId: string | number): Promise<any> => {
+  try {
+    const response = await authApi.get<any>(`${endpoints.plans}${topicId}/`);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get plans failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Plans not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+  }
 
 };
 

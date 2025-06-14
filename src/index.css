@@ -427,3 +427,12 @@ background: red;
   background: #111827;
   padding: 20px;
 }
+
+.ant-menu-title-content{
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+}
+.ant-menu-submenu-arrow{
+  color: white !important; 
+}

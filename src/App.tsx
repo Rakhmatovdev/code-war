@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { Suspense} from "react";
 import QueryProvider from "./config/providers/query.provider.tsx";
 import ReduxProvider from "./config/providers/redux.provider.tsx";
-import DefaultLayout from "./components/LayoutStructure/index.tsx";
 import Accept from "./views/auth/Accept.tsx";
 import Profile from "./views/profile/Profile.tsx";
 import Reset from "./views/auth/Reset.tsx";
@@ -21,13 +20,15 @@ import StartTest from "./views/start/StartTest.tsx";
 import Help from "./views/help/Help.tsx";
 import MQDetail from "./views/mquest/MQDetail.tsx";
 import SQDetail from "./views/squest/DetailQuest.tsx";
+import SidebarLayout from "./components/LayoutStructure/slayout/SidebarLayout.tsx";
+import Plan from "./views/mquest/Plan.tsx";
 
 
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const access = localStorage.getItem("accessToken");
   if (!access) return <Navigate to="/auth/login" replace/>;
-  return <DefaultLayout>{children}</DefaultLayout>;
+  return <SidebarLayout>{children}</SidebarLayout>;
 };
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
     { path: "/invertar",element: <Invertar /> },
     { path: "/mquest",  element: <MainQuest /> },
     { path: "/mquest/:id",  element: <MQDetail /> },
+    { path: "/mquest/:id/plan/:pid",  element: <Plan /> },
     { path: "/squest",  element: <SideQuest /> },
     { path: "/squest/:id",  element: <SQDetail /> },
     { path: "/rating",  element: <Rating /> },

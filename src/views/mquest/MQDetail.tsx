@@ -9,7 +9,7 @@ import JDoodleEmbed from "./Jdodge";
 
 const MQDetail = () => {
   const { id } = useParams<{ id: string }>();
-
+  
     const [copiedId, setCopiedId] = useState<number|null>(null);
 
   const handleCopy = (id:number, text:string) => {
@@ -32,15 +32,21 @@ const MQDetail = () => {
     queryFn: () => AuthService.getTopicsById(id),
     enabled: !!id,
   });
+  const { data: plan } = useQuery({
+    queryKey: ["plans", id],
+    queryFn: () => AuthService.getPlans(id?? ""),
+    enabled: !!id,
+  });
+console.log("plan", plan);
 
-  if (isLoading) return <div>Yuklanmoqda...</div>;
+  if (isLoading) return <div className="ml-32">Yuklanmoqda...</div>;
   if (error) return <div>Xatolik yuz berdi</div>;
 const embedURL = convertToEmbedURL(topic?.video_url?? "https://www.youtube.com/watch?v=VIDEO_ID");
   return (
     <div className="text-white ">
-      <section className="sm:h-[calc(100vh-320px)]">
+      <section className=" sm:h-[calc(100vh-320px)]">
         <div className="flex">
-          <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl w-full bg-[#D9D9D90D] overflow-y-scroll scroll-none h-[calc(100vh-200px)]">
+          <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl pl-28 sm:pl-44 w-full bg-[#D9D9D90D] overflow-y-scroll scroll-none h-[calc(100vh-200px)]">
             <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">
               <div className="absolute sm:-top-10 -top-6 right-2 sm:right-10 py-2 px-4 sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
                 <p className="text-xs sm:text-xl text-center">{topic?.title}</p>

@@ -1,6 +1,6 @@
 export default function CSharpOneCompiler() {
   return (
-    <div className="mx-4 sm:mx-16 rounded-xl sm:rounded-3xl bg-gray-800 overflow-hidden shadow-lg">
+    <div className="mx-4 sm:mx-14 sm:mt-4 rounded-xl sm:rounded-3xl bg-gray-800 overflow-hidden shadow-lg">
       <header className="bg-gray-900 text-gray-200 px-4 py-2">
         <h3 className="text-lg sm:text-xl">Interaktiv C# muhiti</h3>
       </header>
