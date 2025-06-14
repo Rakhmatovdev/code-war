@@ -95,7 +95,7 @@ const SQDetail = () => {
           </div>
         </div>
       </div>
-      <CSharpEmbed/>
+ 
     </section>
   );
 };

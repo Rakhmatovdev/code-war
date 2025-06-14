@@ -19,7 +19,6 @@ return <div className="w-screen h-screen bg-slate-900"/>
     <div className="">
          <section className="sm:h-[calc(100vh-320px)]  text-white ">
               <div className="flex">
-              
                 <img
                   src={Mquest}
                   loading="lazy"
