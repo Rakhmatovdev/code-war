@@ -17,7 +17,7 @@ return <div className="w-screen h-screen bg-slate-900"/>
 }
   return (
     <div className="">
-         <section className="sm:h-[calc(100vh-320px)]  text-white ">
+         <section className="h-[calc(100vh-320px)] sm:h-[calc(100vh-320px)]  text-white ">
               <div className="flex">
                 <img
                   src={Mquest}
