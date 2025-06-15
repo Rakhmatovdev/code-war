@@ -200,141 +200,225 @@ useEffect(() => {
       </section>
        <section className="bg-[#121926] mb-[680px] sm:mb-0 sm:h-[20vh]">
             </section>
-      <Modal
-        open={show}
-        onCancel={() => setShow(false)}
-        title="Profilni o'zgartirish"
-        footer={null}
-        width={300}
-        centered
-        className="bg-[#060D0F] "
-      >
-        <form onSubmit={handleSubmitProfile(onSubmit)} className="text-black">
-          <div className="mb-4 space-y-2">
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Ismingizni kiriting..." {...registerProfile("first_name")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Familyangiz kiriting..." {...registerProfile("last_name")} />
-            <input type="text" className="border px-2 py-1 rounded-md w-full" placeholder="Username kiriting..." {...registerProfile("username")} />
-<Controller
-  name="otm"
-  control={controlProfile}
-  render={({ field }) => (
-    <Select
-      {...field}
-      onChange={(value) => field.onChange(value)}
-      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
-      placeholder="Universitet yoki Institutingizni tanlang"
-    >
-      {choice?.universities?.map((otm:string) => (
-        <Select.Option key={otm} value={otm} className="text-black">
-          {otm}
-        </Select.Option>
-      ))}
-    </Select>
-  )}
-/>
-         <Controller
-  name="group"
-  control={controlProfile}
-  render={({ field }) => (
-    <Select
-      {...field}
-      onChange={(value) => field.onChange(value)}
-      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
-      placeholder="Gruppangizni tanlang"
-    >
-      {choice?.groups?.map((group:string) => (
-        <Select.Option key={group} value={group}>
-          {group}
-        </Select.Option>
-      ))}
-    </Select>
-  )}
-/>
+<Modal
+  open={show}
+  onCancel={() => setShow(false)}
+  title="Profilni o'zgartirish"
+  footer={null}
+  width={400}
+  centered
+  className="bg-[#0F172A] rounded-lg"
+>
+  <form
+    onSubmit={handleSubmitProfile(onSubmit)}
+    className="text-white space-y-4 mymodal"
+  >
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm mb-1">Ismingiz</label>
+        <input
+          type="text"
+          {...registerProfile("first_name")}
+          className="w-full px-3 py-2 rounded-md bg-[#1E293B] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Ismingizni kiriting..."
+        />
+      </div>
 
-     <Controller
-  name="course"
-  control={controlProfile}
-  render={({ field }) => (
-    <Select
-      {...field}
-      onChange={(value) => field.onChange(value)}
-      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
-      placeholder="Kursingizni tanlang"
-    >
-      {choice?.courses?.map((course:string) => (
-        <Select.Option key={course} value={course}>
-          {course}-kurs
-        </Select.Option>
-      ))}
-    </Select>
-  )}
-/>
-<Controller
-  name="direction"
-  control={controlProfile}
-  render={({ field }) => (
-    <Select
-      {...field}
-      onChange={(value) => field.onChange(value)}
-      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
-      placeholder="Yo'nalishingizni tanlang"
-    >
-      {choice?.directions?.map((direction:string) => (
-        <Select.Option key={direction} value={direction}>
-          {direction}
-        </Select.Option>
-      ))}
-    </Select>
-  )}
-/>
+      <div>
+        <label className="block text-sm mb-1">Familiyangiz</label>
+        <input
+          type="text"
+          {...registerProfile("last_name")}
+          className="w-full px-3 py-2 rounded-md bg-[#1E293B] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Familyangizni kiriting..."
+        />
+      </div>
 
-            
-      <Controller
-  name="role"
-  control={controlProfile}
-  defaultValue="talaba"
-  render={({ field }) => (
-    <Select
-      {...field}
-      onChange={(value) => field.onChange(value)}
-      style={{ width: '100%', border: '1px solid #ccc', borderRadius: '4px' }}
+      <div>
+        <label className="block text-sm mb-1">Username</label>
+        <input
+          type="text"
+          {...registerProfile("username")}
+          className="w-full px-3 py-2 rounded-md bg-[#1E293B] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Username kiriting..."
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm mb-1">OTM</label>
+        <Controller
+          name="otm"
+          control={controlProfile}
+          render={({ field }) => (
+            <Select
+              {...field}
+              onChange={field.onChange}
+              className="w-full"
+              placeholder="Universitet yoki Institutingizni tanlang"
+              dropdownStyle={{ backgroundColor: "#1E293B", color: "white" }}
+            >
+              {choice?.universities?.map((otm: string) => (
+                <Select.Option key={otm} value={otm}>
+                  {otm}
+                </Select.Option>
+              ))}
+            </Select>
+          )}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm mb-1">Guruh</label>
+        <Controller
+          name="group"
+          control={controlProfile}
+          render={({ field }) => (
+            <Select
+              {...field}
+              onChange={field.onChange}
+              className="w-full"
+              placeholder="Gruppangizni tanlang"
+              dropdownStyle={{ backgroundColor: "#1E293B", color: "white" }}
+            >
+              {choice?.groups?.map((group: string) => (
+                <Select.Option key={group} value={group}>
+                  {group}
+                </Select.Option>
+              ))}
+            </Select>
+          )}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm mb-1">Kurs</label>
+        <Controller
+          name="course"
+          control={controlProfile}
+          render={({ field }) => (
+            <Select
+              {...field}
+              onChange={field.onChange}
+              className="w-full"
+              placeholder="Kursingizni tanlang"
+              dropdownStyle={{ backgroundColor: "#1E293B", color: "white" }}
+            >
+              {choice?.courses?.map((course: string) => (
+                <Select.Option key={course} value={course}>
+                  {course}-kurs
+                </Select.Option>
+              ))}
+            </Select>
+          )}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm mb-1">Yo'nalish</label>
+        <Controller
+          name="direction"
+          control={controlProfile}
+          render={({ field }) => (
+            <Select
+              {...field}
+              onChange={field.onChange}
+              className="w-full"
+              placeholder="Yo'nalishingizni tanlang"
+              dropdownStyle={{ backgroundColor: "#1E293B", color: "white" }}
+            >
+              {choice?.directions?.map((direction: string) => (
+                <Select.Option key={direction} value={direction}>
+                  {direction}
+                </Select.Option>
+              ))}
+            </Select>
+          )}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm mb-1">Rol</label>
+        <Controller
+          name="role"
+          control={controlProfile}
+          defaultValue="talaba"
+          render={({ field }) => (
+            <Select
+              {...field}
+              onChange={field.onChange}
+              className="w-full"
+              dropdownStyle={{ backgroundColor: "#1E293B", color: "white" }}
+            >
+              <Select.Option value="talaba">Talaba</Select.Option>
+              <Select.Option value="oqituvchi">O‘qituvchi</Select.Option>
+            </Select>
+          )}
+        />
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-medium transition duration-200"
     >
-      <Select.Option value="talaba">Talaba</Select.Option>
-      <Select.Option value="oqituvchi">O‘qituvchi</Select.Option>
-    </Select>
-  )}
-/>
-              <input
-                type="submit"
-                value="Saqlash"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer w-full"
-              />
-          
-          </div>
-          </form>
-          </Modal>
+      Saqlash
+    </button>
+  </form>
+</Modal>
+
+
       <Modal
-        open={showpas}
-        onCancel={() => setShowPas(false)}
-        title="Parolni o'zgartirish"
-        footer={null}
-        width={300}
-        centered
-        className="bg-[#060D0F] text-white"
-      >
-        <form onSubmit={handleSubmit(onSubmit2)} className="text-black">
-          <div className="mb-4 space-y-2">
-            <input type="password" className="border px-2 py-1 rounded-md w-full" placeholder="Eski parolni kiriting..." {...register("old_password")} />
-            <input type="password" className="border px-2 py-1 rounded-md w-full" placeholder="Yangi parolni kiriting..." {...register("new_password")} />
-            <input type="password" className="border px-2 py-1 rounded-md w-full" placeholder="Yangi parolni tasdiqlang..." {...register("confirm_password")} />
-            <input
-              type="submit"
-              value="Saqlash"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer w-full"
-            /> 
-            </div>
-            </form>
-            </Modal>
+  open={showpas}
+  onCancel={() => setShowPas(false)}
+  title="Parolni o'zgartirish"
+  footer={null}
+  width={400}
+  centered
+  className="bg-[#0F172A] rounded-lg"
+>
+  <form
+    onSubmit={handleSubmit(onSubmit2)}
+    className="space-y-4 text-white"
+  >
+    <div>
+      <label className="block text-sm mb-1">Eski parol</label>
+      <input
+        type="password"
+        {...register("old_password")}
+        placeholder="Eski parolni kiriting..."
+        className="w-full px-3 py-2 rounded-md bg-[#1E293B] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm mb-1">Yangi parol</label>
+      <input
+        type="password"
+        {...register("new_password")}
+        placeholder="Yangi parolni kiriting..."
+        className="w-full px-3 py-2 rounded-md bg-[#1E293B] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm mb-1">Parolni tasdiqlash</label>
+      <input
+        type="password"
+        {...register("confirm_password")}
+        placeholder="Yangi parolni tasdiqlang..."
+        className="w-full px-3 py-2 rounded-md bg-[#1E293B] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <button
+      type="submit"
+      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-medium transition duration-200"
+    >
+      Saqlash
+    </button>
+  </form>
+</Modal>
+
 
 
     </div>

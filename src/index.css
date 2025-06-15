@@ -436,3 +436,20 @@ background: red;
 .ant-menu-submenu-arrow{
   color: white !important; 
 }
+
+.ant-modal-content{
+  background-color: #121926 !important;
+}
+.ant-modal-title{
+   background-color: #121926 !important;
+   color: #fff !important;
+}
+.ant-modal-close{
+  color: #fff !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.ant-select-selection-item{
+  color: #fff !important;
+}

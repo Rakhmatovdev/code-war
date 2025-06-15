@@ -2,7 +2,14 @@ import RatingImg from "../../../public/outline/rating.png";
 import user from "../../../public/user/user.png"
 import badge from "../../../public/user/badge.png"
 import eye from "../../../public/eye.svg"
+import { useQuery } from "@tanstack/react-query";
+import AuthService from "../../config/service/auth.service";
+import { Link } from "react-router";
 const Rating = () => {
+  const { data: rating } = useQuery({
+    queryKey: ["ratings"],
+    queryFn: () => AuthService.getRating(),
+  });
   return (
     <div>
          <section className="h-[calc(100vh-130px)] sm:h-[calc(100vh-305px)] ">
@@ -26,48 +33,25 @@ const Rating = () => {
                     <th className="text-[9px] sm:text-base">kuzatish</th>
                   </tr>
                 </thead>
-                <tbody className="text-center ">
-                  <tr>
-                    <td className="border-r text-xs sm:text-base">1</td>
+                <tbody className="text-center">
+                  {rating?.map((rate:any)=><tr>
+                    <td className="border-r text-xs sm:text-base">{rate?.id}</td>
                     <td className="py-5 flex justify-center items-center">
-                      <img className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" src={user} alt="user image" width={50} height={50} />
+                      <img className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" src={ user} alt="user image" width={50} height={50} />
                     </td>
-                    <td className="text-[8px] sm:text-base">Xamrayev Nurbek</td>
-                    <td className="text-xs sm:text-base">4500</td>
+                    <td className="text-[8px] sm:text-base">{rate?.full_name}</td>
+                    <td className="text-xs sm:text-base">{rate?.rating}</td>
                     <td className="">
                       <div className="flex justify-center items-center">
 
-                      <img src={badge} className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" alt="badge" width={50} height={50}/>
+                      <img src={rate?.level_image_url || badge} className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl" alt="badge" width={50} height={50}/>
                       </div>
                     </td>
                     <td className="">
-                      <div className="flex justify-center items-center ">
-                      <img className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"  src={eye} alt="user image" width={50} height={50} /></div>
+                      <Link to={'/invertar'} className="flex justify-center items-center cursor-pointer hover:scale-95 transition-all duration-300">
+                      <img className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"  src={eye} alt="user image" width={50} height={50} /></Link>
                     </td>
-                   
-               
-                  </tr>
-                  <tr>
-                    <td className="border-r text-xs sm:text-base">2</td>
-                    <td className="py-5 flex justify-center items-center">
-                      <img src={user} className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" alt="user image" width={50} height={50} />
-                    </td>
-                    <td className="text-[8px] sm:text-base">Xamrayev Nurbek</td>
-                    <td className="text-xs sm:text-base">4500</td>
-                    <td className="">
-                      <div className="flex justify-center items-center">
-
-                      <img src={badge} alt="badge" className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" width={50} height={50}/>
-                      </div>
-                    </td>
-                    <td className="">
-                      <div className="flex justify-center items-center">
-                      <img  src={eye} className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" alt="user image" width={50} height={50} /></div>
-                    </td>
-                   
-               
-                  </tr>
-                 
+                  </tr>)}
                 </tbody>
               </table>
               </div>

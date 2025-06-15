@@ -4,7 +4,35 @@ import badge from "../../../public/user/badge.png";
 import eye from "../../../public/eye.svg";
 import knife from "../../../public/knife.svg";
 import FightCard from "./FightCard";
+import { useQuery } from "@tanstack/react-query";
+import AuthService from "../../config/service/auth.service";
+import { Link } from "react-router";
 const Duel = () => {
+   const { data: duel } = useQuery({
+    queryKey: ["duel"],
+    queryFn: () => AuthService.getDuels(),
+  });
+
+  const { id } = duel?.duel || {};
+
+   const { data: duelOne } = useQuery({
+    queryKey: ["duel-one"],
+    queryFn: () => AuthService.getAssignmentsByDuelId(id),
+    enabled: !!id,
+  });
+  console.log(duelOne);
+  
+
+   const { data: rating } = useQuery({
+      queryKey: ["ratings"],
+      queryFn: () => AuthService.getRating(),
+    });
+
+  console.log(duel);
+  
+
+
+
   return (
     <div>
       <section className="h-[calc(60vw-475px)] ">
@@ -30,8 +58,8 @@ const Duel = () => {
               </tr>
             </thead>
             <tbody className="text-center ">
-              <tr>
-                <td className="border-r text-xs sm:text-base">1</td>
+            {  rating?.map((rate:any)=><tr>
+                <td className="border-r text-xs sm:text-base">{rate?.id}</td>
                 <td className="py-5 flex justify-center items-center">
                   <img
                     className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
@@ -41,13 +69,13 @@ const Duel = () => {
                     height={50}
                   />
                 </td>
-                <td className="text-[8px] sm:text-base">Xamrayev Nurbek</td>
-                <td className="text-xs sm:text-base">4500</td>
+                <td className="text-[8px] sm:text-base">{rate?.full_name}</td>
+                <td className="text-xs sm:text-base">{rate?.rating}</td>
                 <td className="">
                   <div className="flex justify-center items-center">
                     <img
-                      src={badge}
-                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
+                      src={rate?.level_image_url || badge}
+                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"
                       alt="badge"
                       width={50}
                       height={50}
@@ -55,15 +83,15 @@ const Duel = () => {
                   </div>
                 </td>
                 <td className="">
-                  <div className="flex justify-center items-center ">
+                  <Link to={'/invertar'} className="flex justify-center items-center " >
                     <img
-                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
+                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"
                       src={eye}
                       alt="user image"
                       width={50}
                       height={50}
                     />
-                  </div>
+                  </Link>
                 </td>
                 <td className="">
                   <div className="flex justify-center items-center">
@@ -76,54 +104,8 @@ const Duel = () => {
                     />
                   </div>
                 </td>
-              </tr>
-              <tr>
-                <td className="border-r text-xs sm:text-base">2</td>
-                <td className="py-5 flex justify-center items-center">
-                  <img
-                    src={user}
-                    className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
-                    alt="user image"
-                    width={50}
-                    height={50}
-                  />
-                </td>
-                <td className="text-[8px] sm:text-base">Xamrayev Nurbek</td>
-                <td className="text-xs sm:text-base">4500</td>
-                <td className="">
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={badge}
-                      alt="badge"
-                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                </td>
-                <td className="">
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={eye}
-                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
-                      alt="user image"
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                </td>
-                <td className="">
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={knife}
-                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
-                      alt="user image"
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                </td>
-              </tr>
+              </tr>)}
+             
             </tbody>
           </table>
         </div>
