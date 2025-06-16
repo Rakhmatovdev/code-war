@@ -54,8 +54,8 @@ class HelloWorld {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="relative z-20 bg-cover bg-center mb-56 ml-60">
-        <div className="relative z-10  mx-auto px-16 ">
+      <div className="relative z-20 bg-cover bg-center my-10 sm:my-0 sm:mb-56 sm:ml-60">
+        <div className="relative z-10 px-4 mx-auto sm:px-16 ">
           <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl">
             {/* LEFT */}
             <div className="w-full lg:w-1/2 p-8 md:p-12 text-white relative">

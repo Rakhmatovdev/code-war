@@ -52,7 +52,7 @@ const Sidebar = () => {
       onOpenChange={keys => setOpenKeys(keys.slice(-1))}
     />}
     <Menu
-      className="sm:!bg-white/10 hidden sm:flex flex-col !text-white rounded-xl sm:h-[75.5vh] 2xl:h-[78.2vh] "
+      className="sm:!bg-white/10 hidden sm:flex flex-col !text-white rounded-xl overflow-y-scroll scroll-none sm:h-[75.5vh] 2xl:h-[78.2vh] "
       mode="inline"
       style={{ width: 190, overflowY: 'auto',color: 'white' }}
       items={items}

@@ -28,7 +28,7 @@ console.log(Assigment);
     <div className="absolute !z-50  sm:left-24 sm:top-[300px] 2xl:top-80 top-32 left-4 w-28   rounded-xl sm:rounded-2xl"> 
     <MenuOutlined className="text-white p-4 sm:p-0 flex sm:hidden " onClick={()=>setshow(prev=>!prev)}/>
      {show && <Menu
-      className=" bg-white/10  rounded-xl  z-[1000]  "
+      className=" bg-white/10  rounded-xl  z-[1000] h-24 overflow-y-scroll scroll-none"
       mode="inline"
       style={{ width: 190, overflowY: 'auto',color: 'black',backdropFilter: 'blur(10px)' }}
       items={items}
@@ -37,7 +37,7 @@ console.log(Assigment);
       onOpenChange={keys => setOpenKeys(keys.slice(-1))}
     />}
     <Menu
-      className="sm:!bg-white/10 hidden sm:flex flex-col !text-white rounded-xl sm:h-[75.5vh] 2xl:h-[78.2vh] "
+      className="sm:!bg-white/10 hidden sm:flex flex-col !text-white rounded-xl overflow-y-scroll scroll-none sm:h-[75.5vh] 2xl:h-[78.2vh] "
       mode="inline"
       style={{ width: 190, overflowY: 'auto',color: 'white' }}
       items={items}
