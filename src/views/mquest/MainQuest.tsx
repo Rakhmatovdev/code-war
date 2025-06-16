@@ -17,18 +17,17 @@ return <div className="w-screen h-screen bg-slate-900"/>
 }
   return (
     <div className="">
-         <section className="h-[calc(100vh-320px)] sm:h-[calc(100vh-320px)]  text-white ">
-              <div className="flex">
-                <img
-                  src={Mquest}
-                  loading="lazy"
-                  alt="main quest"
-                  className="-z-10 absolute top-0 w-full h-screen "
-                  />
-              </div> 
+         <section className="relative  text-white h-[80vh] ">
+             <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={Mquest}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
             </section>
-            <section className="bg-[#060D0F]   sm:h-[20vh]">
-            </section>
+            
     </div>
   )
 }

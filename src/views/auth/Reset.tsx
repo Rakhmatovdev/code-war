@@ -65,7 +65,7 @@ export default function Reset() {
     AxiosError<ErrorResponse>,
     Accept
   >({
-    mutationKey: ["Accept"],
+    mutationKey: ["resetPassword"],
     mutationFn: (data: Accept) => AuthService.resetPassword(data),
     onSuccess: () => navigate("/"),
     onError: (error) => {

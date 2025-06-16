@@ -1,23 +1,22 @@
-import { Link } from "react-router";
 import helpImg from "../../../public/outline/help.png";
 import { aslaxar1, aslaxar2, characters, ratings } from "../../utils/mock";
 const Help = () => {
   return (
     <div>
-      <section className="sm:h-[calc(50vw-215px)] h-[calc(100vh-210px)]  ">
-        <div className="flex justify-end">
-          <img
-            src={helpImg}
-            alt="help"
-            loading="lazy"
-            className="-z-10 absolute top-0 w-full h-screen "
-          />
-        </div>
-        <div className="sm:mx-16 mx-4 py-10 sm:py-16 mt-24 sm:mt-[300px] h-screen bg-[#D9D9D914] rounded-t-xl sm:rounded-t-3xl text-white ">
+      <section className="relative"> 
+       <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={helpImg}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+        <div className="relative sm:mx-16 z-20 mx-4 py-10 sm:py-16   bg-[#D9D9D914] rounded-t-xl sm:rounded-t-3xl text-white ">
           <div className="mx-4 sm:mx-16">
             <p className="text-center text-xl sm:text-5xl">Darajalar</p>
             <hr className="border-none h-px bg-white mt-4 opacity-75" />
-            <div className="mt-3  space-y-2">
+            <div className="mt-3 space-y-2">
               {ratings.map((item) => (
                 <div key={item.id} className="flex sm:gap-4 gap-2 items-center">
                   <div className="">
@@ -38,15 +37,15 @@ const Help = () => {
           </div>
         </div>
       </section>
-      <div className="bg-[#100A05]  ">
-        <div className=" sm:mt-52 mt-10 ">
-          <div className="sm:mx-16 mx-4  bg-[#D9D9D914] 2xl:pt-[320px] sm:pt-[600px] pb-40 text-white">
+      <div className=" relative z-20">
+        <div className="  ">
+          <div className="sm:mx-16 mx-4 bg-[#D9D9D914] 2xl:pt-[320px] pt-10 pb-40 text-white">
             <div className="sm:mx-16 mx-4">
               <hr className="border-none h-px bg-white sm:mt-4 opacity-75" />
-              <div className="flex  justify-between  ">
-                <div className="flex-col flex sm:space-y-6 space-y-4 sm:mt-12 mt-3">
+              <div className="flex justify-between sm:justify-center  flex-col gap-20 sm:flex-row mt-10">
+                <div className="flex-col flex  sm:space-y-6 space-y-4 sm:mt-12 mt-3">
                   {aslaxar1.map((item) => (
-                    <div key={item.id} className="flex sm:gap-4 gap-2  items-center">
+                    <div key={item.id} className="flex sm:gap-4 gap-2 items-center">
                       <div className="">
                         <img src={item.photo} alt={item.name} width={100} height={100}/>
                       </div>
@@ -72,12 +71,11 @@ const Help = () => {
                 </div>
               </div>
               <hr className="border-none h-px bg-white mt-16 sm:mt-[159px] opacity-75" />
-
               <div className="sm:mt-[100px] mt-10 space-y-4 sm:space-y-12">
                 {characters.map((item, index) => (
                   <div
                     key={item.id}
-                    className={`flex justify-between  items-center ${
+                    className={`flex sm:justify-center justify-between sm:gap-20  items-center ${
                       index % 2 !== 0 ? "flex-row-reverse" : ""
                     } ${index == 0 ? "sm:ml-40" : ""}`}
                   >
@@ -97,7 +95,8 @@ const Help = () => {
                 ))}
               </div>
               <hr className="border-none h-px bg-white mt-10 sm:mt-[159px] opacity-75" />
-              <div className="mx-4 space-y-4 mt-10 sm:mt-12">
+          <div className="flex justify-center sm:flex-row flex-col  mt-10 sm:mt-[100px]"> 
+             <div className="mx-4 space-y-4 ">
                 <div className="">
         <p className="text-base sm:text-xl">🛡️ CODERS WAR — Duel Qonuniyatlari</p>
         <p className="sm:text-lg">1. Duelga chaqirish shartlari:</p>
@@ -136,7 +135,9 @@ const Help = () => {
                   <p className="myli">Qahramon qalqoni - Yutqazganda yo‘qotiladigan ball -15% kamayadi</p>
                   <p className="myli">✅ Qurol va qalqon kombinatsiyasi bir vaqtda ishlaydi.</p>
                 </div>
-                <div className="space-y-2 ">
+                
+              </div>
+              <div className="space-y-2 ">
                   <div className="1">
                   <p className="sm:text-lg">4. Duel natijasini hisoblash formulasi:</p>
                   <p className="myli">Yutgan talaba uchun: Yakuniy Ball = (Umumiy ball * 1%) + (Qurol ta'siri)</p>
@@ -176,18 +177,20 @@ const Help = () => {
                   </div>
                   <div className="6">
                   <p className="myli">🔥 Duel Mexanizmi Umumiy Ko‘rinishi:</p>
-                 <ol>1. Talabalar duelga chaqiriladi (darajalar yaqin bo'lishi shart).</ol>
-                  <ol>2. Duel natijasida yutgan va yutqazgan aniqlanadi.</ol>
-                  <ol>3. Yutgan 1% + qilich bonusini oladi.</ol>
-                  <ol>4. Yutqazgan 1% - qalqon bonusini yo'qotadi.</ol>
-                  <ol>5. Ball yangilanadi va darajalar tekshiriladi.</ol>
-                  <ol>6. Dueldan keyin mukofotlar va statistika yangilanadi.</ol>
+                 <ol className="myli">1. Talabalar duelga chaqiriladi (darajalar yaqin bo'lishi shart).</ol>
+                  <ol className="myli">2. Duel natijasida yutgan va yutqazgan aniqlanadi.</ol>
+                  <ol className="myli">3. Yutgan 1% + qilich bonusini oladi.</ol>
+                  <ol className="myli">4. Yutqazgan 1% - qalqon bonusini yo'qotadi.</ol>
+                  <ol className="myli">5. Ball yangilanadi va darajalar tekshiriladi.</ol>
+                  <ol className="myli">6. Dueldan keyin mukofotlar va statistika yangilanadi.</ol>
                  
                   </div>
                 </div>
-              </div>
+              </div>  
+              
               <hr className="border-none h-px bg-white mt-10 sm:mt-[80px] opacity-75" />
-              <div className="mx-4 space-y-4 mt-10 sm:mt-12">
+           <div className="flex justify-between sm:justify-center sm:flex-row  flex-col mx-4 space-y-4 mt-10 sm:mt-12"> 
+            <div className="mx-4 space-y-4">
                   <div className="">
                     <p className="sm:text-xl font-medium">🛡️ CODERS WAR — Epikirovka Qonuniyati</p>
                   </div>
@@ -235,6 +238,10 @@ const Help = () => {
                       <p className="mx-4">Epikirovka saqlanmagan.</p>
                     </div>
                   </div>
+                
+                 
+              </div>
+              <div className="mx-4 space-y-4">
                   <div className="">
                     <p className="myli">✅ Shunday qilib, o‘yin realizmi saqlanadi va har bir personaj faqat o‘z turiga mos </p>
                     <p className="myli">epikirovkalarni ishlatadi.</p>
@@ -257,11 +264,8 @@ const Help = () => {
                     <p className="myli">4. Agar yangi epikirovka darajasi yuqori bo‘lsa: </p>
                     <p className="myli">- Eski epikirovkani avtomatik almashtiradi. - Bildirishnoma yuboriladi.</p>
                   </div>
-                  <Link to={'/'} className="fixed sm:top-10 top-6 right-2 sm:right-10 py-2 px-4  sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
-                          <p className="text-xs sm:text-xl text-center">GO HOME</p>
-                          <p className="text-xs sm:text-base"></p>
-                         </Link>
               </div>
+              </div>  
             </div>
           </div>
         </div>

@@ -18,10 +18,10 @@ export default function Footer() {
   ]
 
   const resources = [
-    { to: '/about', label: t('About Us') },
+    { to: '/about', label: t('About') },
     { to: '/contact', label: t('Contact') },
-    { to: '/help', label: t('Help Center') },
-    { to: '/terms', label: t('Terms & Privacy') },
+    { to: '/help', label: t('Help') },
+   
   ]
 
   return (
@@ -101,12 +101,13 @@ export default function Footer() {
           </form>
 
           <div className="space-y-2 text-xs sm:text-sm">
-            <div className="flex items-center">
-              <Phone className="w-4 h-4 text-gray-400 mr-2" /><span>+1 (555) 123-4567</span>
-            </div>
-            <div className="flex items-center">
-              <Mail className="w-4 h-4 text-gray-400 mr-2" /><span>support@coderswar.com</span>
-            </div>
+            <a href='tel:+998919089292' className="flex items-center">
+              <Phone className="w-4 h-4 text-gray-400 mr-2" /><span>+998 (91) 908 92 92</span>
+            </a>
+            <a href='mailto:shoxumarzoda@gmail.com' className="flex items-center">
+        
+              <Mail className="w-4 h-4 text-gray-400 mr-2" /><span>shoxumarzoda@gmail.com</span>
+            </a>
             <div className="flex items-center">
               <Globe className="w-4 h-4 text-gray-400 mr-2" />
               <select

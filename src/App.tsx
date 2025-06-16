@@ -18,7 +18,6 @@ import Login from "./views/auth/Login.tsx";
 import Register from "./views/auth/Register.tsx";
 import StartTest from "./views/start/StartTest.tsx";
 import Help from "./views/help/Help.tsx";
-import MQDetail from "./views/mquest/MQDetail.tsx";
 import SQDetail from "./views/squest/DetailQuest.tsx";
 import SidebarLayout from "./components/LayoutStructure/slayout/SidebarLayout.tsx";
 import Plan from "./views/mquest/Plan.tsx";
@@ -39,12 +38,12 @@ function App() {
     { path: "/duel",    element: <Duel/> },
     { path: "/invertar",element: <Invertar /> },
     { path: "/mquest",  element: <MainQuest /> },
-    { path: "/mquest/:id",  element: <MQDetail /> },
     { path: "/mquest/:id/plan/:pid",  element: <Plan /> },
     { path: "/squest",  element: <SideQuest /> },
     { path: "/squest/:id",  element: <SQDetail /> },
     { path: "/rating",  element: <Rating /> },
     { path: "/profile", element: <Profile/> },
+    { path: "/help", element: <Help/> },
   ];
 
   return (
@@ -59,7 +58,8 @@ function App() {
                 <Route path="accept" element={<Accept />} />
                 <Route path="start" element= {<StartTest />}/> ,    
                 <Route path="reset" element= {<Reset/>}/> ,    
-                <Route path="email" element= {<EmailSend/>}/> ,    
+                <Route path="email" element= {<EmailSend/>}/> , 
+             
               </Route>
               {protectedRoutes.map(({ path, element }) => (
                 <Route
@@ -68,7 +68,7 @@ function App() {
                   element={<AuthGuard>{element}</AuthGuard>}
                 />
               ))}           
-              <Route path="/help" element={<Help />} />
+             
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>

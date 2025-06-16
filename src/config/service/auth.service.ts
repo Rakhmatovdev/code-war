@@ -183,12 +183,28 @@ export const AuthService = {
   },
 
   register: async (data: RegisterData): Promise<RegisterResponse> => {
+    try {
   const response = await authApi.post<RegisterResponse>(
     endpoints.auth.register,
       data,
   );
    notification.success({ message: "Muvaffaqiyatli" });
   return response.data;
+    } catch (error: unknown) {
+      console.error("Registration failed", error);
+      let errorMessage = "An unknown error occurred";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+
+      if (typeof error === "object" && error !== null && "response" in error) {
+        const axiosError = error as { response?: { data?: { message?: string } } };
+        errorMessage = axiosError.response?.data?.message || errorMessage;
+      }
+
+      notification.error({ message: "Foydalanuvchi allaqachon mavjud.", description: errorMessage });
+      throw new Error(errorMessage);
+    }
 },
 
 accept: async (data: acceptData): Promise<RegisterResponse> => {
@@ -630,10 +646,10 @@ getDuels: async (): Promise<any> => {
   }
 },
 
-createDuel: async (data: { opponentId: number | string, topicId: number | string }): Promise<any> => {
+createDuel: async (): Promise<any> => {
   try {
-    const response = await authApi.post(endpoints.duel.post, data);
-    notification.success({ message: "Duel created successfully" });
+    const response = await authApi.post(endpoints.duel.post);
+    notification.success({ message: "Duelga muvaffaqiyatli chaqirildi !" });
     return response.data;
   } catch (error: unknown) {
     console.error("Create duel failed", error);
@@ -672,7 +688,7 @@ getAssignmentsByDuelId: async (duelId: number | string): Promise<any> => {
 joinDuel: async (duelId: number | string): Promise<any> => {
   try {
     const response = await authApi.post(`${endpoints.duel.base}${duelId}${endpoints.duel.join}`);
-    notification.success({ message: "Duel joined successfully" });
+    notification.success({ message: response.data.message || "Duelga muvaffaqiyatli qo'shildingiz!" });
     return response.data;
   } catch (error: unknown) {
     console.error("Join duel failed", error);
@@ -684,7 +700,7 @@ joinDuel: async (duelId: number | string): Promise<any> => {
       const axiosError = error as { response?: { data?: { message?: string } } };
       errorMessage = axiosError.response?.data?.message || errorMessage;
     }
-    notification.error({ message: "Join Duel Failed", description: errorMessage });
+    notification.error({ message: "O'zingiz yaratgan duelga qo‘shila olmaysiz."});
     throw new Error(errorMessage);
   }
 },

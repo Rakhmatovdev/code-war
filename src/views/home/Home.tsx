@@ -114,8 +114,8 @@ return <div className="w-screen h-screen  bg-slate-900"/>
            {review?.texts.map((text,index) => (<li key={index} className="mt-2.5">{text}</li>))}
           </div> */}
         </div>
-        <div className="">
-          <img src={review?.image} alt="review" className="sm:w-[911px] sm:h-[521px]  object-cover rounded-xl sm:rounded-3xl " width={911} height={521}/>
+        <div className="sm:w-[911px] sm:h-[521px]">
+          <img src={review?.image} alt="review" className=" w-full h-full object-cover rounded-xl sm:rounded-3xl " width={911} height={521}/>
         </div>
        </div>))}
     </div>

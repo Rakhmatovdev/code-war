@@ -12,16 +12,16 @@ const Rating = () => {
   });
   return (
     <div>
-         <section className="h-[calc(100vh-130px)] sm:h-[calc(100vh-305px)] ">
-              <div className="flex justify-end">
-                <img
-                  src={RatingImg}
-                  alt=" duel"
-                  loading="lazy"
-                  className="-z-10 absolute top-0 w-full h-screen"
-                />
-              </div>
-              <div className="sm:mx-16 mx-4 bg-[#D9D9D90D] sm:h-[calc(100vh-340px)] h-[calc(100vh-150px)] rounded-t-3xl sm:px-[100px] px-4 pt-4 sm:pt-[38px] text-white">
+         <section className="relative ">
+               <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={RatingImg}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+              <div className="sm:mx-16 relative my-10 z-20 mx-4 bg-[#D9D9D90D]  rounded-3xl sm:px-[100px] px-4 pt-4 sm:pt-[38px] text-white">
               <table className="w-full">
                 <thead>
                   <tr className="text-start border-b">
@@ -52,12 +52,12 @@ const Rating = () => {
                       <img className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"  src={eye} alt="user image" width={50} height={50} /></Link>
                     </td>
                   </tr>)}
+                
                 </tbody>
               </table>
               </div>
             </section>
-             <section className="bg-[#060D0F]   sm:h-[20vh]">
-            </section>
+             
                
     </div>
   )

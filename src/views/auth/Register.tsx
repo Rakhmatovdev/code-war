@@ -1,10 +1,10 @@
-import { Input, Select, Spin } from "antd";
+import { Input,  Select, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import Back from "../../../public/authPic.png";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
 import eyemy from "../../components/icons/eye.svg";
@@ -40,6 +40,11 @@ export default function Register() {
   const [eyeShow, setEyeShow] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const {data:choice}=useQuery({
+    queryKey: ["choice"],
+    queryFn: () => AuthService.getChoice(),
+  })
+  console.log("Choice data:", choice);
 
   const {
     control,
@@ -54,7 +59,7 @@ export default function Register() {
       first_name: "",
       last_name: "",
       otm: "",
-      course: 0,
+      course: 1,
       group: "",
       direction: "",
       role: "talaba",
@@ -79,7 +84,7 @@ export default function Register() {
     mutationFn: (data: Inputs) => AuthService.register(data),
     onSuccess: () => {
       navigate("/auth/Accept");
-    },
+    }
   });
 
   const email = useAppSelector((data) => data.email);
@@ -88,8 +93,11 @@ export default function Register() {
 
   const onSubmit = (data: Inputs) => {
     const waiter = async () => {
-      await dispatch(adder(data.email));
+
+        await dispatch(adder(data?.email));
       mutate(data);
+      
+      
     };
     waiter();
   };
@@ -219,38 +227,43 @@ export default function Register() {
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-2 ">
-                          {/* otm */}
+                          {/* otm - converted to Select */}
                           <div>
                             <label
                               htmlFor="otm"
                               className="text-xs sm:text-sm font-medium"
                             >
-                              OTM
+                              Universitet
                             </label>
                             <Controller
                               name="otm"
                               control={control}
                               render={({ field }) => (
-                                <Input
+                                <Select
                                   {...field}
-                                  onChange={(e) => {
-                                    field.onChange(e);
-                                  }}
+                                  suffixIcon=""
                                   id="otm"
-                                  className="!bg-transparent mt-2.5 px-4 py-2 sm:py-3.5 placeholder:sm:text-[15px] placeholder:text-xs placeholder:text-[#6B7280] !text-white  font-medium border border-[#6B7280] focus:border-[#3B82F6] rounded-lg shinput"
-                                  placeholder={"Otm kiriting"}
-                                />
+                                  onChange={(value) => field.onChange(value)}
+                                  placeholder="Universitetni tanlang"
+                                  style={{
+                                    color: "#fff",
+                                  }}
+                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
+                                >
+                                  {choice?.universities?.map((university: string) => (
+                                    <Option key={university} value={university}>{university}</Option>
+                                  ))}
+                                </Select>
                               )}
                             />
                           </div>
                           {/* course */}
-                        
                           <div>
                             <label
-                              htmlFor="role"
+                              htmlFor="course"
                               className="text-xs sm:text-sm  font-medium"
                             >
-                           course
+                              Kurs
                             </label>
                             <Controller
                               name="course"
@@ -262,66 +275,78 @@ export default function Register() {
                                   defaultValue={1}
                                   id="course"
                                   onChange={(value) => field.onChange(value)}
-                                  placeholder="Corsni ni tanlang"
+                                  placeholder="Kursni tanlang"
                                   style={{
                                     color: "#fff",
                                   }}
-                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent  !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput ">
-                                  <Option value="1">1</Option>
-                                  <Option value="2">2</Option>
-                                  <Option value="3">3</Option>
-                                  <Option value="4">4</Option>
+                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
+                                >
+                                  {choice?.courses?.map((course: number) => (
+                                    <Option value={course}>{course}</Option>
+                                  ))}
                                 </Select>
                               )}
                             />
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
-                          {/* group */}
+                          {/* group - converted to Select */}
                           <div>
                             <label
                               htmlFor="group"
                               className="text-xs sm:text-sm font-medium"
                             >
-                              Group
+                              Guruh
                             </label>
                             <Controller
                               name="group"
                               control={control}
                               render={({ field }) => (
-                                <Input
+                                <Select
                                   {...field}
-                                  onChange={(e) => {
-                                    field.onChange(e);
-                                  }}
+                                  suffixIcon=""
                                   id="group"
-                                  className="!bg-transparent mt-2.5 px-4 py-2 sm:py-3.5 placeholder:sm:text-[15px] placeholder:text-xs placeholder:text-[#6B7280] !text-white  font-medium border border-[#6B7280] focus:border-[#3B82F6] rounded-lg shinput"
-                                  placeholder={"Group kiriting"}
-                                />
+                                  onChange={(value) => field.onChange(value)}
+                                  placeholder="Guruhni tanlang"
+                                  style={{
+                                    color: "#fff",
+                                  }}
+                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
+                                >
+                                  {choice?.groups?.map((group: string) => (
+                                    <Option key={group} value={group}>{group}</Option>
+                                  ))}
+                                </Select>
                               )}
                             />
                           </div>
-                          {/* direction */}
+                          {/* direction - converted to Select */}
                           <div>
                             <label
                               htmlFor="direction"
                               className="text-xs sm:text-sm font-medium"
                             >
-                              Direction
+                              Yo'nalish
                             </label>
                             <Controller
                               name="direction"
                               control={control}
                               render={({ field }) => (
-                                <Input
+                                <Select
                                   {...field}
-                                  onChange={(e) => {
-                                    field.onChange(e);
-                                  }}
+                                  suffixIcon=""
                                   id="direction"
-                                  className="!bg-transparent mt-2.5 px-4 py-2 sm:py-3.5 placeholder:sm:text-[15px] placeholder:text-xs placeholder:text-[#6B7280] !text-white  font-medium border border-[#6B7280] focus:border-[#3B82F6] rounded-lg shinput"
-                                  placeholder={"Direction kiriting"}
-                                />
+                                  onChange={(value) => field.onChange(value)}
+                                  placeholder="Yo'nalishni tanlang"
+                                  style={{
+                                    color: "#fff",
+                                  }}
+                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
+                                >
+                                  {choice?.directions?.map((direction: string) => (
+                                    <Option key={direction} value={direction}>{direction}</Option>
+                                  ))}
+                                </Select>
                               )}
                             />
                           </div>
@@ -333,7 +358,7 @@ export default function Register() {
                               htmlFor="role"
                               className="text-xs sm:text-sm  font-medium"
                             >
-                              Role
+                              Rol
                             </label>
                             <Controller
                               name="role"
@@ -345,27 +370,14 @@ export default function Register() {
                                   defaultValue="talaba"
                                   id="role"
                                   onChange={(value) => field.onChange(value)}
-                                  placeholder="Role ni tanlang"
+                                  placeholder="Rolni tanlang"
                                   style={{
                                     color: "#fff",
                                   }}
-                                  className="
-                                  sm:h-11
-                                  h-10
-
-          sm:mt-2 w-full
-          mt-1
-          !bg-transparent 
-          !text-white
-          !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px]
-          border border-[#6B7280]
-          focus:border-[#3B82F6] focus:ring-0
-          rounded-lg
-          shinput
-        "
+                                  className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
                                 >
                                   <Option value="talaba">Talaba</Option>
-                                  <Option value="oqtivchi">O’qituvchi</Option>
+                                  <Option value="oqtivchi">O'qituvchi</Option>
                                 </Select>
                               )}
                             />
@@ -394,7 +406,7 @@ export default function Register() {
                                     status={errors.password ? "error" : ""}
                                     id="floating_password"
                                     className=" !bg-transparent mt-2.5 px-4 py-3 sm:py-3.5 placeholder:text-[#6B7280]  placeholder:sm:text-[15px] placeholder:text-xs sm:text-[15px] text-xs text-white font-medium border border-[#6B7280] rounded-lg shinput"
-                                    placeholder="Введите пароль"
+                                    placeholder="Parolni kiriting"
                                     type={eyeShow ? "text" : "password"}
                                   />
                                 )}
@@ -404,7 +416,7 @@ export default function Register() {
                                 alt={
                                   eyeShow ? "Hide password" : "Show password"
                                 }
-                                className={`text-xs sm:text-xl text-white absolute bottom-4 sm:bottom-5 right-4 cursor-pointer `}
+                                className="text-xs sm:text-xl text-white absolute bottom-4 sm:bottom-5 right-4 cursor-pointer"
                                 onClick={() => setEyeShow((prev) => !prev)}
                               />
                             </div>
@@ -425,9 +437,9 @@ export default function Register() {
                       <div className="flex items-center justify-center py-2 sm:py-3.5 ">
                         <div className="flex gap-2.5 text-xs sm:text-sm font-semibold">
                           <p>
-                            Siz royhatdan o'tganmisiz ?{" "}
+                            Siz ro'yhatdan o'tganmisiz ?{" "}
                             <span
-                              className="hover:text-blue-500 hover:underline"
+                              className="hover:text-blue-500 hover:underline cursor-pointer"
                               onClick={() => navigate("/auth/login")}
                             >
                               Login

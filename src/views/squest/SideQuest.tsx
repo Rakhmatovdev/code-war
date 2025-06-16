@@ -14,15 +14,17 @@ const SideQuest = () => {
   }
   return (
     <div>
-      <section>
+      <section className="relative">
+        <div className="fixed inset-0 -z-10 w-full h-full">
         <img
           src={Squest}
           loading="lazy"
-          alt=" side quest"
-          className="-z-10 absolute top-0 w-full h-screen "
+          alt="start test background"
+          className="w-full h-full object-cover"
         />
+      </div>
 
-        <div className="sm:mx-16 mx-4 text-white bg-[#D9D9D90D] sm:h-[calc(39vw-106px)] h-[calc(100vw+316px)] overflow-y-scroll scroll-none p-4 sm:p-16 rounded-xl sm:rounded-3xl">
+        <div className="sm:mx-16 mx-4 z-20 text-white bg-[#D9D9D90D] my-10 overflow-y-scroll scroll-none p-4 sm:p-16 rounded-xl sm:rounded-3xl">
           <div className="flex flex-wrap justify-between flex-col sm:flex-row gap-4">
             {Assigment?.map((item) => (<>
               <Link

@@ -34,8 +34,8 @@ const Contact = () => {
 
   return (
     <div>
-         <section className="h-[84vh] sm:h-[calc(55vw-316px)] 2xl:h-[calc(50vw-316px)] ">
-              <form  className="flex justify-center" onSubmit={handleSubmit(onSubmit)} >
+         <section className="relative ">
+              <form  className="flex justify-center relative z-20 mb-10" onSubmit={handleSubmit(onSubmit)} >
              <div className="bg-[#D9D9D96E] mx-4 sm:mx-0 bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl p-4 w-full max-w-2xl">
              
 <div className="flex flex-col sm:flex-row  gap-4">
@@ -136,16 +136,19 @@ const Contact = () => {
           >
             {isLoading ? "Yuborilmoqda..." : "Xabarni yuborish"}
           </button>
-        </div></div>
-                <img
-                  src={ContactImg}
-                  alt="contact"
-                  loading="lazy"
-                  className="-z-10 absolute top-0 w-full h-screen "
-                />
+        </div>
+        </div>
                 <div className="absolute bottom-10   flex justify-center items-center  w-full gap-2">
                   </div>
               </form>
+                 <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={ContactImg}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
             </section>
     </div>
   )

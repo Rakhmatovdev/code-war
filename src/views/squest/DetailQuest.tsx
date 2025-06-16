@@ -30,8 +30,12 @@ const SQDetail = () => {
     console.error("Yakunlashda xato:", err);
   },
 });
-
-
+const defaultCode = `using System;
+class HelloWorld {
+  static void Main() {
+    Console.WriteLine("Hello World");
+  }
+}`;
   const handleFinish = () => {
     if (!task) return;
    mutate({ id: id!, code })
@@ -41,14 +45,16 @@ const SQDetail = () => {
   if (error || !task) return <div className="text-red-500 p-10">Xatolik yuz berdi yoki topshiriq topilmadi</div>;
 
   return (
-    <section className="">
-      <img
-        src={Squest}
-        loading="lazy"
-        alt="side quest"
-        className="-z-10 absolute top-0 w-full h-screen"
-      />
-      <div className="relative bg-cover bg-center h-[calc(80vh-80px)] sm:h-[calc(70vh-120px)]">
+    <section className="relative">
+     <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={Squest}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="relative z-20 bg-cover bg-center my-10">
         <div className="relative z-10 container mx-auto px-4">
           <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl">
             {/* LEFT */}
@@ -79,7 +85,7 @@ const SQDetail = () => {
                 className="flex-1 bg-white/10 text-white rounded-lg p-4 font-mono text-sm resize-none focus:outline-none"
                 value={code}
                 rows={10}
-                placeholder='// Bu yerga kod yozing...'
+                defaultValue={defaultCode}
                 onChange={(e) => setCode(e.target.value)}
               />
               <div className="mt-8 sm:mt-24 flex flex-row gap-4 justify-end">

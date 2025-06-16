@@ -67,7 +67,7 @@ mutate(openId??"")
 
   return (
     <div className="text-white ">
-      <section className=" sm:h-[calc(100vh-320px)]">
+      <section className=" relative  text-white h-[80vh] ">
         <div className="flex">
           <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl  sm:pl-44 w-full bg-[#D9D9D90D] overflow-y-scroll scroll-none h-[calc(100vh-200px)]">
             <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">
@@ -154,16 +154,17 @@ mutate(openId??"")
               </button>
             </div>}
           </div>
-          <img
-            src={Mquest}
-            loading="lazy"
-            alt="main quest"
-            className="-z-10 absolute top-0 w-full h-screen"
-          />
+          <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={Mquest}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
         </div>
       </section>
-      <section className="bg-[#060D0F] sm:h-[15vh]"></section>
-      <div className="p-10 bg-black"></div>
+    
     </div>
   );
 };

@@ -127,25 +127,25 @@ useEffect(() => {
 
   return (
     <div>
-      <section className="h-[calc(50vw-285px)] ">
-        <div className="flex justify-end">
-          <img
-            src={InvetarImg}
-            loading="lazy"
-            alt="Profile"
-            className="-z-10 absolute top-0 w-full h-screen"
-          />
-        </div>
-        <div className="bg-[#D9D9D90D] text-white mx-4 sm:mx-16 h-full rounded-2xl">
+      <section className="relative my-20 ">
+         <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={InvetarImg}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+        <div className="bg-[#D9D9D90D] relative z-20 text-white mx-4 sm:mx-16 h-full rounded-2xl">
           <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-x-4 gap-y-4 sm:gap-y-0 w-full items-center p-4">
             <div className=" bg-[#C6DCE90D] сol-span-1 rounded-xl h-full">
-              <div className="flex items-center justify-center mt-4 w-full relative ">
+              <div className="flex w-28 h-28 sm:w-40 sm:h-40 items-center justify-center mx-auto mt-4  relative ">
                 <img
                   src={profile?.user?.profile_image || user}
                   alt="user image"
-                  className="w-28 h-28 sm:w-40 sm:h-40 rounded-full my-border cursor-pointer"
+                  className="w-full  rounded-full my-border cursor-pointer"
                 />
-                <img src={profile?.user?.level_image_url} alt="Level user" className="w-12 h-12 absolute bottom-0 right-16 sm:right-48 rounded-full"  />
+                <img src={profile?.user?.level_image_url} alt="Level user" className="w-9 h-9      sm:w-12 sm:h-12 absolute bottom-0 right-0 rounded-full"  />
               </div>
               <p className="text-center sm:text-xl mt-2">
                 {profile?.user?.first_name} {profile?.user?.last_name}
@@ -198,8 +198,8 @@ useEffect(() => {
           </div>
         </div>
       </section>
-       <section className="bg-[#121926] mb-[680px] sm:mb-0 sm:h-[20vh]">
-            </section>
+       {/* <section className=" relative z-20 mb-[680px] sm:mb-0 sm:h-[20vh]">
+            </section> */}
 <Modal
   open={show}
   onCancel={() => setShow(false)}

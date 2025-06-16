@@ -1,6 +1,6 @@
 import { Input  } from "antd";
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import {useState } from "react";
+import {Controller, useForm } from "react-hook-form";
 import {useNavigate } from "react-router"; 
 import  Back from "../../../public/authPic.png";
 
@@ -47,12 +47,7 @@ export default function Accept() {
     }
   });
 
- useEffect(() => {
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    navigate("/");
-  }
-}, [navigate]);
+
 
 
   const { mutate, isPending } = useMutation<
@@ -62,7 +57,7 @@ export default function Accept() {
   >({
     mutationKey: ["Accept"],
     mutationFn: (data: Accept) => AuthService.accept(data),
-    onSuccess: () =>navigate("/"),
+    onSuccess: () =>navigate("auth/start"),
    onError: (error) => {
   const message = error.response?.data?.message  || "Invalid code";
   setError("code", { type: "manual", message });

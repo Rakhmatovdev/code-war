@@ -4,7 +4,7 @@ import badge from "../../../public/user/badge.png";
 import eye from "../../../public/eye.svg";
 import knife from "../../../public/knife.svg";
 import FightCard from "./FightCard";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
 import { Link } from "react-router";
 const Duel = () => {
@@ -30,21 +30,46 @@ const Duel = () => {
 
   console.log(duel);
   
+const mutationCreate = useMutation({
+  mutationFn: () => AuthService.createDuel(),
+  onSuccess: (res) => {
+    console.log("Created duel:", res.data);
+  }
+});
+
+const mutationJoin = useMutation({
+  mutationFn: (id: number) => AuthService.joinDuel(id),
+  onSuccess: () => {
+    console.log("Joined the duel");
+  }
+});
+
+const mutationSubmit = useMutation({
+  mutationFn: ({ id, payload }: { id: number; payload: any }) =>
+    AuthService.submitDuel(id, payload),
+  onSuccess: () => {
+    console.log("Submitted duel");
+  }
+});
+
+console.log("MC",mutationCreate.data);
+console.log("MJ",mutationJoin.data);
+console.log("MS",mutationSubmit.data);
 
 
 
   return (
     <div>
-      <section className="h-[calc(60vw-475px)] ">
-        <div className="flex justify-end">
-          <img
-            src={DuelImg}
-            alt=" duel"
-            loading="lazy"
-            className="-z-10 absolute top-0 w-full h-screen"
-          />
-        </div>
-        <div className="sm:mx-16 mx-4 bg-[#D9D9D90D] sm:h-[calc(100vh-340px)] h-[calc(100vh-150px)] rounded-t-3xl sm:px-[100px] px-4 pt-4 sm:pt-[38px] text-white">
+      <section className="relative ">
+       <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={DuelImg}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+        <div className="sm:mx-16 mx-4 relative z-20 bg-[#D9D9D90D]  rounded-3xl sm:px-[100px] px-4 pt-4 sm:pt-[38px] text-white overflow-y-scroll scroll-none">
           <table className="w-full">
             <thead>
               <tr className="text-start border-b">
@@ -54,7 +79,8 @@ const Duel = () => {
                 <th className="text-[9px] sm:text-base">reyting</th>
                 <th className="text-[9px] sm:text-base">daraja</th>
                 <th className="text-[9px] sm:text-base">kuzatish</th>
-                <th className="text-[9px] sm:text-base">dulega chaqirish</th>
+                <th className="text-[9px] sm:text-base">duelga chaqirish</th>
+                <th className="text-[9px] sm:text-base">duelga qoshilish</th>
               </tr>
             </thead>
             <tbody className="text-center ">
@@ -94,11 +120,26 @@ const Duel = () => {
                   </Link>
                 </td>
                 <td className="">
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-center items-center cursor-pointer hover:scale-95 transition-all duration-300"
+                  onClick={() => mutationCreate.mutate(rate?.id)}
+                  >
                     <img
                       className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
                       src={knife}
-                      alt="user image"
+                      alt="user image create"
+                      width={50}
+                      height={50}
+                    />
+                  </div>
+                </td>
+                <td className="">
+                  <div className="flex justify-center items-center cursor-pointer hover:scale-95 transition-all duration-300"
+                  onClick={() => mutationJoin.mutate(rate?.id)}
+                  >
+                    <img
+                      className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
+                      src={knife}
+                      alt="user image join"
                       width={50}
                       height={50}
                     />
@@ -110,7 +151,8 @@ const Duel = () => {
           </table>
         </div>
       </section>
-      <div className=" bg-[#070A07] mt-80  sm:mt-0 sm:pt-40 sm:h-[calc(100vh-200px)] h-[calc(100vh-150px)]">
+      
+      <div className="my-20 relative z-20  ">
         <div className=" sm:mx-16 mx-4 bg-[#D9D9D90D] rounded-3xl sm:p-12 text-white">
           <p className="text-center sm:text-3xl mb-2 sm:mb-8 ">
             History of duels
