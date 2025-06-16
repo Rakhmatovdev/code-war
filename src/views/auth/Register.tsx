@@ -281,7 +281,7 @@ export default function Register() {
                                   }}
                                   className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
                                 >
-                                  {choice?.courses?.map((course: number) => (
+                                  {choice?.courses?.map((course: string) => (
                                     <Option value={course}>{course}</Option>
                                   ))}
                                 </Select>
