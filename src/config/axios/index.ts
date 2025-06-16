@@ -87,6 +87,7 @@ choices:"/api/choices/", // GET
 rating:"/users/rating/", // GET
 contact:"/contact/", // POST
 plans:"/plans/", // GET
+email:"/submit-email/", // POST
 };
 
 export default authApi;

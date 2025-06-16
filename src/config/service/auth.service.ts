@@ -808,6 +808,29 @@ getPlans: async (topicId: string | number): Promise<any> => {
     throw new Error(errorMessage);
   }
   }
+  ,
+
+
+  // email
+  sendEmail: async (email: string): Promise<any> => {
+    try {
+      const response = await authApi.post(endpoints.email, { email });
+      notification.success({ message: "Email muvaffaqiyatli yuborildi." });
+      return response.data;
+    } catch (error: unknown) {
+      console.error("Send email failed", error);
+      let errorMessage = "An unknown error occurred";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      if (typeof error === "object" && error !== null && "response" in error) {
+        const axiosError = error as { response?: { data?: { message?: string } } };
+        errorMessage = axiosError.response?.data?.message || errorMessage;
+      }
+      notification.error({ message: "Email yuborishda xatolik yuz berdi ", description: errorMessage });
+      throw new Error(errorMessage);
+    }
+  },
 
 };
 

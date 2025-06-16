@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Globe, Mail, Phone } from 'lucide-react'
+import AuthService from '../../../config/service/auth.service'
+import { useMutation } from '@tanstack/react-query'
 
 export default function Footer() {
   const { t, i18n } = useTranslation()
@@ -23,6 +25,23 @@ export default function Footer() {
     { to: '/help', label: t('Help') },
    
   ]
+    
+const mutationEmail = useMutation({
+  mutationFn: (email:string) => AuthService.sendEmail(email),
+  onSuccess: (res) => {
+    console.log("Created duel:", res.data);
+  }
+});
+
+  const submitEmail = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+   
+  mutationEmail.mutate(email)
+    setEmail('')
+  }
+
+
 
   return (
     <footer className="bg-gradient-to-r  from-gray-900 via-black to-gray-900 text-gray-300 pt-12 sm:pt-16 pb-6 sm:pb-8 ">
@@ -78,7 +97,7 @@ export default function Footer() {
         <div className="flex flex-col space-y-4">
           <h4 className="text-lg sm:text-xl font-semibold text-white">{t('Stay Updated')}</h4>
           <form
-            onSubmit={(e) => { e.preventDefault(); /* handler */ }}
+            onSubmit={submitEmail}
             className="flex flex-col space-y-2"
           >
             <div className="flex items-center bg-gray-800 rounded overflow-hidden text-xs sm:text-sm">
