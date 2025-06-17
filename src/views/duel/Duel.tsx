@@ -6,7 +6,8 @@ import knife from "../../../public/knife.svg";
 import FightCard from "./FightCard";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
-import { Link } from "react-router";
+
+import { Dropdown, MenuProps } from "antd";
 const Duel = () => {
    const { data: duel } = useQuery({
     queryKey: ["duel"],
@@ -20,7 +21,7 @@ const Duel = () => {
     queryFn: () => AuthService.getAssignmentsByDuelId(id),
     enabled: !!id,
   });
-  console.log(duelOne);
+  console.log("duel one",duelOne);
   
 
    const { data: rating } = useQuery({
@@ -28,7 +29,7 @@ const Duel = () => {
       queryFn: () => AuthService.getRating(),
     });
 
-  console.log(duel);
+  console.log("duel",duel,rating);
   
 const mutationCreate = useMutation({
   mutationFn: () => AuthService.createDuel(),
@@ -56,7 +57,13 @@ console.log("MC",mutationCreate.data);
 console.log("MJ",mutationJoin.data);
 console.log("MS",mutationSubmit.data);
 
-
+const items: MenuProps['items'] = [
+  {
+    key: '1',
+    label: 'Profile',
+    extra: '⌘',
+  }
+];
 
   return (
     <div>
@@ -85,7 +92,8 @@ console.log("MS",mutationSubmit.data);
             </thead>
             <tbody className="text-center ">
             {  rating?.map((rate:any)=><tr>
-                <td className="border-r text-xs sm:text-base">{rate?.id}</td>
+                <td className="border-r text-xs sm:text-base">{rate?.id}
+                </td>
                 <td className="py-5 flex justify-center items-center">
                   <img
                     className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]"
@@ -109,7 +117,8 @@ console.log("MS",mutationSubmit.data);
                   </div>
                 </td>
                 <td className="">
-                  <Link to={'/invertar'} className="flex justify-center items-center " >
+                  <Dropdown menu={{ items }} disabled={!duel?.some((item: any) => item?.creator === rate?.id)}>
+                  <div className="flex justify-center items-center " >
                     <img
                       className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"
                       src={eye}
@@ -117,7 +126,7 @@ console.log("MS",mutationSubmit.data);
                       width={50}
                       height={50}
                     />
-                  </Link>
+                  </div></Dropdown>
                 </td>
                 <td className="">
                   <div className="flex justify-center items-center cursor-pointer hover:scale-95 transition-all duration-300"
