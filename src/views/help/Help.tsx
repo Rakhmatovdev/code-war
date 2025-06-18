@@ -16,9 +16,11 @@ const Help = () => {
           <div className="mx-4 sm:mx-16">
             <p className="text-center text-xl sm:text-5xl">Darajalar</p>
             <hr className="border-none h-px bg-white mt-4 opacity-75" />
-            <div className="mt-3 space-y-2">
+            <div className="mt-3 space-y-2 grid sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-2 ">
               {ratings.map((item) => (
-                <div key={item.id} className="flex sm:gap-4 gap-2 items-center">
+                <div key={item.id}
+                 className="flex sm:gap-4 gap-2 items-center"
+                 >
                   <div className="">
                     <img
                       src={item.photo}
@@ -39,7 +41,7 @@ const Help = () => {
       </section>
       <div className=" relative z-20">
         <div className="  ">
-          <div className="sm:mx-16 mx-4 bg-[#D9D9D914] 2xl:pt-[320px] pt-10 pb-40 text-white">
+          <div className="sm:mx-16 mx-4 bg-[#D9D9D914] 2xl:pt-[20px] pt-10 pb-40 text-white">
             <div className="sm:mx-16 mx-4">
               <hr className="border-none h-px bg-white sm:mt-4 opacity-75" />
               <div className="flex justify-between sm:justify-center  flex-col gap-20 sm:flex-row mt-10">
@@ -88,8 +90,8 @@ const Help = () => {
                       />
                     </div>
                     <div className=" text-center">
-                      <p className="sm:text-lg text-sm">{item.name}</p>
-                      <p className="sm:w-[434px] mt-2 text-xs sm:text-base">{item.title}</p>
+                      <p className="sm:text-2xl text-sm">{item.name}</p>
+                      <p className="sm:w-[434px] mt-2 text-xs sm:text-lg">{item.title}</p>
                     </div>
                   </div>
                 ))}
@@ -98,8 +100,8 @@ const Help = () => {
           <div className="flex justify-center sm:flex-row flex-col  mt-10 sm:mt-[100px]"> 
              <div className="mx-4 space-y-4 ">
                 <div className="">
-        <p className="text-base sm:text-xl">🛡️ CODERS WAR — Duel Qonuniyatlari</p>
-        <p className="sm:text-lg">1. Duelga chaqirish shartlari:</p>
+        <p className="text-base sm:text-2xl">🛡️ CODERS WAR — Duel Qonuniyatlari</p>
+        <p className="sm:text-xl">1. Duelga chaqirish shartlari:</p>
         <li className="myli">Duel uchun talabalar darajasi o‘zaro juda keskin farq qilmasligi kerak.</li>
         <li className="my-li">Ruxsat beriladigan farq:</li>
         <div className="mx-4">
@@ -112,7 +114,7 @@ const Help = () => {
                 </div>
 
                 <div className="">
-                  <p className="sm:text-lg">2. Duelda ball o‘zgarishi:</p>
+                  <p className="sm:text-xl">2. Duelda ball o‘zgarishi:</p>
                   <div className="mx-4">
                     <p className="myli">Yutgan - O‘zining umumiy ballining 1% ni qo‘lga kiritadi.</p>
                     <p className="myli">Yutqazgan -  O‘zining umumiy ballining 1% ni yo‘qotadi.</p>
@@ -125,7 +127,7 @@ const Help = () => {
                 </div>
 
                 <div className="">
-                  <p className="sm:text-lg">3. Qurollar ta'siri (epikirovkalar ta'siri):</p>
+                  <p className="sm:text-xl">3. Qurollar ta'siri (epikirovkalar ta'siri):</p>
                   <p className="myli">Duel natijasidagi 1% ball ustiga yoki kamaytirishga epikirovkalar ta’sir qiladi:</p>
                   <p className="myli">Oddiy qilich - Yutganda oladigan ballga +10% qo‘shiladi</p>
                   <p className="myli">Yog‘och qalqon  - Yutqazganda yo‘qotiladigan ball -5% kamayadi</p>
@@ -139,7 +141,7 @@ const Help = () => {
               </div>
               <div className="space-y-2 ">
                   <div className="1">
-                  <p className="sm:text-lg">4. Duel natijasini hisoblash formulasi:</p>
+                  <p className="sm:text-xl">4. Duel natijasini hisoblash formulasi:</p>
                   <p className="myli">Yutgan talaba uchun: Yakuniy Ball = (Umumiy ball * 1%) + (Qurol ta'siri)</p>
                   <p className="myli">Yutqazgan talaba uchun: Yakuniy Ball = (Umumiy ball * 1%) - (Qalqon ta'siri)</p>
                   </div>
@@ -192,10 +194,10 @@ const Help = () => {
            <div className="flex justify-between sm:justify-center sm:flex-row  flex-col mx-4 space-y-4 mt-10 sm:mt-12"> 
             <div className="mx-4 space-y-4">
                   <div className="">
-                    <p className="sm:text-xl font-medium">🛡️ CODERS WAR — Epikirovka Qonuniyati</p>
+                    <p className="sm:text-2xl font-medium">🛡️ CODERS WAR — Epikirovka Qonuniyati</p>
                   </div>
                   <div className="mt-4">
-                    <p className="m:stext-lg">1. Epikirovka avtomatik almashtirish qonuni:</p>
+                    <p className="m:stext-xl">1. Epikirovka avtomatik almashtirish qonuni:</p>
                     <div className="">
                       <li className="myli">Agar talabaning epikirovkasida past darajadagi qurol (masalan, Oddiy qilich) bo‘lsa </li>
                       <div className="mx-4">
@@ -211,7 +213,7 @@ const Help = () => {
                     <p className="myli">✅ Talaba eski pastroq qurolni ushlab turolmaydi, doim kuchlirog‘ini egallaydi.</p>
                   </div>
                   <div className="">
-                    <p className="sm:text-lg">2. Personaj turiga qarab epikirovka cheklovlari:</p>
+                    <p className="sm:text-xl">2. Personaj turiga qarab epikirovka cheklovlari:</p>
                     <p className="myli">🎯 Jangchi, Ritsar, Lady Knight uchun: Ruxsat etilgan epikirovkalarQilichlar (Oddiy,</p>
                     <p className="myli">Po‘lat, Afsonaviy qilich)Qalqonlar (Yog‘och, Temir, Qahramon qalqoni) Zirh (Kamzul,</p>
                     <p className="myli">Bronya)Dubulg‘aEtik (Oddiy yoki Qirol sapogi)Uzuklar</p>

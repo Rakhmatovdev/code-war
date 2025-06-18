@@ -97,7 +97,7 @@ body {
     @apply border border-[#E5E7EB]
   }
   .myli {
-    @apply text-xs
+    @apply text-base
   }
 }
 

@@ -725,6 +725,24 @@ submitDuel: async (duelId: number | string, data: { assignmentId: number | strin
   }
 },
 
+getStatus: async (duelId: number | string): Promise<any> => {
+  try {
+    const response = await authApi.get(`endpoints.duel.base${duelId}${endpoints.duel.status }`);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get status failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Status not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
 
 //initial tests
 
@@ -809,6 +827,8 @@ getPlans: async (topicId: string | number): Promise<any> => {
   }
   }
   ,
+
+  
 
 
   // email

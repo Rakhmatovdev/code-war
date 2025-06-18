@@ -157,15 +157,15 @@ const sections: SectionProps[] = [
 
   return (
     <div className="">
-      <section className="h-[calc(100vw+286px)] sm:h-[calc(50vw-346px)]  ">
-        <div className="flex justify-end">
-          <img
-            src={AboutImg}
-            loading="lazy"
-            alt="About"
-            className="-z-10 absolute top-0 w-full h-screen "
-          />
-        </div>
+      <section className="relative   ">
+              <div className="fixed inset-0 -z-10 w-full h-full">
+        <img
+          src={AboutImg}
+          loading="lazy"
+          alt="start test background"
+          className="w-full h-full object-cover"
+        />
+      </div>
          <div className="text-white mx-4 sm:mx-80">
           <h2 className="text-center text-xl sm:text-5xl font-medium">{title1}</h2>
           <p className="text-center text-xs sm:text-base mt-2 sm:mt-11 text-[#E5E5E5]">

@@ -77,6 +77,7 @@ export const endpoints = {
     assignments:"/assignments/", // GET
     join:"/join/", // POST
     submit:"/submit/", // POST
+    status:"/status/", // GET
   },
   initialtest:{
     base:"/initial-tests/", // GET

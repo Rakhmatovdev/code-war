@@ -2,15 +2,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { Globe, Mail, Phone } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import AuthService from '../../../config/service/auth.service'
 import { useMutation } from '@tanstack/react-query'
 
 export default function Footer() {
-  const { t, i18n } = useTranslation()
+  const { t} = useTranslation()
   const [email, setEmail] = useState('')
 
-  const changeLanguage = (lng:any) => i18n.changeLanguage(lng)
 
   const quickLinks = [
     { to: '/main-quest', label: t('Main quest') },
@@ -127,7 +126,7 @@ const mutationEmail = useMutation({
         
               <Mail className="w-4 h-4 text-gray-400 mr-2" /><span>shoxumarzoda@gmail.com</span>
             </a>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Globe className="w-4 h-4 text-gray-400 mr-2" />
               <select
                 onChange={e => changeLanguage(e.target.value)}
@@ -138,7 +137,7 @@ const mutationEmail = useMutation({
                 <option value="uz">O‘zbekcha</option>
                 <option value="ru">Русский</option>
               </select>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

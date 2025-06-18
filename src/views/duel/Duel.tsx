@@ -8,6 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
 
 import { Dropdown, MenuProps } from "antd";
+import { format, parseISO } from "date-fns";
 const Duel = () => {
    const { data: duel } = useQuery({
     queryKey: ["duel"],
@@ -44,6 +45,12 @@ const mutationJoin = useMutation({
     console.log("Joined the duel");
   }
 });
+const mutationStatus = useMutation({
+  mutationFn: (id: number) => AuthService.getStatus(id),
+  onSuccess: () => {
+    console.log("Joined the duel");
+  }
+});
 
 const mutationSubmit = useMutation({
   mutationFn: ({ id, payload }: { id: number; payload: any }) =>
@@ -56,14 +63,23 @@ const mutationSubmit = useMutation({
 console.log("MC",mutationCreate.data);
 console.log("MJ",mutationJoin.data);
 console.log("MS",mutationSubmit.data);
+console.log("MSS",mutationStatus.data);
 
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: 'Profile',
-    extra: '⌘',
-  }
-];
+
+const items: MenuProps['items'] = duel?.map((d: any,idx:number) => {
+    const date = d.created_at
+      ? format(parseISO(d.created_at), 'dd-MM-yyyy HH:mm:ss')
+      : 'N/A';
+
+    return {
+      key: d.id.toString(),
+      label: (
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+         {d.creator_id==  <p><span className="font-semibold ">{idx+1}</span>. {date}</p>}
+        </div>
+      ),
+    };
+  });
 
   return (
     <div>
@@ -117,7 +133,9 @@ const items: MenuProps['items'] = [
                   </div>
                 </td>
                 <td className="">
-                  <Dropdown menu={{ items }} disabled={!duel?.some((item: any) => item?.creator === rate?.id)}>
+                  <Dropdown menu={{ items }} disabled={!duel?.some((item: any) => item?.creator === rate?.id)}
+                    
+                    >
                   <div className="flex justify-center items-center " >
                     <img
                       className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"
