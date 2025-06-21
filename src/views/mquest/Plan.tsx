@@ -89,7 +89,7 @@ const Plan = () => {
 
   return (
     <div className="text-white">
-      <section className="relative text-white h-[80vh]">
+      <section className="relative text-white h-[calc(100vh-160px)]">
         <div className="flex">
           <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl sm:pl-44 w-full bg-[#D9D9D90D] overflow-y-scroll scroll-none h-[calc(100vh-200px)]">
             <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">

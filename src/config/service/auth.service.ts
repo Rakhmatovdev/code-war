@@ -727,19 +727,55 @@ submitDuel: async (duelId: number | string, data: { assignmentId: number | strin
 
 getStatus: async (duelId: number | string): Promise<any> => {
   try {
-    const response = await authApi.get(`endpoints.duel.base${duelId}${endpoints.duel.status }`);
+    const response = await authApi.get(`${endpoints.duel.base}${duelId}${endpoints.duel.status}`);
     return response.data;
   } catch (error: unknown) {
     console.error("Get status failed", error);
+    
     let errorMessage = "An unknown error occurred";
+    let statusCode = null;
+    
     if (error instanceof Error) {
       errorMessage = error.message;
     }
+    
     if (typeof error === "object" && error !== null && "response" in error) {
-      const axiosError = error as { response?: { data?: { message?: string } } };
-      errorMessage = axiosError.response?.data?.message || errorMessage;
+      const axiosError = error as { 
+        response?: { 
+          status?: number;
+          data?: { 
+            message?: string;
+            error?: string;
+          } 
+        } 
+      };
+      
+      statusCode = axiosError.response?.status;
+      const responseData = axiosError.response?.data;
+      
+      // Error message ni olish (error yoki message field'dan)
+      errorMessage = responseData?.error || responseData?.message || errorMessage;
+      
+      // 403 status code uchun maxsus handling
+      if (statusCode === 403) {
+        notification.error({message:`${errorMessage}`});
+        
+        // 403 uchun notification ko'rsatmaslik va error qaytarish
+        return { 
+          error: true, 
+          status: 403, 
+          message: errorMessage,
+          canAccess: false
+        };
+      }
     }
-    notification.error({ message: "Status not found", description: errorMessage });
+    
+    // 403 dan boshqa barcha xatoliklar uchun notification ko'rsatish
+    notification.error({ 
+      message: "Status not found", 
+      description: errorMessage 
+    });
+    
     throw new Error(errorMessage);
   }
 },
