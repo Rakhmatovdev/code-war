@@ -89,13 +89,14 @@ const Plan = () => {
 
   return (
     <div className="text-white">
+      
       <section className="relative text-white mb-4 sm:mb-10">
         <div className="flex">
-          <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl sm:pl-44 w-full bg-[#D9D9D90D] ">
-            <div className="bg-[#C6DCE90D] mt-14 sm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 relative">
-              <div className="absolute sm:-top-10 -top-6 right-2 sm:right-10 py-2 px-4 sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
+          <div className="sm:mx-16 mx-4 rounded-xl sm:rounded-3xl sm:pl-44 w-full bg-[#D9D9D90D] pb-4 sm:pb-8">
+            <div className="bg-[#C6DCE90D] mt-12 ssm:mt-[100px] mx-2 sm:mx-14 rounded-xl sm:rounded-3xl asm:h-[520px] pb-4 sm:pb-8 relative">
+              {/* <div className="absolute sm:-top-10 -top-6 right-2 sm:right-10 py-2 px-4 sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
                 <p className="text-xs sm:text-xl">{plan?.title}</p>
-              </div>
+              </div> */}
               <div className="sm:mx-16 mx-2 overflow-hidden">
                 <p className="sm:pt-14 pt-6 text-base sm:text-xl font-normal">
                   {plan?.text

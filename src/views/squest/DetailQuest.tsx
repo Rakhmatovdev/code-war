@@ -5,10 +5,12 @@ import AuthService from '../../config/service/auth.service';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 
+
 const SQDetail = () => {
   const { id } = useParams();
   const [code, setCode] = useState("");
   const queryClient = useQueryClient();
+
 
   const { data: task, isLoading, error } = useQuery({
     queryKey: ["assignment", id],
@@ -30,12 +32,9 @@ const SQDetail = () => {
     console.error("Yakunlashda xato:", err);
   },
 });
-const defaultCode = `using System;
-class HelloWorld {
-  static void Main() {
-    Console.WriteLine("Hello World");
-  }
-}`;
+
+
+
   const handleFinish = () => {
     if (!task) return;
    mutate({ id: id!, code })
@@ -54,11 +53,11 @@ class HelloWorld {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="relative z-20 bg-cover bg-center my-4 sm:my-0 sm:mb-4 mx-4 sm:mx-16 rounded-xl h-[calc(100vh-180px)] bg-[#D9D9D90D] ">
-        <div className="relative z-10 px-4 mx-auto sm:px-16 sm:ml-60">
-          <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl 2xl:mt-3">
+      <div className="relative z-20 bg-cover bg-center my-4 sm:my-0 sm:mb-4 mx-4 sm:mx-16 rounded-xl h-[calc(100vh-80px)] bg-[#D9D9D90D] ">
+        <div className="relative z-10 px-4 mx-auto sm:px-16 py-10 sm:ml-44 sm:pt-4">
+          <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl 2xl:mt-3 ">
             {/* LEFT */}
-            <div className="w-full lg:w-1/2 p-8 md:p-12 text-white relative ">
+            <div className="w-full lg:w-1/2 p-8 md:p-12 text-white relative  ">
               <div className="absolute top-1 sm:top-4 -z-10 left-4 sm:left-10 bg-[#3D6560] sm:px-6 px-3 py-1.5 sm:py-1 rounded-2xl sm:rounded-3xl text-center">
                 <p className="sm:text-lg italic">{task.id}‑topshiriq</p>
                 <p className="text-[10px] sm:text-xs">({task.points} ball)</p>
@@ -82,16 +81,21 @@ class HelloWorld {
             {/* RIGHT */}
             <div className="w-full lg:w-1/2   sm:p-8 md:p-8 flex flex-col">
               <textarea
-                className="flex-1 bg-white/10 text-white rounded-lg p-4 font-mono text-sm resize-none focus:outline-none"
+                className="flex-1 bg-white/10 mx-4 sm:mx-0 text-white rounded-lg p-4 font-mono text-sm resize-none focus:outline-none"
                 value={code}
                 rows={10}
-                defaultValue={defaultCode}
+                defaultValue={`using System;
+class HelloWorld {
+  static void Main() {
+    Console.WriteLine("Hello World");
+  }
+}`}
                 onChange={(e) => setCode(e.target.value)}
               />
               <div className="mt-8 sm:mt-24 flex flex-row gap-4 justify-end">
-                1 
+                
                 <button
-                  className="w-full sm:w-auto text-white px-6 py-3 bg-[#3D6560] rounded-2xl text-lg italic hover:bg-[#346257] transition"
+                  className="w-full mx-4 sm:mx-0 sm:mb-0 mb-2 sm:w-auto text-white px-6 py-3 bg-[#3D6560] rounded-2xl text-lg italic hover:bg-[#346257] transition"
                   onClick={handleFinish}
                 >
                   Yakunlash

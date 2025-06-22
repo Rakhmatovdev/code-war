@@ -17,6 +17,7 @@ return <div className="w-screen h-screen bg-slate-900"/>
 }
   return (
     <div className="">
+
          <section className="relative  text-white h-[80vh] ">
              <div className="fixed inset-0 -z-10 w-full h-full">
         <img
