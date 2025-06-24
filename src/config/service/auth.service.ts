@@ -479,6 +479,7 @@ getComments: async (page:{page:number | string,page_size: number}): Promise<comm
     throw new Error(errorMessage);
   }
 },
+
 createComment: async ( text: string): Promise<createResponse> => {
   try {
     const response = await authApi.post<createResponse>(endpoints.comments.create, text);
