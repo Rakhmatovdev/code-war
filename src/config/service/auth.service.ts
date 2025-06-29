@@ -150,11 +150,15 @@ interface caracterResponse{
   title: string;
   image: string;
 }
+interface Assignment {
+  id: number | string;
+  key: React.Key;
+  title: string;
+  plan_title: string;
+}
 
 export interface AssignmentResponse{
-  id: number | string;
-  plan_title: string;
-  title: string;
+  results: Assignment[];
 }
 
 // Auth 
@@ -523,9 +527,9 @@ createContact: async (data: { full_name: string; email: string; phone_number: st
 
 //asignments
 
-getAssignments: async (): Promise<AssignmentResponse[]> => {
+getAssignments: async (): Promise<AssignmentResponse> => {
   try {
-    const response = await authApi.get<AssignmentResponse[]>(endpoints.assignments.base);
+    const response = await authApi.get<AssignmentResponse>(endpoints.assignments.base);
     return response.data;
   } catch (error: unknown) {
     console.error("Get assignments failed", error);
@@ -691,8 +695,8 @@ joinDuel: async (duelId: number | string): Promise<any> => {
     const response = await authApi.post(`${endpoints.duel.base}${duelId}${endpoints.duel.join}`);
     notification.success({ message: response.data.message || "Duelga muvaffaqiyatli qo'shildingiz!" });
     return response.data;
-  } catch (error: unknown) {
-    console.error("Join duel failed", error);
+  } catch (error: Error | any) {
+    console.log("Join duel failed", error?.response?.data?.detail);
     let errorMessage = "An unknown error occurred";
     if (error instanceof Error) {
       errorMessage = error.message;
@@ -701,7 +705,8 @@ joinDuel: async (duelId: number | string): Promise<any> => {
       const axiosError = error as { response?: { data?: { message?: string } } };
       errorMessage = axiosError.response?.data?.message || errorMessage;
     }
-    notification.error({ message: "O'zingiz yaratgan duelga qo‘shila olmaysiz."});
+
+    notification.error({ message: error?.response?.data?.detail });
     throw new Error(errorMessage);
   }
 },

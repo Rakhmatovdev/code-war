@@ -61,7 +61,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
           </div>
           <div className="">
             <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium">O’qituvchilar fikrlari</p>
-            <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] sm:gap-20 gap-10 sm:mt-[53px] mt-10 ">
+            <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] sm:gap-20 gap-4 sm:mt-[53px] mt-10 ">
           {isPending?( <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 sm:gap-20 mt-10">
     {Array(pageSize).fill(0).map((_, i) => (
       <div
@@ -87,7 +87,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
       </div>
     ))}
   </div>):comments?.results?.map((comment) => (<div key={comment?.id} className="border p-[26px] bg-[#473631] rounded-xl sm:rounded-3xl">
-             <div className="flex gap-4">
+             <div className="flex  gap-4">
                 <div className="">
                    {comment?.user_profile_image? <img src={comment?.user_profile_image} alt={comment?.user_full_name} className="w-14 h-14 rounded-full"/>:<div className="w-14 h-14 rounded-full bg-slate-500 flex justify-center items-center">{comment?.user_full_name[0]}</div>}
                 </div>
@@ -109,7 +109,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
             </div>))}  
            
           </div>
-       <div className="flex flex-col items-center justify-center gap-4 mt-8 sm:flex-row text-black">
+       <div className="flex flex-col items-center justify-center sm:gap-4 mt-4 sm:mt-8 sm:flex-row text-black">
   <button
     disabled={page === 1}
     onClick={() => setPage(p => Math.max(p - 1, 1))}

@@ -233,54 +233,18 @@ body {
 padding: 40px;
 }
 
-.hf-table .ant-table-thead > tr > th:not(:first-child) {
-  background-color: #F8F8FA !important;
-  text-align: center;
-
-}
-.hf-table .ant-table-thead > tr > th:first-child {
-  border-top: none;
-  border-left: none;
-}
-
-.hf-table .ant-table-thead > tr > .ant-table-cell::before {
-  display: none;
-}
-
-
-.hf-table .ant-table-thead > tr > .ant-table-cell {
-    /* border-radius:8px 8px 0px 0px !important ; */
-    border: 1px solid #E5E7EB   
-}
-
-.hf-table .ant-table {
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-}
-
-
-.hf-table .ant-table-tbody > tr > td {
-  border: 1px solid #E5E7EB; 
-  padding: 11.7px;
-}
-
-@media (max-width: 1536px) {
-  .hf-table .ant-table-tbody > tr > td {
-    padding: 11.5px;
-  }
-}
 
 
 
-.hf-table .ant-table-tbody > tr  {
-  border: 1px solid #E5E7EB !important; 
-  border-radius: 10px 0px 10px 10px !important;
-}
 
 
-.hf-table .ant-table-tbody > tr > td:first-child{
-  background-color: #F8F8FA !important;
-}
+
+
+
+
+
+
+
 .hf-table .ant-table-tbody > tr > td:not(:first-child){
   text-align: center;
 }
@@ -291,28 +255,9 @@ padding: 40px;
   overflow: hidden; 
 }
 
-.ht-immigrant .ant-table-tbody > tr > td {
-  padding:14px;
-}
-.ht-arm .ant-table-tbody > tr > td {
-  padding:12.5px;
-
-}
-
-@media (max-width: 1440px) {
-  .ht-arm .ant-table-tbody > tr > td {
-    padding: 10px;
-    font-size: 10px;
-  }
-}
 
 
-.ht-kogg .ant-table-tbody > tr > td{
-padding: 15.23px;
-}
-.td-kogg .ant-table-tbody > tr > td{
-padding: 13.23px;
-}
+
 
 .my-password{
   font-size: 0.75rem;
@@ -452,4 +397,24 @@ background: red;
 
 .ant-select-selection-item{
   color: #fff !important;
+}
+
+.hf-table .ant-table-thead > tr > th {
+  background-color: rgb(255 255 255 / 0.1) !important;
+  text-align: center;
+  color: #6B7280;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.hf-table .ant-table-tbody > tr {
+    border: 1px solid rgb(255 255 255 / 0.1) !important;
+    border-radius: 10px 0px 10px 10px !important;
+}
+.hf-table .ant-table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+.hf-table .ant-table-tbody > tr > td{
+    background-color: transparent !important;
 }

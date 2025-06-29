@@ -40,7 +40,7 @@ const Sidebar = () => {
     const selectedKeys: string[] = [];
    const [show, setshow] = useState(false)
   return (
-    <div className=" absolute  !z-10  sm:left-24 top-[15vh] sm:top-[43vh] 2xl:top-[calc(35vh-1px)]  left-4 w-28   rounded-xl sm:rounded-2xl"> 
+    <div className=" absolute  !z-10  sm:left-24 top-32 sm:top-[43vh] 2xl:top-[calc(35vh-1px)]  left-4 w-28   rounded-xl sm:rounded-2xl"> 
     <MenuOutlined className="text-white p-4 sm:p-0 flex sm:hidden " onClick={()=>setshow(prev=>!prev)}/>
      {show && <Menu
       className=" bg-white/10  rounded-xl  z-[1000]  "

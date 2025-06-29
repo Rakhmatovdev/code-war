@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Squest from '../../../public/outline/squest.png';
 import AuthService from '../../config/service/auth.service';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -10,7 +10,7 @@ const SQDetail = () => {
   const { id } = useParams();
   const [code, setCode] = useState("");
   const queryClient = useQueryClient();
-
+  const navigate=useNavigate()
 
   const { data: task, isLoading, error } = useQuery({
     queryKey: ["assignment", id],
@@ -54,9 +54,10 @@ const SQDetail = () => {
         />
       </div>
       <div className="relative z-20 bg-cover bg-center my-4 sm:my-0 sm:mb-4 mx-4 sm:mx-16 rounded-xl h-[calc(100vh-80px)] bg-[#D9D9D90D] ">
-        <div className="relative z-10 px-4 mx-auto sm:px-16 py-10 sm:ml-44 sm:pt-4">
+        <div className="relative z-10 px-4 mx-auto sm:px-16 py-10 sm:pt-4">
           <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl 2xl:mt-3 ">
             {/* LEFT */}
+             
             <div className="w-full lg:w-1/2 p-8 md:p-12 text-white relative  ">
               <div className="absolute top-1 sm:top-4 -z-10 left-4 sm:left-10 bg-[#3D6560] sm:px-6 px-3 py-1.5 sm:py-1 rounded-2xl sm:rounded-3xl text-center">
                 <p className="sm:text-lg italic">{task.id}‑topshiriq</p>
@@ -94,6 +95,12 @@ class HelloWorld {
               />
               <div className="mt-8 sm:mt-24 flex flex-row gap-4 justify-end">
                 
+                <button
+                  className="w-full mx-4 sm:mx-0 sm:mb-0 mb-2 sm:w-auto text-white px-6 py-3 bg-[#3D6560] rounded-2xl text-lg italic hover:bg-[#346257] transition"
+                  onClick={()=>navigate(-1)}
+                >
+                  Orqaga
+                </button>
                 <button
                   className="w-full mx-4 sm:mx-0 sm:mb-0 mb-2 sm:w-auto text-white px-6 py-3 bg-[#3D6560] rounded-2xl text-lg italic hover:bg-[#346257] transition"
                   onClick={handleFinish}
