@@ -57,7 +57,7 @@ export default function Accept() {
   >({
     mutationKey: ["Accept"],
     mutationFn: (data: Accept) => AuthService.accept(data),
-    onSuccess: () =>navigate("auth/start"),
+    onSuccess: () =>navigate("/auth/start"),
    onError: (error) => {
   const message = error.response?.data?.message  || "Invalid code";
   setError("code", { type: "manual", message });

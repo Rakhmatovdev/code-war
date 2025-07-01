@@ -16,7 +16,6 @@ const Home = () => {
   })
  const [page, setPage] = useState(1)
 const pageSize = 4
-
   const { data:comments ,isPending} = useQuery({
       queryKey: ["comments",page],
       queryFn: () =>AuthService.getComments({ page, page_size: pageSize }), 
@@ -45,19 +44,16 @@ return <div className="w-screen h-screen  bg-slate-900"/>
               bilim, qalqon – bu mantiq, zirh – bu mashaqqat!
             </p>
           </div>
-         
           <img
             src={home}
             alt="home"
             className="-z-10 absolute top-0 w-full h-[500px] sm:h-screen "
           />
-          
         </div>
       </section>
       <section>
         <div className="mt-96 sm:mt-10 sm:mx-20 mx-4 text-white">
           <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] gap-10 sm:gap-20 ">
-           
           </div>
           <div className="">
             <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium">O’qituvchilar fikrlari</p>

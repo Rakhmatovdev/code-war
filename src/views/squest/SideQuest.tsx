@@ -25,11 +25,7 @@ interface Assignment {
         sortOrder?: "ascend" | "descend";
         sortField?: string;
     }
-
-
-
 const SideQuest = () => {
-
    const [tableParams, setTableParams] = useState<TableParams>({
         pagination: {
             current: 1,
@@ -124,16 +120,14 @@ const SideQuest = () => {
 <div className="">
     <Table
      key={JSON.stringify(tableParams)}
-
-     bordered
-     rowKey={(record) => record.id}
-      dataSource={Assigment?.results || []}
-      onChange={handleTableChange}
+    bordered
+    rowKey={(record) => record.id}
+    dataSource={Assigment?.results || []}
+    onChange={handleTableChange}
        scroll={{y: "calc(100vh - 440px)"}}
-    className="hf-table mx-4 sm:mx-16 mt-4 sm:mt-0 "
-  columns={columns}
-   pagination={{
-                        ...tableParams.pagination,
+    className="hf-table mx-4 sm:mx-16 mt-4 sm:mt-0  !bg-transparent"
+    columns={columns}
+   pagination={{...tableParams.pagination,
                         position: ["bottomRight"],
                         // total: immigrants?.count || 0,
                         showSizeChanger: true,
@@ -143,7 +137,6 @@ const SideQuest = () => {
                             if (type === "prev") {
                                 return (
                                     <a className=" border px-3 py-[7px] rounded-lg flex items-center gap-1 dark:text-white dark:border-[#3A405A]">
-                                     
                                         <p className="text-[#414651] text-base font-semibold dark:text-white">
                                            prev
                                         </p>

@@ -1,4 +1,4 @@
-import { Input,  Select, Spin } from "antd";
+import { Button, Input, Modal, Select, Spin, Upload } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -12,7 +12,9 @@ import eyemyo from "../../components/icons/eyeo.svg";
 import AuthService from "../../config/service/auth.service";
 import { Option } from "antd/es/mentions";
 import { adder } from "../../features/email/emailSlice";
-import { useAppDispatch, useAppSelector } from "../../config/hooks/useRedux";
+import { useAppDispatch } from "../../config/hooks/useRedux";
+import { UploadOutlined } from "@ant-design/icons";
+import Character from "./Character";
 
 interface RegisterResponse {
   access: string;
@@ -34,23 +36,28 @@ type Inputs = {
   direction: string; //8
   role: string; //9
   password: string; //10
+  profile_image: []; //11
+  character: string; //12
 };
 
 export default function Register() {
   const [eyeShow, setEyeShow] = useState(false);
+ const [modal, setModal] = useState(false)
+ const [personaj, setpersonaj] = useState('')
+ console.log("Personaj:", personaj);
+ 
+
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const {data:choice}=useQuery({
+  const { data: choice } = useQuery({
     queryKey: ["choice"],
     queryFn: () => AuthService.getChoice(),
-  })
-  console.log("Choice data:", choice);
+  });
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
     clearErrors,
   } = useForm<Inputs>({
     defaultValues: {
@@ -64,7 +71,9 @@ export default function Register() {
       direction: "",
       role: "talaba",
       password: "",
-    },
+      profile_image: [],
+      character:""
+       },
   });
 
   const [token, setToken] = useState<string | null>(null);
@@ -75,32 +84,55 @@ export default function Register() {
     }
   }, [token, navigate]);
 
-  const { mutate, isPending } = useMutation<
-    RegisterResponse,
-    AxiosError<ErrorResponse>,
-    Inputs
-  >({
-    mutationKey: ["register"],
-    mutationFn: (data: Inputs) => AuthService.register(data),
-    onSuccess: () => {
-      navigate("/auth/Accept");
+const { mutate, isPending } = useMutation<
+  RegisterResponse,
+  AxiosError<ErrorResponse>,
+  FormData
+>({
+  mutationKey: ["register"],
+  mutationFn: (formData) => AuthService.register(formData),
+  onSuccess: () => {
+    navigate("/auth/Accept");
+  },
+});
+
+const dispatch = useAppDispatch();
+
+ const onSubmit = (data: Inputs) => {
+  const waiter = async () => {
+    await dispatch(adder(data?.email));
+
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
+    formData.append("middle_name", data.middle_name);
+    formData.append("otm", data.otm);
+    formData.append("course", String(data.course));
+    formData.append("group", data.group);
+    formData.append("direction", data.direction);
+    formData.append("role", data.role);
+    formData.append("password", data.password);
+   
+const file = data.profile_image;
+
+if (file?.length) {
+  const lastFile = file[file.length - 1];
+ 
+    formData.append("profile_image", lastFile);
+  
+  console.log("lastFile:", lastFile);
+
+}
+
+
+ if(personaj){
+      formData.append("character", personaj);
     }
-  });
-
-  const email = useAppSelector((data) => data.email);
-  console.log(email);
-  const dispatch = useAppDispatch();
-
-  const onSubmit = (data: Inputs) => {
-    const waiter = async () => {
-
-        await dispatch(adder(data?.email));
-      mutate(data);
-      
-      
-    };
-    waiter();
+    mutate(formData);
   };
+  waiter();
+};
 
   return (
     <>
@@ -250,9 +282,16 @@ export default function Register() {
                                   }}
                                   className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
                                 >
-                                  {choice?.universities?.map((university: string) => (
-                                    <Option key={university} value={university}>{university}</Option>
-                                  ))}
+                                  {choice?.universities?.map(
+                                    (university: string) => (
+                                      <Option
+                                        key={university}
+                                        value={university}
+                                      >
+                                        {university}
+                                      </Option>
+                                    )
+                                  )}
                                 </Select>
                               )}
                             />
@@ -314,7 +353,9 @@ export default function Register() {
                                   className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
                                 >
                                   {choice?.groups?.map((group: string) => (
-                                    <Option key={group} value={group}>{group}</Option>
+                                    <Option key={group} value={group}>
+                                      {group}
+                                    </Option>
                                   ))}
                                 </Select>
                               )}
@@ -343,9 +384,13 @@ export default function Register() {
                                   }}
                                   className="sm:h-11 h-10 sm:mt-2 w-full mt-1 !bg-transparent !text-white !placeholder:text-[#fff] !placeholder:text-xs sm:placeholder:text-[15px] border border-[#6B7280] focus:border-[#3B82F6] focus:ring-0 rounded-lg shinput"
                                 >
-                                  {choice?.directions?.map((direction: string) => (
-                                    <Option key={direction} value={direction}>{direction}</Option>
-                                  ))}
+                                  {choice?.directions?.map(
+                                    (direction: string) => (
+                                      <Option key={direction} value={direction}>
+                                        {direction}
+                                      </Option>
+                                    )
+                                  )}
                                 </Select>
                               )}
                             />
@@ -382,6 +427,7 @@ export default function Register() {
                               )}
                             />
                           </div>
+
                           <div className="relative">
                             <div className="flex items-center justify-between text-xs sm:text-sm font-medium ">
                               <label
@@ -422,12 +468,54 @@ export default function Register() {
                             </div>
                           </div>
                         </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="">
+                      <div className="flex items-center justify-between text-xs sm:text-sm font-medium">   <label
+                            htmlFor="file"
+                            className="text-xs sm:text-sm font-medium"
+                          >
+                            Profil rasimi
+                          </label>
+                          </div> 
+
+                          <Controller
+                            name="profile_image"
+                            control={control}
+                            render={({ field }) => (
+                              <Upload
+                              maxCount={1}
+                                beforeUpload={(file) => {
+                                  const updated = [...(field.value || []), file];
+                                   field.onChange(updated);
+                                  return false;
+                                }}
+                              
+                                fileList={field.value}
+                              >
+                                <Button
+                                  block
+                                  ghost
+                                  icon={<UploadOutlined />}
+                                  className="sm:h-11 h-10 w-full mt-1 !text-white border border-[#6B7280] focus:border-[#3B82F6] rounded-lg"
+                                >
+                                  Faylni yuklash
+                                </Button>
+                              </Upload>
+                            )}
+                          />
+                        </div>
+                        <div onClick={()=>setModal(true)} className="flex items-end justify-center w-full">
+                        
+                          <div className="text-xs sm:text-sm font-medium text-[#6B7280] mt-2 border py-3 px-12 sm:px-16 rounded-lg flex items-end  justify-center hover:bg-[#6B7280] hover:text-white transition-colors">
+                          Personaj
+                          </div>
+                        </div>
+                        </div>
+                        
 
                         <button
                           type="submit"
-                          disabled={
-                            !watch("email") || !watch("password") || isPending
-                          }
+                          disabled={isPending}
                           className="w-full text-white bg-[#2563EB] hover:bg-[#1563EB] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-[#6B7280] disabled:hover:bg-[#6A7280] disabled:focus:ring-[#6A7280]"
                         >
                           {t("login.login")}
@@ -453,8 +541,18 @@ export default function Register() {
               </section>
             </div>
           </div>
+          <Modal
+            open={modal}
+            footer={null}
+            onCancel={() => setModal(false)}
+           
+            className="bg-transparent"
+              >
+           <Character setpersonaj={setpersonaj} modal={setModal}/>
+          </Modal>
         </div>
       )}
     </>
   );
 }
+

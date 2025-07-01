@@ -1,4 +1,4 @@
-import { notification } from "antd";
+import { notification} from "antd";
 import authApi, { endpoints } from "../axios";
 interface LoginData {
   email: string;
@@ -9,18 +9,7 @@ interface LoginResponse {
   access: string;
 }
 
-interface RegisterData {
-email: string,
-middle_name: string,
-first_name: string,
-last_name:string,
-otm: string,
-course: number,
-group:string,
-direction: string,
-role:string,
-password: string
-}
+
 
 interface RegisterResponse {
   message: string;
@@ -186,30 +175,39 @@ export const AuthService = {
     }
   },
 
-  register: async (data: RegisterData): Promise<RegisterResponse> => {
-    try {
-  const response = await authApi.post<RegisterResponse>(
-    endpoints.auth.register,
+ register: async (data: FormData): Promise<RegisterResponse> => {
+  try {
+    const response = await authApi.post<RegisterResponse>(
+      endpoints.auth.register,
       data,
-  );
-   notification.success({ message: "Muvaffaqiyatli" });
-  return response.data;
-    } catch (error: unknown) {
-      console.error("Registration failed", error);
-      let errorMessage = "An unknown error occurred";
-      if (error instanceof Error) {
-        errorMessage = error.message;
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       }
-
-      if (typeof error === "object" && error !== null && "response" in error) {
-        const axiosError = error as { response?: { data?: { message?: string } } };
-        errorMessage = axiosError.response?.data?.message || errorMessage;
-      }
-
-      notification.error({ message: "Foydalanuvchi allaqachon mavjud.", description: errorMessage });
-      throw new Error(errorMessage);
+    );
+    notification.success({ message: "Muvaffaqiyatli" });
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Registration failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {
+      errorMessage = error.message;
     }
-},
+
+    if (typeof error === "object" && error !== null && "response" in error) {
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+
+    notification.error({
+      message: "Foydalanuvchi allaqachon mavjud.",
+      description: errorMessage,
+    });
+    throw new Error(errorMessage);
+  }
+}
+,
 
 accept: async (data: acceptData): Promise<RegisterResponse> => {
   try {

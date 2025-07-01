@@ -53,8 +53,8 @@ const SQDetail = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="relative z-20 bg-cover bg-center my-4 sm:my-0 sm:mb-4 mx-4 sm:mx-16 rounded-xl h-[calc(100vh-80px)] bg-[#D9D9D90D] ">
-        <div className="relative z-10 px-4 mx-auto sm:px-16 py-10 sm:pt-4">
+      <div className="relative z-20 bg-cover bg-center my-4 sm:my-0 sm:mb-4 mx-4 sm:mx-16 rounded-xl  bg-[#D9D9D90D] ">
+        <div className="relative z-10 px-4 mx-auto sm:px-16 py-5 sm:py-10 sm:pt-4">
           <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl 2xl:mt-3 ">
             {/* LEFT */}
              

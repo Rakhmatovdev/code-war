@@ -400,15 +400,14 @@ background: red;
 }
 
 .hf-table .ant-table-thead > tr > th {
-  background-color: rgb(255 255 255 / 0.1) !important;
+  background-color: #D9D9D90D !important;
   text-align: center;
-  color: #6B7280;
-  font-size: 0.75rem;
+  font-size: 2rem;
   font-weight: 500;
 }
 
 .hf-table .ant-table-tbody > tr {
-    border: 1px solid rgb(255 255 255 / 0.1) !important;
+    border: 1px solid #D9D9D90D !important;
     border-radius: 10px 0px 10px 10px !important;
 }
 .hf-table .ant-table {
@@ -416,5 +415,5 @@ background: red;
     border-spacing: 0 !important;
 }
 .hf-table .ant-table-tbody > tr > td{
-    background-color: transparent !important;
+    background-color: #D9D9D90D !important;
 }

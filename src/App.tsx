@@ -23,7 +23,6 @@ import SidebarLayout from "./components/LayoutStructure/slayout/SidebarLayout.ts
 import Plan from "./views/mquest/Plan.tsx";
 
 
-
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const access = localStorage.getItem("accessToken");
   if (!access) return <Navigate to="/auth/login" replace/>;
@@ -59,6 +58,7 @@ function App() {
                 <Route path="start" element= {<StartTest />}/> ,    
                 <Route path="reset" element= {<Reset/>}/> ,    
                 <Route path="email" element= {<EmailSend/>}/> , 
+
              
               </Route>
               {protectedRoutes.map(({ path, element }) => (
