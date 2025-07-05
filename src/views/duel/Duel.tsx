@@ -1,11 +1,11 @@
 import DuelImg from "../../../public/outline/duel.png";
 import user from "../../../public/user/user.png";
 import badge from "../../../public/user/badge.png";
-import eye from "../../../public/eye.svg";
 import knife from "../../../public/knife.svg";
 import FightCard from "./FightCard";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
+import eye from "../../../public/eye.svg";
 
 import { Dropdown, MenuProps } from "antd";
 import { format, parseISO } from "date-fns";

@@ -40,10 +40,10 @@ const Sidebar = () => {
     const selectedKeys: string[] = [];
    const [show, setshow] = useState(false)
   return (
-    <div className=" absolute  !z-10  sm:left-24 top-32 sm:top-[43vh] 2xl:top-[calc(35vh-1px)]  left-4 w-28   rounded-xl sm:rounded-2xl"> 
+    <div className="  w-28 absolute sm:relative !z-[999991000]  rounded-xl sm:rounded-2xl h-full">
     <MenuOutlined className="text-white p-4 sm:p-0 flex sm:hidden " onClick={()=>setshow(prev=>!prev)}/>
      {show && <Menu
-      className=" bg-white/10  rounded-xl  z-[1000]  "
+      className=" bg-white/10  rounded-xl  !z-[1000]  "
       mode="inline"
       style={{ width: 190, overflowY: 'auto',color: 'black',backdropFilter: 'blur(10px)' }}
       items={items}
@@ -52,7 +52,7 @@ const Sidebar = () => {
       onOpenChange={keys => setOpenKeys(keys.slice(-1))}
     />}
     <Menu
-      className="sm:!bg-white/10 hidden sm:flex flex-col !text-white rounded-xl overflow-y-scroll scroll-none sm:h-[70.5vh] 2xl:h-[78.2vh] "
+      className="sm:!bg-white/10 hidden sm:flex flex-col !text-white rounded-xl overflow-y-scroll scroll-none h-screen "
       mode="inline"
       style={{ width: 190, overflowY: 'auto',color: 'white' }}
       items={items}
