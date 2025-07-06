@@ -1,46 +1,57 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import Squest from '../../components/icons/outline/squest.png';
+import DuelImg from "../../components/icons/outline/duel.png";
 import AuthService from '../../config/service/auth.service';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const SQDetail = () => {
+const DuelStart = () => {
     const { id } = useParams();
     const [code, setCode] = useState('');
     const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const [timeLeft, setTimeLeft] = useState(60);
+
 
     const { data: task, isLoading, error } = useQuery({
-        queryKey: ['assignment', id],
-        queryFn: () => AuthService.getAssignmentById(id!),
+        queryKey: ["assignment", id],
+        queryFn: () => AuthService.getDuelAssignmentById(id!),
         enabled: !!id,
     });
-
     useEffect(() => {
-        if (task?.code) {
-            setCode(task.code); // Optional: if backend provides code
-        } else {
-            setCode(`using System;
+        if (!task) return;
+
+        const interval = setInterval(() => {
+            setTimeLeft((prev) => {
+                if (prev <= 1) {
+                    clearInterval(interval);
+                    handleFinish();
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [task]);
+    useEffect(() => {
+        if (!task) return;
+        setCode(`using System;
 class HelloWorld {
   static void Main() {
     Console.WriteLine("Hello World");
   }
 }`);
-        }
     }, [task]);
 
     const { mutate } = useMutation({
-        mutationKey: ['finishAssignment', id],
+        mutationKey: ["finishAssignment", id],
         mutationFn: ({ id, code }: { id: string; code: string }) =>
             AuthService.postAssignment(id, code),
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ['assignment', id],
-                exact: true,
-            });
+            queryClient.invalidateQueries({ queryKey: ["assignment", id], exact: true });
         },
         onError: (err) => {
-            console.error('Yakunlashda xato:', err);
+            console.error("Yakunlashda xato:", err);
         },
     });
 
@@ -49,17 +60,15 @@ class HelloWorld {
         mutate({ id: id!, code });
     };
 
-    if (isLoading)
-        return <div className="text-white p-10">Yuklanmoqda...</div>;
-
-    if (error || !task)
-        return <div className="text-red-500 p-10">Xatolik yuz berdi yoki topshiriq topilmadi</div>;
+    if (isLoading) return <div className="text-white p-10">Yuklanmoqda...</div>;
+    if (error || !task) return <div className="text-red-500 p-10">Xatolik yuz berdi yoki topshiriq topilmadi</div>;
 
     return (
         <section className="relative">
+
             <div className="fixed inset-0 -z-10 w-full h-full">
                 <img
-                    src={Squest}
+                    src={DuelImg}
                     loading="lazy"
                     alt="start test background"
                     className="w-full h-full object-cover"
@@ -68,6 +77,9 @@ class HelloWorld {
 
             <div className="relative z-20 bg-cover bg-center my-4 sm:my-0 sm:mb-4 mx-4 sm:mx-16 rounded-xl bg-[#D9D9D90D]">
                 <div className="relative z-10 px-4 mx-auto sm:px-16 py-5 sm:py-10 sm:pt-4">
+                    <div className="text-right text-white text-lg font-semibold mb-2 mr-4">
+                        Qolgan vaqt: {timeLeft}s
+                    </div>
                     <div className="flex flex-col lg:flex-row bg-white/10 rounded-3xl overflow-hidden shadow-2xl 2xl:mt-3">
                         {/* LEFT */}
                         <div className="w-full lg:w-1/2 p-8 md:p-12 text-white relative">
@@ -75,30 +87,16 @@ class HelloWorld {
                                 <p className="sm:text-lg italic">{task.id}‑topshiriq</p>
                                 <p className="text-[10px] sm:text-xs">({task.points} ball)</p>
                             </div>
-
                             <h1 className="mt-6 text-xl z-20 sm:text-4xl text-center font-semibold">
                                 {task.title}
                             </h1>
-
-                            <p className="mt-2 italic text-base sm:text-lg">
-                                {task.plan?.title}
-                            </p>
-
-                            <p className="sm:mt-8 text-base leading-relaxed">
-                                {task.task_description}
-                            </p>
-
+                            <p className="mt-2 italic text-base sm:text-lg">{task.plan?.title}</p>
+                            <p className="sm:mt-8 text-base leading-relaxed">{task.task_description}</p>
                             <div className="mt-4 text-sm text-gray-300">
-                                <p>
-                                    <strong>Namuna:</strong>
-                                </p>
+                                <p><strong>Namuna:</strong></p>
                                 <div className="flex flex-row sm:flex-col gap-4">
-                                    <p>
-                                        <em>Kirish:</em> <pre>{task.sample_input}</pre>
-                                    </p>
-                                    <p>
-                                        <em>Chiqish:</em> <pre>{task.expected_output}</pre>
-                                    </p>
+                                    <p><em>Kirish:</em> <pre>{task.sample_input}</pre></p>
+                                    <p><em>Chiqish:</em> <pre>{task.expected_output}</pre></p>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +109,6 @@ class HelloWorld {
                   rows={10}
                   onChange={(e) => setCode(e.target.value)}
               />
-
                             <div className="mt-8 sm:mt-24 flex flex-row gap-4 justify-end">
                                 <button
                                     className="w-full mx-4 sm:mx-0 sm:mb-0 mb-2 sm:w-auto text-white px-6 py-3 bg-[#3D6560] rounded-2xl text-lg italic hover:bg-[#346257] transition"
@@ -119,7 +116,6 @@ class HelloWorld {
                                 >
                                     Orqaga
                                 </button>
-
                                 <button
                                     className="w-full mx-4 sm:mx-0 sm:mb-0 mb-2 sm:w-auto text-white px-6 py-3 bg-[#3D6560] rounded-2xl text-lg italic hover:bg-[#346257] transition"
                                     onClick={handleFinish}
@@ -135,4 +131,4 @@ class HelloWorld {
     );
 };
 
-export default SQDetail;
+export default DuelStart;

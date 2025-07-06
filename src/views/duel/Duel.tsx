@@ -1,11 +1,11 @@
-import DuelImg from "../../../public/outline/duel.png";
-import user from "../../../public/user/user.png";
-import badge from "../../../public/user/badge.png";
-import knife from "../../../public/knife.svg";
+import DuelImg from "../../components/icons/outline/duel.png";
+import user from "../../components/icons/user.png";
+import badge from "../../components/icons/badge.png";
+import knife from "../../components/icons/knife.svg";
 import FightCard from "./FightCard";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
-import eye from "../../../public/eye.svg";
+import eye from "../../components/icons/outline/eye.svg";
 
 import { Dropdown, MenuProps } from "antd";
 import { format, parseISO } from "date-fns";
@@ -83,7 +83,7 @@ const getUserDuels = (userId: number) => {
 const createItemsForUser = (userId: number): MenuProps['items'] => {
   const userDuels = getUserDuels(userId);
   
-  return userDuels.map((d: any, idx: number) => {
+  return  userDuels.map((d: any, idx: number) => {
     const date = d.created_at
       ? format(parseISO(d.created_at), 'dd-MM-yyyy HH:mm:ss')
       : 'N/A';
@@ -91,7 +91,7 @@ const createItemsForUser = (userId: number): MenuProps['items'] => {
     return {
       key: d.id.toString(),
       label: (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }} className="text-[9px] sm:text-base" onClick={() => mutationStatus.mutate(d.id)}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }} className="text-[9px] sm:text-base " onClick={() => mutationStatus.mutate(d.id)}>
           <p>
             <span className="font-semibold">{idx + 1}</span>. {date}
             <span className="ml-2  text-gray-500">

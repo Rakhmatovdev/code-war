@@ -648,6 +648,24 @@ getDuels: async (): Promise<any> => {
     throw new Error(errorMessage);
   }
 },
+  getDuelAssignmentById: async (id: string | number): Promise<any> => {
+    try {
+      const response = await authApi.get<any>(`${endpoints.duel.base}${id}${endpoints.duel.assignments}`);
+      return response.data;
+    } catch (error: unknown) {
+      console.error("Get assignment by ID failed", error);
+      let errorMessage = "An unknown error occurred";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      if (typeof error === "object" && error !== null && "response" in error) {
+        const axiosError = error as { response?: { data?: { message?: string } } };
+        errorMessage = axiosError.response?.data?.message || errorMessage;
+      }
+      notification.error({ message: "Duel Assignment not found", description: errorMessage });
+      throw new Error(errorMessage);
+    }
+  },
 
 createDuel: async (): Promise<any> => {
   try {

@@ -2,7 +2,7 @@ import { Input  } from "antd";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {Link, useNavigate } from "react-router"; 
-import  Back from "../../../public/authPic.png";
+import  Back from "../../components/icons/authPic.png";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";

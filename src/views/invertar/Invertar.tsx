@@ -1,4 +1,4 @@
-import InvetarImg from "../../../public/outline/invertar.png";
+import InvetarImg from "../../components/icons/outline/invertar.png";
 import zirh from "../../components/users/z1.png"
 import qalqon from "../../components/users/qal1.png"
 import uzuk from "../../components/users/k1.png"

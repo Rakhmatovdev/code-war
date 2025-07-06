@@ -2,7 +2,7 @@ import { Button, Input, Modal, Select, Spin, Upload } from "antd";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import Back from "../../../public/authPic.png";
+import Back from "../../components/icons/authPic.png";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";

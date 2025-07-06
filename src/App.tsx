@@ -21,6 +21,7 @@ import Help from "./views/help/Help.tsx";
 import SQDetail from "./views/squest/DetailQuest.tsx";
 import SidebarLayout from "./components/LayoutStructure/slayout/SidebarLayout.tsx";
 import Plan from "./views/mquest/Plan.tsx";
+import DuelStart from "./views/duel/DuelStart.tsx";
 
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
@@ -35,6 +36,7 @@ function App() {
     { path: "/about",   element: <About /> },
     { path: "/contact", element: <Contact /> },
     { path: "/duel",    element: <Duel/> },
+    {path:"/duel/:id", element: <DuelStart/> },
     { path: "/invertar",element: <Invertar /> },
     { path: "/mquest",  element: <MainQuest /> },
     { path: "/mquest/:id/plan/:pid",  element: <Plan /> },

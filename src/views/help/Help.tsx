@@ -1,4 +1,4 @@
-import helpImg from "../../../public/outline/help.png";
+import helpImg from "../../components/icons/outline/help.png";
 import { aslaxar1, aslaxar2, characters, ratings } from "../../utils/mock";
 const Help = () => {
   return (

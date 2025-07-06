@@ -4,8 +4,8 @@ import { Link } from "react-router";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { Drawer, Button } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
-import user from "../../../../public/user/user.png";
-import badge from "../../../../public/user/badge.png";
+import user from "../../icons/user.png";
+import badge from "../../icons/badge.png";
 import AuthService from "../../../config/service/auth.service";
 import { useQuery } from "@tanstack/react-query";
 

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import arrow from "../../../public/a_after.svg";
-import AboutImg from "../../../public/outline/about.png";
+import arrow from "../../components/icons/a_after.svg";
+import AboutImg from "../../components/icons/outline/about.png";
 import Adiv1 from "../../components/users/div.png";
 import Adiv2 from "../../components/users/div2.png";
 import Adiv3 from "../../components/users/div3.png";

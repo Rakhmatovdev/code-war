@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {useNavigate, useParams} from "react-router";
 import AuthService from "../../config/service/auth.service";
-import Mquest from "../../../public/outline/mquest.png";
+import Mquest from "../../components/icons/outline/mquest.png";
 import {convertToEmbedURL} from "../../config/hooks/useEmber";
 import {Clipboard, Check} from "lucide-react";
 import JDoodleEmbed from "./Jdodge";

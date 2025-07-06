@@ -1,9 +1,9 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import InvetarImg from "../../../public/outline/invertar.png";
+import InvetarImg from "../../components/icons/outline/invertar.png";
 import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 
 import AuthService from "../../config/service/auth.service";
-import user from "../../../public/user.png";
+import user from "../../components/users/user.png";
 import { Modal, Select } from "antd";
 import { useEffect, useState } from "react";
 type Inputs = {

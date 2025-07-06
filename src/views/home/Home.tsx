@@ -1,5 +1,5 @@
-import home from "../../../public/home.png";
-import like from "../../../public/svg/like.svg";
+import home from "../../components/users/home.png";
+import like from "../../components/icons/like.svg";
 import eyemyo from "../../components/icons/eyeo.svg";
 import { useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";

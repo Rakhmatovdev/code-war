@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import useFormPersist from "react-hook-form-persist";
 import { useQuery } from "@tanstack/react-query";
 import AuthService from "../../config/service/auth.service";
-import StartTestImg from "../../../public/authPic.png";
+import StartTestImg from "../../components/icons/authPic.png";
 // import { useNavigate } from "react-router";
 interface Props {
   setpersonaj: (value:string) => void;
