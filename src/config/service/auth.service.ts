@@ -16,7 +16,6 @@ interface RegisterResponse {
   access: string; 
 }
 
-
 export interface contentResponse {
   id: number | string;
   title: string;

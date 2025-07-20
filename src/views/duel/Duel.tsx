@@ -108,6 +108,7 @@ const checkDuelCreator = (userId: number) => {
   return duel?.some((item: any) => item?.creator === userId);
 };
 
+
   return (
     <div>
       <section className="relative ">
@@ -164,6 +165,11 @@ const checkDuelCreator = (userId: number) => {
                     menu={{ items: createItemsForUser(rate?.id) }} 
                     disabled={!checkDuelCreator(rate?.id)}
                     trigger={['click']}
+                    dropdownRender={(menu) => (
+                        <div style={{ maxHeight: 200, overflowY: 'auto' }}>
+                            {menu}
+                        </div>
+                    )}
                   >
                     <div className="flex justify-center items-center cursor-pointer">
                       <img

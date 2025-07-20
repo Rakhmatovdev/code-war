@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import arrow from "../../components/icons/a_after.svg";
 import AboutImg from "../../components/icons/outline/about.png";
-import Adiv1 from "../../components/users/div.png";
-import Adiv2 from "../../components/users/div2.png";
-import Adiv3 from "../../components/users/div3.png";
-import Adiv4 from "../../components/users/div4.png";
-import Adiv5 from "../../components/users/div5.png";
-import Adiv6 from "../../components/users/div6.png";
+import Adiv1 from "../../../public/user/div.png";
+import Adiv2 from "../../../public/user/div2.png";
+import Adiv3 from "../../../public/user/div3.png";
+import Adiv4 from "../../../public/user/div4.png";
+import Adiv5 from "../../../public/user/div5.png";
+import Adiv6 from "../../../public/user/div6.png";
 import AuthService from "../../config/service/auth.service";
 import { FC } from "react";
 import { Image } from "antd";

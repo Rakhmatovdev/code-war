@@ -1,11 +1,11 @@
 import InvetarImg from "../../components/icons/outline/invertar.png";
-import zirh from "../../components/users/z1.png"
-import qalqon from "../../components/users/qal1.png"
-import uzuk from "../../components/users/k1.png"
-import qilich from "../../components/users/q1.png"
-import etik from "../../components/users/e1.png"
-import dubulga from "../../components/users/dub1.png"
-import warrior from "../../components/users/warrior.png"
+import zirh from "../../../public/user/z1.png"
+import qalqon from "../../../public/user/qal1.png"
+import uzuk from "../../../public/user/k1.png"
+import qilich from "../../../public/user/q1.png"
+import etik from "../../../public/user/e1.png"
+import dubulga from "../../../public/user/dub1.png"
+import warrior from "../../../public/user/warrior.png"
 
 const Invertar = () => {
   const aslaha1=[
