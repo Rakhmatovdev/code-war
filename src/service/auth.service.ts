@@ -1,5 +1,5 @@
 import { notification} from "antd";
-import authApi, { endpoints } from "../axios";
+import authApi, { endpoints } from "../config/axios";
 interface LoginData {
   email: string;
   password: string;
@@ -665,7 +665,6 @@ getDuels: async (): Promise<any> => {
       throw new Error(errorMessage);
     }
   },
-
 createDuel: async (): Promise<any> => {
   try {
     const response = await authApi.post(endpoints.duel.post);
@@ -685,7 +684,6 @@ createDuel: async (): Promise<any> => {
     throw new Error(errorMessage);
   }
 },
-
 getAssignmentsByDuelId: async (duelId: number | string): Promise<any> => {
   try {
     const response = await authApi.get(`${endpoints.duel.base}${duelId}${endpoints.duel.assignments}`);
@@ -704,7 +702,6 @@ getAssignmentsByDuelId: async (duelId: number | string): Promise<any> => {
     throw new Error(errorMessage);
   }
 },
-
 joinDuel: async (duelId: number | string): Promise<any> => {
   try {
     const response = await authApi.post(`${endpoints.duel.base}${duelId}${endpoints.duel.join}`);
@@ -725,7 +722,6 @@ joinDuel: async (duelId: number | string): Promise<any> => {
     throw new Error(errorMessage);
   }
 },
-
 submitDuel: async (duelId: number | string, data: { assignmentId: number | string, code: string }): Promise<any> => {
   try {
     const response = await authApi.post(`${endpoints.duel.base}${duelId}${endpoints.duel.submit}`, data);
@@ -745,7 +741,6 @@ submitDuel: async (duelId: number | string, data: { assignmentId: number | strin
     throw new Error(errorMessage);
   }
 },
-
 getStatus: async (duelId: number | string): Promise<any> => {
   try {
     const response = await authApi.get(`${endpoints.duel.base}${duelId}${endpoints.duel.status}`);

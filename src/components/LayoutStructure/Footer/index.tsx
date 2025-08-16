@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Mail, Phone } from 'lucide-react'
-import AuthService from '../../../config/service/auth.service'
+import AuthService from '../../../service/auth.service'
 import { useMutation } from '@tanstack/react-query'
 
 export default function Footer() {

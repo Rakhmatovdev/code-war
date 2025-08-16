@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import useFormPersist from "react-hook-form-persist";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import StartTestImg from "../../components/icons/authPic.png";
 import { notification } from "antd";
 import { useNavigate } from "react-router";

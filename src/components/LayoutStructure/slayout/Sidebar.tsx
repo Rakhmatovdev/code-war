@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router"
-import AuthService from "../../../config/service/auth.service";
+import AuthService from "../../../service/auth.service";
 import { Menu, MenuProps } from "antd";
 import { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";

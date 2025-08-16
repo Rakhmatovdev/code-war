@@ -1,6 +1,6 @@
 import Squest from "../../components/icons/outline/squest.png";
 import { useQuery } from "@tanstack/react-query";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import { Table } from "antd";
 import { useState } from "react";
 import { ColumnsType } from "antd/es/table";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import Squest from '../../components/icons/outline/squest.png';
-import AuthService from '../../config/service/auth.service';
+import AuthService from '../../service/auth.service';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const SQDetail = () => {

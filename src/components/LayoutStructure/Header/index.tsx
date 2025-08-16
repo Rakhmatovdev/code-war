@@ -6,7 +6,7 @@ import { Drawer, Button } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
 import user from "../../icons/user.png";
 import badge from "../../icons/badge.png";
-import AuthService from "../../../config/service/auth.service";
+import AuthService from "../../../service/auth.service";
 import { useQuery } from "@tanstack/react-query";
 
 const Header = () => {

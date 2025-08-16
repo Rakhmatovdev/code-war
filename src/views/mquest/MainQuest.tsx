@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Mquest from "../../components/icons/outline/mquest.png";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import Sidebar from "../../components/LayoutStructure/slayout/Sidebar.tsx";
 
 const MainQuest = () => {

@@ -9,7 +9,7 @@ import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
 import eyemy from "../../components/icons/eye.svg";
 import eyemyo from "../../components/icons/eyeo.svg";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 
 interface LoginResponse {
   access: string;

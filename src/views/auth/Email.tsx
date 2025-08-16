@@ -6,7 +6,7 @@ import  Back from "../../components/icons/authPic.png";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import { useAppDispatch} from "../../config/hooks/useRedux";
 import { adder } from "../../features/email/emailSlice";
 

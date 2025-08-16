@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import ContactImg from "../../components/icons/outline/contact.png";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {

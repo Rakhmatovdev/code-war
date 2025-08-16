@@ -7,7 +7,7 @@ import Adiv3 from "../../../public/user/div3.png";
 import Adiv4 from "../../../public/user/div4.png";
 import Adiv5 from "../../../public/user/div5.png";
 import Adiv6 from "../../../public/user/div6.png";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import { FC } from "react";
 import { Image } from "antd";
 

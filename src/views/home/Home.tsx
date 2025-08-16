@@ -2,7 +2,7 @@ import home from "../../../public/user/home.png";
 import like from "../../components/icons/like.svg";
 import eyemyo from "../../components/icons/eyeo.svg";
 import { useQuery } from "@tanstack/react-query";
-import AuthService from "../../config/service/auth.service";
+import AuthService from "../../service/auth.service";
 import { format } from 'date-fns';
 import { useState } from "react";
 
