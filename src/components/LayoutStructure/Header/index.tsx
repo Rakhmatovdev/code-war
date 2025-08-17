@@ -40,11 +40,11 @@ const Header = () => {
 
 
   return (
-    <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex justify-between  text-white">
+    <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex items-start justify-between  text-white">
       <div className="flex items-center    pace-x-4 hover:text-white">
         <div>
-          <Link to="#" className="sm:text-3xl font-medium" >{t("logo.title")}</Link>
-          <Link to="" className="text-xs sm:text-base 2xl:text-xl">
+          <Link to="/" className="sm:text-3xl font-medium" >{t("logo.title")}</Link>
+          <Link to="/profile" className="text-xs sm:text-base 2xl:text-xl">
             <div className="relative w-10 h-10 sm:w-24 mt-4 sm:h-24">
           <img src={data?.user?.profile_image || user} alt="User avatar" className="rounded-full w-full h-full object-cover" />
           <img src={data?.user?.level_image_url || badge}
@@ -60,9 +60,9 @@ const Header = () => {
       </div>
 
       {/* Desktop nav */}
-      <nav className="hidden sm:flex gap-4 2xl:gap-5" aria-label="Main navigation">
+      <nav className="hidden sm:inline-flex gap-4 2xl:gap-5" aria-label="Main navigation">
         {NavLinks.map((item) => (
-          <Link key={item.path} to={item.path} className="text-base 2xl:text-xl hover:text-white">
+          <Link key={item.path} to={item.path} className="text-base 2xl:text-xl inline-block  hover:text-white">
             {item.title}
           </Link>
         ))}

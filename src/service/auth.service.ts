@@ -629,6 +629,25 @@ getRating: async (): Promise<any> => {
   }
 },
 
+getRatingById: async (id: string | number): Promise<any> => {
+  try {
+    const response = await authApi.get<any>(`${endpoints.rating}${id}/`);
+    return response.data;
+  } catch (error: unknown) {
+    console.error("Get rating by ID failed", error);
+    let errorMessage = "An unknown error occurred";
+    if (error instanceof Error) {       
+      errorMessage = error.message;
+    }
+    if (typeof error === "object" && error !== null && "response" in error) { 
+      const axiosError = error as { response?: { data?: { message?: string } } };
+      errorMessage = axiosError.response?.data?.message || errorMessage;
+    }
+    notification.error({ message: "Rating not found", description: errorMessage });
+    throw new Error(errorMessage);
+  }
+},
+
 // duel
 
 getDuels: async (): Promise<any> => {

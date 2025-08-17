@@ -48,7 +48,7 @@ const Rating = () => {
                       </div>
                     </td>
                     <td className="">
-                      <Link to={'/invertar'} className="flex justify-center items-center cursor-pointer hover:scale-95 transition-all duration-300">
+                      <Link to={`${rate?.id}`} className="flex justify-center items-center cursor-pointer hover:scale-95 transition-all duration-300">
                       <img className="w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] rounded-xl"  src={eye} alt="user image" width={50} height={50} /></Link>
                     </td>
                   </tr>)}
