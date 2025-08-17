@@ -12,7 +12,6 @@ import { useQuery } from "@tanstack/react-query";
 const Header = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-
   const NavLinks = [
     { path: "/", title: t("navigation.home") },
     { path: "/mquest", title: t("navigation.mquest") },
@@ -25,7 +24,6 @@ const Header = () => {
     { path: "/profile", title: t("navigation.profile") },
     {path:"#", title:<p onClick={()=>AuthService.logout()}> {t("navigation.logout")}</p>}
   ];
-
   // Close drawer on Escape key
   useEffect(() => {
     const onKey = (e:KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -43,22 +41,23 @@ const Header = () => {
 
   return (
     <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex justify-between  text-white">
-      <Link to="/" className="flex items-center    pace-x-4 hover:text-white">
+      <div className="flex items-center    pace-x-4 hover:text-white">
         <div>
-          <p className="sm:text-3xl font-medium">{t("logo.title")}</p>
-          <div className="text-xs sm:text-base 2xl:text-xl">
+          <Link to="#" className="sm:text-3xl font-medium" >{t("logo.title")}</Link>
+          <Link to="" className="text-xs sm:text-base 2xl:text-xl">
             <div className="relative w-10 h-10 sm:w-24 mt-4 sm:h-24">
           <img src={data?.user?.profile_image || user} alt="User avatar" className="rounded-full w-full h-full object-cover" />
           <img src={data?.user?.level_image_url || badge}
                alt="Badge"
                className="absolute bottom-0 sm:left-20 left-8  transform -translate-x-1/2 w-6 h-6 sm:w-12 sm:h-12 rounded-full" />
         </div>
-        <p >
-            {t("logo.score")} <span>{data?.rating ?? 0}</span></p>
-          </div>
+        <p className="text-center -translate-x-28 w-80" >
+          {data?.user?.username ?? "-"}
+        </p>
+          </Link>
         </div>
         
-      </Link>
+      </div>
 
       {/* Desktop nav */}
       <nav className="hidden sm:flex gap-4 2xl:gap-5" aria-label="Main navigation">

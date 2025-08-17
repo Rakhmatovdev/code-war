@@ -62,16 +62,17 @@ results: commentResult[] | null;
   message: string;
   access: string;
 }
-interface profileUpdareData {
-  username: string;
-  first_name: string;
-  last_name: string;
-  otm: string;
-  course: number;
-  group: string;
-  direction: string;
-  role:'talaba' | 'oqituvchi' ;
-}
+// interface profileUpdareData {
+//   username: string;
+//   first_name: string;
+//   last_name: string;
+//   otm: string;
+//   course: number;
+//   group: string;
+//   direction: string;
+//   profile_image: File | null;
+//   role:'talaba' | 'oqituvchi' ;
+// }
 
 interface ChangePasswordData {
   old_password: string;
@@ -342,7 +343,7 @@ changePassword: async (data: ChangePasswordData) => {
   }
 },
 
-updateProfile: async (data: profileUpdareData) => {
+updateProfile: async (data: any) => {
   try {
     const response = await authApi.patch(endpoints.profile.updateProfile, data);
 

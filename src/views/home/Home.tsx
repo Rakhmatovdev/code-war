@@ -56,7 +56,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
           <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] gap-10 sm:gap-20 ">
           </div>
           <div className="">
-            <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium">O’qituvchilar fikrlari</p>
+            <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium">O'qituvchilar fikrlari</p>
             <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] sm:gap-20 gap-4 sm:mt-[53px] mt-10 ">
           {isPending?( <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 sm:gap-20 mt-10">
     {Array(pageSize).fill(0).map((_, i) => (

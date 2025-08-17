@@ -1,10 +1,10 @@
 import Squest from "../../components/icons/outline/squest.png";
 import { useQuery } from "@tanstack/react-query";
 import AuthService from "../../service/auth.service";
-import { Table } from "antd";
 import { useState } from "react";
 import { ColumnsType } from "antd/es/table";
-import { Link } from "react-router";
+import { data, Link } from "react-router";
+import HTable from "../../components/FormElements/HFTable";
 
 
 
@@ -33,7 +33,7 @@ const SideQuest = () => {
         },
     });
 
-  const { data: Assigment } = useQuery({
+  const { data: Assigment,isLoading } = useQuery({
     queryKey: ["Assigment"],
     queryFn: () => AuthService.getAssignments(),
   });
@@ -118,7 +118,7 @@ const SideQuest = () => {
         />
       </div>
 <div className="">
-    <Table
+    {/* <Table
      key={JSON.stringify(tableParams)}
     bordered
     rowKey={(record) => record.id}
@@ -157,7 +157,21 @@ const SideQuest = () => {
                             return originalElement;
                         },
                     }}
-    />
+    /> */}
+     <HTable
+            key={JSON.stringify(tableParams)}
+            className="!text-[8px]    h-full    ht-arm  mx-4 sm:mx-16 mt-4 sm:mt-0  !bg-transparent"
+            columns={columns}
+            bordered
+            rowKey={(record) => record.id}
+            dataSource={Assigment?.results || []}
+            loading={isLoading}
+            onChange={handleTableChange}
+            scroll={{ y: "calc(100vh - 443px)" }}
+            customPagination={true}
+            total={Assigment?.count || 0}
+            tableParams={tableParams}
+          />
 
 </div>
 
