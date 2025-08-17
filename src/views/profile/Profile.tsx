@@ -14,33 +14,33 @@ import dubulga from "../../../public/user/dub1.png"
 
 import warrior from "../../../public/user/warrior.png"
 
-const gearImages: Record<string, string> = {
-  sword: qilich,
-  spear: qilich,
-  magic: qalqon,
-  shield: qalqon,
-  helmet: dubulga,
-  armor: zirh,
-  boots: etik,
-  ring: uzuk,
-}
+// const gearImages: Record<string, string> = {
+//   sword: qilich,
+//   spear: qilich,
+//   magic: qalqon,
+//   shield: qalqon,
+//   helmet: dubulga,
+//   armor: zirh,
+//   boots: etik,
+//   ring: uzuk,
+// }
 
-const GEAR_TYPES = [
-  ["sword", "Qilich"],
-  ["spear", "Nayza"],
-  ["magic", "Sehrli tayoq"],
-  ["shield", "Qalqon"],
-  ["helmet", "Dubulga"],
-  ["armor", "Zirh"],
-  ["boots", "Etik"],
-  ["ring", "Uzuk"],
-]
+// const GEAR_TYPES = [
+//   ["sword", "Qilich"],
+//   ["spear", "Nayza"],
+//   ["magic", "Sehrli tayoq"],
+//   ["shield", "Qalqon"],
+//   ["helmet", "Dubulga"],
+//   ["armor", "Zirh"],
+//   ["boots", "Etik"],
+//   ["ring", "Uzuk"],
+// ]
 
-const QUALITY = [
-  ["basic", "Oddiy"],
-  ["medium", "O‘rtacha"],
-  ["rare", "Qimmatbaho"],
-]
+// const QUALITY = [
+//   ["basic", "Oddiy"],
+//   ["medium", "O‘rtacha"],
+//   ["rare", "Qimmatbaho"],
+// ]
 type Inputs = {
   username: string;
   first_name: string;
@@ -58,23 +58,7 @@ type Inputs2 = {
   new_password: string;
   confirm_password: string;
 };
-function getRandomItems<T>(arr: T[], count: number): T[] {
-  const shuffled = [...arr].sort(() => 0.5 - Math.random())
-  return shuffled.slice(0, count)
-}
-function generateRandomGears() {
-  const selected = getRandomItems(GEAR_TYPES, 6)
-  return selected.map(([type, name], idx) => {
-    const [, qName] = QUALITY[Math.floor(Math.random() * QUALITY.length)]
-    return {
-      id: idx + 1,
-      type,
-      name,
-      quality: qName,
-      image: gearImages[type] || "",
-    }
-  })
-}
+
 
 const Profile = () => {
   
