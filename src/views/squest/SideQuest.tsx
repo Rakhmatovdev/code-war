@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import AuthService from "../../service/auth.service";
 import { useState } from "react";
 import { ColumnsType } from "antd/es/table";
-import { data, Link } from "react-router";
+import { Link } from "react-router";
 import HTable from "../../components/FormElements/HFTable";
 
 

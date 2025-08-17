@@ -148,6 +148,7 @@ interface Assignment {
 
 export interface AssignmentResponse{
   results: Assignment[];
+  count: number;
 }
 
 // Auth 
