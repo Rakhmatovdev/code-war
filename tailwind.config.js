@@ -5,8 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        medieval: ["MedievalSharp", "cursive"],
+        roboto: ["Inter", "sans-serif"],
+      },
+    },
   },
-  plugins: [],
+  plugins: [],  
 }
 

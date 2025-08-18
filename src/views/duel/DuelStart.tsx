@@ -74,7 +74,7 @@ class HelloWorld {
     );
 
     return (
-        <section className="relative min-h-screen">
+        <section className="relative min-h-screen font-roboto">
             {/* Background Image */}
             <div className="fixed inset-0 -z-10 w-full h-full">
                 <img

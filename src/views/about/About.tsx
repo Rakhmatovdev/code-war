@@ -156,7 +156,7 @@ const sections: SectionProps[] = [
   ];
 
   return (
-    <div className="">
+    <div className="font-roboto">
       <section className="relative   ">
               <div className="fixed inset-0 -z-10 w-full h-full">
         <img
@@ -167,7 +167,7 @@ const sections: SectionProps[] = [
         />
       </div>
          <div className="text-white mx-4 sm:mx-80">
-          <h2 className="text-center text-xl sm:text-5xl font-medium">{title1}</h2>
+          <h2 className="text-center text-xl sm:text-5xl font-medium font-medieval">{title1}</h2>
           <p className="text-center text-xs sm:text-base mt-2 sm:mt-11 text-[#E5E5E5]">
             {title2}
           </p>

@@ -33,7 +33,7 @@ const Invertar = () => {
 
   return (
     <div>
-      <section className="relative ">
+      <section className="relative font-roboto ">
         <div className="fixed inset-0 -z-10 w-full h-full">
           <img
             src={InvetarImg}

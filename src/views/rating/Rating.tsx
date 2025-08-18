@@ -11,7 +11,7 @@ const Rating = () => {
     queryFn: () => AuthService.getRating(),
   });
   return (
-    <div>
+    <div className="font-roboto">
          <section className="relative ">
                <div className="fixed inset-0 -z-10 w-full h-full">
         <img

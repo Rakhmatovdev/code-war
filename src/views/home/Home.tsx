@@ -37,7 +37,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
             <h1 className="text-white text-base sm:text-2xl 2xl:text-4xl font-bold">
               ⚔️ Coders War haqida
             </h1>
-            <p className="text-white text-xs sm:text-xl  mt-4">
+            <p className="text-white text-xs sm:text-xl  mt-4 font-roboto">
               Coders War — bu dasturlash olamiga qadam qo‘ygan talabalar uchun
               mo‘ljallangan epik ta’limiy platforma. Bu yerda siz faqat talaba
               emassiz — siz jang maydonidagi qahramonsiz, siz uchun qurol – bu
@@ -59,7 +59,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
           <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] gap-10 sm:gap-20 ">
           </div>
           <div className="">
-            <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium text-white">O'qituvchilar fikrlari</p>
+            <p className="text-center text-[#473631] mt-[60px] sm:mt-[100px] 2xl:mt-[141px] text-2xl 2xl:text-3xl font-medium text-white font-roboto">O'qituvchilar fikrlari</p>
             <div className="grid grid-cols-1 sm:grid-cols-4 2xl:gap-[47px] sm:gap-20 gap-4 sm:mt-[53px] mt-10 ">
           {isPending?( <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 sm:gap-20 mt-10">
     {Array(pageSize).fill(0).map((_, i) => (
@@ -87,7 +87,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
     ))}
   </div>):comments?.results?.map((comment) => (<div key={comment?.id} className="border p-[26px] bg-[#473631] rounded-xl sm:rounded-3xl">
              <div className="flex  gap-4">
-                <div className="">
+                <div className="font-roboto">
               {comment?.user_profile_image? <img src={comment?.user_profile_image} alt={comment?.user_full_name} className="w-14 h-14 rounded-full"/>:<div className="w-14 h-14 rounded-full bg-slate-500 flex justify-center items-center">{comment?.user_full_name[0]}</div>}
                 </div>
                 <div className="">
@@ -95,7 +95,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
                     {/* <p className="text-[#C2C4FA] cursor-pointer">{comment?.social}</p> */}
                 </div>
              </div>
-             <p className="line-clamp-3 2xl:mt-2.5 t">
+             <p className="line-clamp-3 2xl:mt-2.5 font-roboto">
               {comment?.text}
              </p>
                 <p className="text-sm mt-2.5 2xl:mt-4 text-[#C2C4FA]">
@@ -112,11 +112,11 @@ return <div className="w-screen h-screen  bg-slate-900"/>
   <button
     disabled={page === 1}
     onClick={() => setPage(p => Math.max(p - 1, 1))}
-    className="w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed border px-4 py-2 rounded-lg bg-[#C2C4FA] hover:bg-[#A8A9D6] transition text-sm"
+    className="w-full sm:w-auto font-roboto disabled:opacity-50 disabled:cursor-not-allowed border px-4 py-2 rounded-lg bg-[#C2C4FA] hover:bg-[#A8A9D6] transition text-sm"
   >
     Prev
   </button>
-  <span className="text-white text-sm sm:text-base">
+  <span className="text-white font-roboto text-sm sm:text-base">
     Page {page}
   </span>
   <button
@@ -126,7 +126,7 @@ return <div className="w-screen h-screen  bg-slate-900"/>
         comments && p < Math.ceil(comments.count / pageSize) ? p + 1 : p
       )
     }
-    className="w-full sm:w-auto  disabled:opacity-50 disabled:cursor-not-allowed border px-4 py-2 rounded-lg bg-[#C2C4FA] hover:bg-[#A8A9D6] transition text-sm"
+    className="w-full sm:w-auto font-roboto  disabled:opacity-50 disabled:cursor-not-allowed border px-4 py-2 rounded-lg bg-[#C2C4FA] hover:bg-[#A8A9D6] transition text-sm"
   >
     Next
   </button>
@@ -139,8 +139,8 @@ return <div className="w-screen h-screen  bg-slate-900"/>
     <div className="mt-10 sm:mx-20 mx-4 text-[#0F1427] mb-10">
        {data?.map((review,index) => (<div key={review?.id} className={`flex  ${index%2==0?"sm:flex-row":"sm:flex-row-reverse"} items-center justify-between flex-col gap-4 sm:mt-[100px] mt-[60px]`}>
         <div className="">
-          <h2 className="text-base sm:text-2xl 2xl:text-4xl text-white">{review.title}</h2>
-          <p className="sm:text-base text-xs font-medium mt-4 max-w-xl text-white">{review?.text}</p>
+          <h2 className="text-base sm:text-2xl 2xl:text-4xl text-white font-roboto">{review.title}</h2>
+          <p className="sm:text-base text-xs font-medium mt-4 max-w-xl text-white font-roboto">{review?.text}</p>
           {/* <div className="max-w-xs text-xs sm:text-sm">
            {review?.texts.map((text,index) => (<li key={index} className="mt-2.5">{text}</li>))}
           </div> */}

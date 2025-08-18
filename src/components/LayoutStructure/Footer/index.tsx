@@ -43,7 +43,7 @@ const mutationEmail = useMutation({
 
 
   return (
-    <footer className="bg-gradient-to-r  from-gray-900 via-black to-gray-900 text-gray-300 pt-12 sm:pt-16 pb-6 sm:pb-8 ">
+    <footer className="bg-gradient-to-r font-roboto from-gray-900 via-black to-gray-900 text-gray-300 pt-12 sm:pt-16 pb-6 sm:pb-8 ">
       <div className=" mx-4 sm:mx-16    grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
 
         <div className="flex flex-col space-y-4">

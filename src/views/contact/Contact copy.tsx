@@ -31,7 +31,7 @@ console.log(comment);
 
 
   return (
-    <div>
+    <div className="font-roboto">
          <section className="h-[calc(50vw-216px)] ">
               <form  className="flex justify-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="sm:w-[774px] mx-2 sm:mx-16">

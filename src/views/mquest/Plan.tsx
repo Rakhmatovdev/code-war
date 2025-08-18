@@ -89,7 +89,7 @@ const Plan = () => {
     const submitPlan = () => mutate(openId ?? "");
 
     return (
-        <div className="text-white">
+        <div className="text-white font-roboto">
 
             <section className="relative text-white mb-4 sm:mb-10">
                 <div className="flex">

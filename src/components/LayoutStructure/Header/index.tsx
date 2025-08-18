@@ -43,7 +43,7 @@ const Header = () => {
     <header className=" sm:mx-20 sm:my-16 px-4 my-4 flex items-start justify-between  text-white">
       <div className="flex items-center    pace-x-4 hover:text-white">
         <div>
-          <Link to="/" className="sm:text-3xl font-medium" >{t("logo.title")}</Link>
+          <Link to="/" className="sm:text-3xl font-medium font-medieval" >{t("logo.title")}</Link>
           <Link to="/profile" className="text-xs sm:text-base 2xl:text-xl">
             <div className="relative w-10 h-10 sm:w-24 mt-4 sm:h-24">
           <img src={data?.user?.profile_image || user} alt="User avatar" className="rounded-full w-full h-full object-cover" />
@@ -51,7 +51,7 @@ const Header = () => {
                alt="Badge"
                className="absolute bottom-0 sm:left-20 left-8  transform -translate-x-1/2 w-6 h-6 sm:w-12 sm:h-12 rounded-full" />
         </div>
-        <p className="text-center -translate-x-28 w-80" >
+        <p className="text-center -translate-x-28 w-80 font-roboto" >
           {data?.user?.username ?? "-"}
         </p>
           </Link>

@@ -107,7 +107,7 @@ const SideQuest = () => {
 ];
 
   return (
-    <div>
+    <div className="'font-roboto">
       <section className="relative h-[80vh]">
         <div className="fixed inset-0 -z-10 w-full h-full">
         <img

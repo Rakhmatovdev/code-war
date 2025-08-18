@@ -33,7 +33,7 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <div className="font-roboto">
          <section className="relative ">
               <form  className="flex justify-center relative z-20 mb-10" onSubmit={handleSubmit(onSubmit)} >
              <div className="bg-[#D9D9D96E] mx-4 sm:mx-0 bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl p-4 w-full max-w-2xl">

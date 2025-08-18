@@ -3,7 +3,7 @@ import { aslaxar1, aslaxar2, characters, ratings } from "../../utils/mock";
 const Help = () => {
   return (
     <div>
-      <section className="relative"> 
+      <section className="relative font-roboto"> 
        <div className="fixed inset-0 -z-10 w-full h-full">
         <img
           src={helpImg}
@@ -39,7 +39,7 @@ const Help = () => {
           </div>
         </div>
       </section>
-      <div className=" relative z-20">
+      <div className=" relative z-20 font-roboto">
         <div className="  ">
           <div className="sm:mx-16 mx-4 bg-[#D9D9D914] 2xl:pt-[20px] pt-10 pb-40 text-white">
             <div className="sm:mx-16 mx-4">

@@ -93,7 +93,7 @@ const Duel = () => {
     };
 
     return (
-        <div className="relative min-h-screen">
+        <div className="relative min-h-screen font-roboto">
             {/* Background Image */}
             <div className="fixed inset-0 -z-10 w-full h-full">
                 <img

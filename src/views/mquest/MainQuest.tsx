@@ -17,7 +17,7 @@ const MainQuest = () => {
 return <div className="w-screen h-screen bg-slate-900"/>
 }
   return (
-    <div className="">
+    <div className="font-roboto">
 
          <section className="relative  text-white  ">
              <div className="fixed inset-0 -z-10 w-full h-full">

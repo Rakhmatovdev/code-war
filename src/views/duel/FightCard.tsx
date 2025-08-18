@@ -64,7 +64,7 @@ const FightCard: React.FC<FightCardProps> = ({
     };
 
     return (
-        <div className="mb-4">
+        <div className="mb-4 font-roboto">
             <div className={`bg-gradient-to-r ${statusColor[status]} rounded-2xl p-4 flex justify-between items-center mx-4 sm:mx-16 border border-white/20 shadow-lg`}>
                 <PlayerCard player={leftPlayer} />
 

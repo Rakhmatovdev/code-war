@@ -56,7 +56,7 @@ class HelloWorld {
         return <div className="text-red-500 p-10">Xatolik yuz berdi yoki topshiriq topilmadi</div>;
 
     return (
-        <section className="relative">
+        <section className="relative font-roboto">
             <div className="fixed inset-0 -z-10 w-full h-full">
                 <img
                     src={Squest}

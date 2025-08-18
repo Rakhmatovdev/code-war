@@ -188,7 +188,7 @@ const Profile = () => {
 
 
   return (
-    <div>
+    <div className="font-roboto">
       <section className="relative my-20 ">
         <div className="fixed inset-0 -z-10 w-full h-full">
           <img
