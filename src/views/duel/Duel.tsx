@@ -57,7 +57,6 @@ const Duel = () => {
     const [statusModalVisible, setStatusModalVisible] = useState(false);
     const [selectedDuelStatus, setSelectedDuelStatus] = useState<DuelStatus | null>(null);
 
-    const [selectedId,setSelectedId]=useState(null)
 
 
     const [currentUserId, setCurrentUserId] = useState<number>(1); // Bu sizning auth sistemingizdan olish kerak
@@ -88,6 +87,15 @@ console.log(setCurrentUserId);
             refetchDuels();
         }
     });
+    if (mutationCreate.data){
+localStorage.setItem("createId",mutationCreate.data?.id)
+
+    }
+
+
+const createId=localStorage.getItem("createId")
+
+
 
     // Duelga qo'shilish (bu yerda duel ID ni yuborish kerak)
     const mutationJoin = useMutation({
@@ -100,12 +108,17 @@ console.log(setCurrentUserId);
     });
 
         const { data:realise  } = useQuery({
-        queryKey: ["duel"],
-        queryFn: () => AuthService.getAssignmentsByDuelId(selectedId??""),
-        enabled: !!selectedId,
+        queryKey: ["duel-asignment",createId],
+        queryFn: () => AuthService.getAssignmentsByDuelId(createId??""),
+        refetchInterval: 5000, 
     });
   
-console.log(realise);
+console.log("aa1",realise);
+console.log("aa2",createId);
+
+if(realise?.length>0){
+    navigate(`/duel/${createId}`);
+}
 
     // Status tekshirish
     const mutationStatus = useMutation({
@@ -235,7 +248,7 @@ console.log(realise);
     };
     const handleClick = async (duel:any) => {
      await mutationJoin.mutate(duel.id)
-     setSelectedId(duel.id)
+    
      navigate(`/duel/${duel.id}`);
 
     }
