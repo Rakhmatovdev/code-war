@@ -2,7 +2,7 @@ import DuelImg from "../../components/icons/outline/duel.png";
 import user from "../../components/icons/user.png";
 import badge from "../../components/icons/badge.png";
 import knife from "../../components/icons/knife.svg";
-import FightCard from "./FightCard";
+// import FightCard from "./FightCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AuthService from "../../service/auth.service";
 import eye from "../../components/icons/outline/eye.svg";
@@ -563,7 +563,7 @@ if(realise?.length>0){
             </Modal>
 
             {/* Duel History Section */}
-            <div className="relative z-10 my-20">
+            {/* <div className="relative z-10 my-20">
                 <div className="sm:mx-16 mx-4 bg-[#D9D9D90D] rounded-3xl sm:p-12 p-4 text-white">
                     <p className="text-center sm:text-3xl text-xl mb-2 sm:mb-8">
                         History of duels
@@ -585,7 +585,7 @@ if(realise?.length>0){
                         time="00 : 12 : 58"
                     />
                 </div>
-            </div>
+            </div> */}
 
             {/* Loading Overlay */}
             {(mutationCreate.isPending || mutationJoin.isPending || mutationStatus.isPending) && (

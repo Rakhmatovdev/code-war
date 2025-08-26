@@ -445,6 +445,7 @@ import DuelImg from "../../components/icons/outline/duel.png";
 import AuthService from '../../service/auth.service';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Modal } from 'antd';
+import FightCard from './FightCard';
 
 interface Assignment {
     id: number;
@@ -975,6 +976,32 @@ class HelloWorld {
                             </div>
                         ))}
                     </div>
+
+                      {/* Duel History Section */}
+            {/* <div className="relative z-10 my-20">
+                <div className="sm:mx-16 mx-4 bg-[#D9D9D90D] rounded-3xl sm:p-12 p-4 text-white">
+                    <p className="text-center sm:text-3xl text-xl mb-2 sm:mb-8">
+                        History of duels
+                    </p>
+                    <hr className="h-px border-none bg-white/50 sm:mx-16 mx-4 my-2" />
+
+                    <FightCard
+                        leftPlayer={{
+                            name: "Xamrayev Nurbek",
+                            avatar: user,
+                            health: 2,
+                            damage: -110,
+                        }}
+                        rightPlayer={{
+                            name: "Umarzoda Shohruh",
+                            avatar: user,
+                            health: 3,
+                            damage: 110,
+                        }}
+                        time="00 : 12 : 58"
+                    />
+                </div>
+            </div> */}
 
                     {/* Back Button */}
                     <div className="flex justify-center mt-8">
