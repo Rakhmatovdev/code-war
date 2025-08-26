@@ -445,7 +445,7 @@ import DuelImg from "../../components/icons/outline/duel.png";
 import AuthService from '../../service/auth.service';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Modal } from 'antd';
-import FightCard from './FightCard';
+// import FightCard from './FightCard';
 
 interface Assignment {
     id: number;
