@@ -324,7 +324,7 @@ if(realise?.length>0){
                                     <div className="flex justify-center">
                                         <img
                                             className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] object-cover"
-                                            src={rate?.profile_image || user}
+                                            src={rate?.profile_image_url || user}
                                             alt="User profile"
                                         />
                                     </div>

@@ -37,7 +37,7 @@ const Rating = () => {
                   {rating?.map((rate:any)=><tr>
                     <td className="border-r text-xs sm:text-base">{rate?.id}</td>
                     <td className="py-5 flex justify-center items-center">
-                      <img className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px]" src={ user} alt="user image" width={50} height={50} />
+                      <img className="rounded-full w-[20px] h-[20px] sm:w-[50px] sm:h-[50px] object-cover" src={ rate?.profile_image_url?? user} alt="user image" width={50} height={50} />
                     </td>
                     <td className="text-[8px] sm:text-base">{rate?.full_name}</td>
                     <td className="text-xs sm:text-base">{rate?.rating}</td>
