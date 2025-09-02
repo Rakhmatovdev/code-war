@@ -9,7 +9,7 @@ import eye from "../../components/icons/outline/eye.svg";
 import { useNavigate } from "react-router";
 import { Dropdown, MenuProps, Modal, Progress, Tag } from "antd";
 import { format, parseISO } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface DuelData {
     id: number;
@@ -116,9 +116,14 @@ const createId=localStorage.getItem("createId")
 console.log("aa1",realise);
 console.log("aa2",createId);
 
+
+
+useEffect(() => {
+
 if(realise?.length>0){
     navigate(`/duel/${createId}`);
 }
+}, [realise])
 
     // Status tekshirish
     const mutationStatus = useMutation({
@@ -302,6 +307,13 @@ if(realise?.length>0){
                             <hr className="h-px border-none bg-white/50 my-6" />
                         </div>
                     )}
+
+                    {realise?.length>0 && (<button
+                        className="mb-8 w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded transition-colors text-sm"
+                        onClick={() => navigate(`/duel/${createId}`)}
+                    >
+                      Mavjud duelga o'tish
+                    </button>)}
 
                     {/* Users Rating Table */}
                     <table className="w-full">

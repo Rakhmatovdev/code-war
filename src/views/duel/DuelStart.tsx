@@ -439,6 +439,7 @@
 // };
 
 // export default DuelStart;
+//v2
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import DuelImg from "../../components/icons/outline/duel.png";
@@ -546,6 +547,10 @@ const DuelStart: React.FC = () => {
         refetchInterval: 2000, // Poll every 2 seconds
         enabled: !!id && !isDuelFinished,
     });
+
+ if(!duelStatus){
+    navigate('/duel');
+ }
 
     const tasks: Assignment[] = taskResponse?.map(item => item.assignment) || persistedTasks;
 
