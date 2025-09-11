@@ -95,14 +95,15 @@ const Plan = () => {
                 <div className="flex">
                     <div className="sm:mx-16 flex sm:flex-row flex-col sm:gap-28 p-4 sm:p-10 mx-1 rounded-xl sm:rounded-3xl  w-full bg-[#D9D9D90D] pb-4 sm:pb-8">
                       <div className={'mb-10 sm:h-screen relative '}>  <Sidebar/></div>
-                        <div >
+                       
+                        <div className=" w-full" >
                             <div
-                                className="bg-[#C6DCE90D]   rounded-xl sm:rounded-3xl  pb-4 sm:pb-8 relative">
+                                className="bg-[#C6DCE90D]  rounded-xl sm:rounded-3xl  pb-4 sm:pb-8 relative">
                                 {/* <div className="absolute sm:-top-10 -top-6 right-2 sm:right-10 py-2 px-4 sm:py-[14px] sm:px-[75px] bg-[#3D6560] inline-block rounded-xl sm:rounded-3xl">
                 <p className="text-xs sm:text-xl">{plan?.title}</p>
               </div> */}
-                                <div className="sm:mx-16 mx-2 overflow-hidden">
-                                    <p className="sm:pt-14 pt-6 text-base sm:text-xl font-normal">
+                               <div className="sm:mx-16 mx-2 overflow-hidden">
+                                   <p className="sm:pt-14 pt-6 text-base sm:text-xl font-normal">
                                         {plan?.text
                                             ?.split(/(\r\n|\r|\n|\t)/)
                                             .map((part: string, i: number) => {

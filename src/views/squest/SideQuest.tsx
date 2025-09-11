@@ -66,17 +66,6 @@ const SideQuest = () => {
     width: 75,
   },
   {
-    title: <p className="table_th">Id</p>,
-    dataIndex: "id",
-    key: "id",
-    width: 135,
-    render: (_, record) => (
-      <Link to={`${record?.id}`} className="line-clamp-1">
-        {record.id || "-"}
-      </Link>
-    ),
-  },
-  {
     title: <p className="table_th">Nomi</p>,
     dataIndex: "title",
     key: "title",
@@ -88,17 +77,13 @@ const SideQuest = () => {
     ),
   },
   {
-    title: <p className="table_th">Plan title</p>,
+    title: <p className="table_th">Plan Nomi</p>,
     dataIndex: "plan_title",
     key: "plan_title",
-    render: (_, record) => {
-      if (!record?.plan_title) return "-";
-      const formattedText = record?.plan_title.startsWith("+")
-        ? record?.plan_title
-        : `+${record?.plan_title}`;
+    render: (text,record) => {
       return (
         <Link to={`${record?.id}`} className="line-clamp-1">
-          {formattedText}
+          {text?? "-"}
         </Link>
       );
     },
