@@ -46,37 +46,37 @@ import sorceress from "../../public/user/sorceress.png"
     {
       id: 2,
       photo:rank2,
-      title:"Straj (Qo‘riqchi)",
+      title:"Warden (Qo‘riqchi)",
       rank:"1,500 - 3,000 ball",
     },
     {
       id: 3,
       photo:rank3,
-      title:"Kiborg (Kiber jangchi)",
+      title:"Knight (Ritser)",
       rank:"3,000 - 4,500 ball",
     },
     {
       id: 4,
       photo:rank4,
-      title:"Snayper",
+      title:"Hero (Qahramon)",
       rank:"4,500 - 6,000 ball",
     },
     {
       id: 5,
       photo:rank5,
-      title:"Kapitan",
+      title:"Legend (Afsona)",
       rank:"6,000 - 7,500 ball",
     },
     {
       id: 6,
       photo:rank6,
-      title:"Komandor",
+      title:"Lord (Hukmdor)",
       rank:"7,500 - 8,500 ball",
     },
     {
       id: 7,
       photo:rank7,
-      title:"Elita",
+      title:"Deity (Ilohiy)",
       rank:"8,500 - 9,500 ball",
     },
     {
