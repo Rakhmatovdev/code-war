@@ -5,12 +5,6 @@ import user from "../../components/icons/user.png"
 import AuthService from "../../service/auth.service";
 import { Modal, Select } from "antd";
 import { useEffect, useState, useRef } from "react";
-import zirh from "../../../public/user/z1.png"
-import qalqon from "../../../public/user/qal1.png"
-import uzuk from "../../../public/user/k1.png"
-import qilich from "../../../public/user/q1.png"
-import etik from "../../../public/user/e1.png"
-import dubulga from "../../../public/user/dub1.png"
 
 import warrior from "../../../public/user/warrior.png"
 
@@ -289,7 +283,7 @@ const Profile = () => {
       .map((item: any) => (
         <div key={item.id} className="relative group cursor-pointer flex justify-center">
           <img
-            src={item.gear.type === "shield" ? qalqon : item.gear.type === "armor" ? zirh : uzuk}
+            src={item.gear.type === "shield" ? item.image : item.gear.type === "armor" ? item.image : item.image}
             alt={item.gear.name}
             width={125}
             height={125}
@@ -321,10 +315,10 @@ const Profile = () => {
           <img
             src={
               item.gear.type === "sword"
-                ? qilich
+                ? item.image
                 : item.gear.type === "helmet"
-                ? dubulga
-                : etik
+                ? item.image
+                : item.image
             }
             alt={item.gear.name}
             width={125}

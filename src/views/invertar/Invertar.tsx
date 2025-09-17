@@ -1,23 +1,10 @@
 import InvetarImg from "../../components/icons/outline/invertar.png";
-import zirh from "../../../public/user/z1.png";
-import qalqon from "../../../public/user/qal1.png";
-import uzuk from "../../../public/user/k1.png";
-import qilich from "../../../public/user/q1.png";
-import etik from "../../../public/user/e1.png";
-import dubulga from "../../../public/user/dub1.png";
 import warrior from "../../../public/user/warrior.png";
 import { useQuery } from "@tanstack/react-query";
 import AuthService from "../../service/auth.service";
 import { useParams } from "react-router";
 
-const gearImages: Record<string, string> = {
-  sword: qilich,
-  shield: qalqon,
-  helmet: dubulga,
-  armor: zirh,
-  boots: etik,
-  ring: uzuk,
-};
+
 
 const Invertar = () => {
   const { id } = useParams();
@@ -31,6 +18,7 @@ const Invertar = () => {
     return <div className="w-screen h-screen bg-slate-900" />;
   }
 
+ 
   return (
     <div>
       <section className="relative font-roboto ">
@@ -57,7 +45,7 @@ const Invertar = () => {
                     className="relative group flex justify-center"
                   >
                     <img
-                      src={gearImages[item.gear.type]}
+                      src={item.gear.image}
                       alt={item.gear.name}
                       width={125}
                       height={125}  
@@ -94,7 +82,7 @@ const Invertar = () => {
                     className="relative group flex justify-center"
                   >
                     <img
-                      src={gearImages[item.gear.type]}
+                      src={item.gear.image}
                       alt={item.gear.name}
                       width={125}
                       height={125}
