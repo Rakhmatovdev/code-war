@@ -283,7 +283,8 @@ const Profile = () => {
       .map((item: any) => (
         <div key={item.id} className="relative group cursor-pointer flex justify-center">
           <img
-            src={item.gear.type === "shield" ? item.image : item.gear.type === "armor" ? item.image : item.image}
+          className="rounded-xl"
+            src={item.gear.type === "shield" ? item.gear.image : item.gear.type === "armor" ? item.gear.image : item.gear.image}
             alt={item.gear.name}
             width={125}
             height={125}
@@ -313,12 +314,14 @@ const Profile = () => {
       .map((item: any) => (
         <div key={item.id} className="relative group cursor-pointer flex justify-center">
           <img
+          className="rounded-xl"
             src={
+
               item.gear.type === "sword"
-                ? item.image
+                ? item.gear.image
                 : item.gear.type === "helmet"
-                ? item.image
-                : item.image
+                ? item.gear.image
+                : item.gear.image
             }
             alt={item.gear.name}
             width={125}
