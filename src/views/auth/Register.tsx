@@ -145,8 +145,8 @@ if (file?.length) {
           <div className="video-container">
             <img src={Back} className="background-video" />
             <div className="z-20 absolute mx-auto w-full ">
-              <section className="bg-transparent text-white">
-                <div className="flex flex-col items-center justify-center p-4 h-screen lg:py-0">
+              <section className="bg-transparent text-white scroll-none h-screen overflow-y-scroll ">
+                <div className="flex flex-col items-center justify-center p-4 lg:py-0">
                   <div className="w-full rounded-2xl sm:max-w-[570px] xl:p-01">
                     <div className="sm:space-y-45 p-10 md:space-y-6 wrapper px-4 sm:p-[100px]">
                       <div>
