@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 
 import QueryProvider from "./config/providers/query.provider.tsx";
 import ReduxProvider from "./config/providers/redux.provider.tsx";
@@ -56,7 +56,7 @@ function App() {
         <QueryProvider>
             <ReduxProvider>
                 <BrowserRouter>
-                    <Suspense fallback={<div>Loading...</div>}>
+
                         <Routes>
                             {/* Auth routes */}
                             <Route path="/auth">
@@ -76,7 +76,7 @@ function App() {
                             {/* Fallback */}
                             <Route path="*" element={<Navigate to="/" replace />} />
                         </Routes>
-                    </Suspense>
+
                 </BrowserRouter>
             </ReduxProvider>
         </QueryProvider>
