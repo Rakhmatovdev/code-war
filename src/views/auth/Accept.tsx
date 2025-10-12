@@ -183,8 +183,6 @@ export default function Accept() {
               </section>
             </div>
           </div>
-    
-    
         </div>
       )}
     </>

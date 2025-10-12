@@ -23,11 +23,7 @@ const pageSize = 4
   });
   console.log(data);
   console.log(comments);
- 
-  
-if(home === undefined) {
-return <div className="w-screen h-screen  bg-slate-900"/>
-}
+
 
   return (
     <div>

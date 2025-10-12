@@ -60,6 +60,7 @@ class HelloWorld {
             <div className="fixed inset-0 -z-10 w-full h-full">
                 <img
                     src={Squest}
+                    decoding="async"
                     loading="lazy"
                     alt="start test background"
                     className="w-full h-full object-cover"

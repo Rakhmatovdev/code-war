@@ -80,6 +80,7 @@ navigate("/");
       <div className="fixed inset-0 w-full h-full">
         <img
           src={StartTestImg}
+          decoding="async"
           loading="lazy"
           alt="start test background"
           className="w-full h-full object-cover"

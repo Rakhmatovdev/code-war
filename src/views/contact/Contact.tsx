@@ -145,6 +145,7 @@ const Contact = () => {
         <img
           src={ContactImg}
           loading="lazy"
+          decoding="async"
           alt="start test background"
           className="w-full h-full object-cover"
         />

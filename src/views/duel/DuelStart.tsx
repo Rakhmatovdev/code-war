@@ -848,6 +848,7 @@ class HelloWorld {
                 <img
                     src={DuelImg}
                     loading="lazy"
+                    decoding="async"
                     alt="duel background"
                     className="w-full h-full object-cover"
                 />

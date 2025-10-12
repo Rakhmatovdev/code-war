@@ -162,6 +162,7 @@ const sections: SectionProps[] = [
         <img
           src={AboutImg}
           loading="lazy"
+          decoding="async"
           alt="start test background"
           className="w-full h-full object-cover"
         />

@@ -2,7 +2,6 @@ import DuelImg from "../../components/icons/outline/duel.png";
 import user from "../../components/icons/user.png";
 import badge from "../../components/icons/badge.png";
 import knife from "../../components/icons/knife.svg";
-// import FightCard from "./FightCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import AuthService from "../../service/auth.service";
 import eye from "../../components/icons/outline/eye.svg";
@@ -265,6 +264,7 @@ if(realise?.length>0){
                 <img
                     src={DuelImg}
                     loading="lazy"
+                    decoding="async"
                     alt="duel background"
                     className="w-full h-full object-cover"
                 />
