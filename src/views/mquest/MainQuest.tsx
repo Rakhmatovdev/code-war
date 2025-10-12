@@ -26,7 +26,7 @@ return <div className="w-screen h-screen bg-slate-900"/>
           decoding="async"
           loading="lazy"
           alt="start test background"
-          className="w-full h-full object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
             <div className={'mx-4 sm:mx-16 h-screen mb-10'}>

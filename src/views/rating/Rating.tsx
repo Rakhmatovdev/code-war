@@ -19,7 +19,7 @@ const Rating = () => {
           decoding="async"
           loading="lazy"
           alt="start test background"
-          className="w-full h-full object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
               <div className="sm:mx-16 relative my-10 z-20 mx-4 bg-[#D9D9D90D]  rounded-3xl sm:px-[100px] px-4 pt-4 sm:pt-[38px] text-white">

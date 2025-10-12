@@ -147,7 +147,7 @@ const Contact = () => {
           loading="lazy"
           decoding="async"
           alt="start test background"
-          className="w-full h-full object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
             </section>

@@ -45,7 +45,7 @@ const pageSize = 4
           src={home}
           loading="lazy"
           alt="start test background"
-          className="w-full h-full object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
         </div>

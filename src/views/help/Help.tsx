@@ -9,7 +9,7 @@ const Help = () => {
           src={helpImg}
           loading="lazy"
           alt="start test background"
-          className="w-full h-full object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
         <div className="relative sm:mx-16 z-20 mx-4 py-10 sm:py-16   bg-[#D9D9D914] rounded-t-xl sm:rounded-t-3xl text-white ">

@@ -100,7 +100,7 @@ const SideQuest = () => {
           decoding="async"
           loading="lazy"
           alt="start test background"
-          className="w-full h-full object-cover"
+          className="w-full h-screen object-cover"
         />
       </div>
 <div className="">

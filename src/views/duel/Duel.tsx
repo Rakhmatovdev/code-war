@@ -266,7 +266,7 @@ if(realise?.length>0){
                     loading="lazy"
                     decoding="async"
                     alt="duel background"
-                    className="w-full h-full object-cover"
+                    className="w-full h-screen object-cover"
                 />
             </div>
 
